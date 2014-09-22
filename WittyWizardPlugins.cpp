@@ -1,5 +1,13 @@
 /* ****************************************************************************
  * Poor mans Plugin System
+ * I want to a good Plugin System, this works, but its not what I want
+ *
+ * Module Name is derived from the Internal Path, which starts out as language (en, cn, ru...)
+ * so blogman, chatman, videoman, and menuman are all Module Names.
+ *
+ * Subpaths are different for every Module, so each module must return the minimal and maximum number of paths (seperated as /)
+ *
+ *
  */
 #include "WittyWizard.h"
 /* ****************************************************************************
@@ -20,13 +28,6 @@ void WittyWizard::CallMenuPlugin()
             mainMenu_->addItem(Wt::WString::tr("chat"),  deferCreate(boost::bind(&WittyWizard::Chat, this))); //
         }
     #endif // CHATMAN
-    #ifdef VIDEOMAN
-        if (theIncludes.find("|VideoMan|") != std::string::npos)
-        {
-            mainMenu_->addItem(Wt::WString::tr("VideoMan").toUTF8(), deferCreate(boost::bind(&WittyWizard::VideoMan, this)));
-        }
-        // FIXIT add Menu Options for all videos
-    #endif // VIDEOMAN
 } // end CallMenuPlugin
 /* ****************************************************************************
  * Call Plugin
@@ -34,9 +35,9 @@ void WittyWizard::CallMenuPlugin()
 void WittyWizard::CallPlugin()
 {
     #ifdef HITCOUNTERMAN
-        if (theIncludes.find("|HitManCounter|") != std::string::npos)
+        if (theIncludes.find("|HitCounterMan|") != std::string::npos)
         {
-            homeTemplate_->bindWidget("hitcounterman", HitCounterMan());
+            homeTemplate->bindWidget("hitcounterman", HitCounterMan());
         }
     #else
         homeTemplate_->bindWidget("hitcounterman", new Wt::WText(""));
@@ -48,32 +49,8 @@ void WittyWizard::CallPlugin()
  */
 bool WittyWizard::PluginHandlePathChange(std::string moduleName, int newLanguage)
 {
-    #ifdef VIDEOMAN
-    VideoManView *video;
-    if (moduleName == Wt::WString::tr("VideoManPath"))
-    {
-        video = dynamic_cast<VideoManView *>(findWidget("videoman"));
-        if (video)
-        {
-            if (language_ == newLanguage)
-            {
-                Wt::log("notice") << " <<<<<<< WittyWizard::InternalPathChange() menu is video do return.";
-                isPathChanging = false; // Set isPathChanging so InternalPathChange will fire
-                // FIXIT add a callback from video to update hit counter
-                #ifdef HITCOUNTERMAN
-                    if (theIncludes.find("|HitManCounter|") != std::string::npos)
-                    {
-                        homeTemplate_->bindWidget("hitcounterman", HitCounterMan());
-                    }
-                #else
-                    homeTemplate_->bindWidget("hitcounterman", new Wt::WText(""));
-                #endif // HITCOUNTERMAN
-                return false; // we do not want to handle changes: FIXIT find a way to make this generic
-                // maybe make a call to video handle path change, return true to continue, false to return without handling change
-            }
-        }
-    }
-    #endif
+    (void)moduleName;
+    (void)newLanguage;
     return true;
 } // end PluginHandlePathChange
 /* ****************************************************************************
@@ -81,6 +58,9 @@ bool WittyWizard::PluginHandlePathChange(std::string moduleName, int newLanguage
  */
 void WittyWizard::CallPluginSetLanguage(std::string moduleName, std::string languageName, int newLanguage)
 {
+    (void)moduleName;
+    (void)languageName;
+    (void)newLanguage;
     #ifdef BLOGMAN
     BlogView *blog = dynamic_cast<BlogView *>(findWidget("blog"));
     if (blog)
@@ -95,20 +75,6 @@ void WittyWizard::CallPluginSetLanguage(std::string moduleName, std::string lang
         }
     }
     #endif // BLOGMAN
-    #ifdef VIDEOMAN
-    VideoManView *video = dynamic_cast<VideoManView *>(findWidget("video"));
-    if (video)
-    {
-        if (moduleName == Wt::WString::tr("VideoManPath"))
-        {
-            if (language_ != newLanguage)
-            {
-                Wt::log("notice") << "WittyWizard::InternalPathChange() for videoman " << languageName;
-                video->SetInternalBasePath("/" + languageName + "/" + Wt::WString::tr("VideoManPath").toUTF8() + "/");
-            }
-        }
-    }
-    #endif
 } // end CallPluginSetLanguage
 #ifdef HITCOUNTERMAN
 /* ****************************************************************************
@@ -116,32 +82,10 @@ void WittyWizard::CallPluginSetLanguage(std::string moduleName, std::string lang
  */
 Wt::WWidget* WittyWizard::HitCounterMan()
 {
-    HitCounterManView* hitManCounter = new HitCounterManView(*dbConnection_, languages[GetDefaultLanguage()].code_);
-    hitManCounter->setObjectName("hitcounterman");
+    HitCounterManView* hitCounterMan = new HitCounterManView(*dbConnection, languages[GetDefaultLanguage()].code_);
+    hitCounterMan->setObjectName("hitcounterman");
     //
-    return hitManCounter->Update();
+    return hitCounterMan->Update();
 } // end HitCounterMan
 #endif // HITCOUNTERMAN
-#ifdef VIDEOMAN
-/* ****************************************************************************
- * Video Manager
- * FIXIT: this needs to be done with a software plug in, this is for testing only
- * Given the current state with plugins, this is a long term project
- * myAppRoot: Path to video.xml
- * Internal Path
- * debase Connection
- */
-Wt::WWidget* WittyWizard::VideoMan()
-{
-    //
-    Wt::log("start") << " *** WittyWizard::VideoMan() internalPath = " << internalPath();
-    const Lang& l = languages[language_];
-    std::string langPath = l.name_;
-    std::string theVideoManPath = Wt::WString::tr("VideoMan").toUTF8();
-    boost::to_lower(theVideoManPath);
-    VideoManView* thisVideo = new VideoManView(appRoot() + "home/" + domainName + "/videoman/", "/" + langPath + "/" + theVideoManPath + "/", *dbConnection_, l.name_, Crystallball::UseDb[domainName], domainName);
-    thisVideo->setObjectName("videoman");
-    Wt::log("end") << " *** WittyWizard::VideoMan()";
-    return thisVideo;
-} // end VideoMan
-#endif // VIDEOMAN
+// --- End Of File ------------------------------------------------------------
