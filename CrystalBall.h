@@ -2,7 +2,7 @@
  * Witty Wizard
  * Global Functions: extern
  */
-namespace Crystallball
+namespace CrystalBall
 {
     /* ****************************************************************************
      * Global Version Number and Date last Modified for logs
@@ -30,7 +30,7 @@ namespace Crystallball
      * Default Language Index
      * This is added in HomeFundation AddLanguage
      */
-    extern std::map <std::string, std::string> DefaultLanguageIndex;
+    extern std::map <std::string, int> DefaultLanguageIndex;
     /* ****************************************************************************
      * Global Variable
      * UseDb="0": 1 = true, 0 = false
@@ -77,15 +77,26 @@ namespace Crystallball
      */
     extern std::map <std::string, std::string> ModuleIncludes;
     /* ****************************************************************************
-     * Default Language
-     */
-    extern std::map <std::string, std::string> DefaultLanguageIndex;
-    /* ****************************************************************************
      * Global Variable
      * defaultTheme="blue"
      * See domain.xml:defaultTheme="blue"
      */
     extern std::map <std::string, std::string> DefaultTheme;
+    /* ****************************************************************************
+     * Global Variable
+     * google-site-verification
+     */
+    extern std::map <std::string, std::string> GoogleSiteVerifi;
+    /* ****************************************************************************
+     * Global Variable
+     * y_key: Yahoo Site Verisfication Key
+     */
+    extern std::map <std::string, std::string> Ykey;
+    /* ****************************************************************************
+     * Global Variable
+     * msvalidate.01
+     */
+    extern std::map <std::string, std::string> MsValidate;
     /* ****************************************************************************
      * Global Variable
      * Used to create database, turn off afterwards so you do not get errors
@@ -113,24 +124,28 @@ namespace Crystallball
     extern std::string GetCookie(std::string name);
     /* ****************************************************************************
      * String Replace
-     * std::string myCookie = GetCookie("videoman");
-     * std::string string(" $name");
-     * StringReplace(string, "/en/", "/cn/");
+     * StringReplace(string, "this", "that");
      */
     extern bool StringReplace(std::string& string2replace, const std::string& changefrom, const std::string& changeTo);
+    /* ****************************************************************************
+     * Wide String Replace
+     * WStringReplace(string, "this", "that");
+     */
+    extern bool WStringReplace(std::wstring& string2replace, const std::wstring& changefrom, const std::wstring& changeTo);
     /* ****************************************************************************
      * FormatWithCommas
      */
     extern std::string FormatWithCommas(long value, std::string myLocale);
     /* ****************************************************************************
      * GetConnectionPoolInfo
-     * FIXIT: Would it be faster to save this to a database? That was a Joke.
+     * filePath:
+     * domainName:
      */
-    extern bool GetConnectionPoolInfo(std::string filePath);
+    extern bool GetConnectionPoolInfo(std::string filePath, std::string domainName);
     /* ****************************************************************************
      * Global Function
      * SQL Database Connection
      */
     extern bool SetSqlConnectionPool(std::string domainName);
-} // end namespace Crystallball
+} // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
