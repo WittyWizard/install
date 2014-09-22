@@ -30,13 +30,31 @@
     #include <boost/filesystem.hpp>
 #endif
 // do not #include "WittyWizard.h"
+class MyCrystalBall
+{
+    Wt::Dbo::SqlConnectionPool* connectionPool;  //
+    std::string domainHost;                      // domainHost="wittywizard.org"
+    int defaultLanguageIndex;                    // index of AddLanguage
+    bool useDb;                                  // UseDb="0": 1 = true, 0 = false
+    std::string dbName;                          // dbName="wittywizard"
+    std::string dbUser;                          // dbUser="wittywizard"
+    std::string dbPassword;                      // password="Secret"
+    std::string dbPort;                          // dbPort="" : PostgreSQL=5432
+    std::string gasAccount;                      // Google Adsense: gasAccount="pub-123456789012345"   google.com/adsense/
+    std::string gaAccount;                       // Google Analytic Account: gaAccount="UA-xxxxxxxx-x" google.com/analytics/
+    std::string moduleIncludes;                  // Include Modules "|ModuleName|"
+    std::string defaultTheme;                    // Default Theme:
+    std::string googleSiteVerifi;                // google-site-verification
+    std::string yKey;                            // Yahoo Site Verisfication Key
+    std::string msValidate;                      // msvalidate.01
 
-namespace Crystallball
+} LookInTo;
+namespace CrystalBall
 {
     /* ****************************************************************************
-     * Global Version Number and Date last Modified for logs
+     * Global Version Number and Date last Modified for logs, make sure its this version.
      */
-    std::string Version = "Date: 18 Aug 2014 - Version: 1.0.3";
+    std::string Version = "Date: 20 Sep 2014 - Version: 1.0.3";
     /* ****************************************************************************
      * Global Variable
      * root Prefix: Used to set the URL Path: http:domain.tdl\prefix\root-path
@@ -45,10 +63,11 @@ namespace Crystallball
      */
     std::string RootPathPrefix="ww";
     /* ****************************************************************************
-     * Global:
-     * UseDatabase: If true it uses Database, else it uses Templates
+     * Global Variable
+     * Used to create database, turn off afterwards so you do not get errors
+     * FIXIT make admin function to change this on the fly *
      */
-    bool UseDatabase = true;
+    bool InitDb = false;
     /* ****************************************************************************
      * Global map
      * Connection Pool Map
@@ -65,8 +84,7 @@ namespace Crystallball
      * This is added in HomeFundation AddLanguage
      * You need this when you edit a pages content, save as docName_lang.xml
      */
-    std::map <std::string, std::string> DefaultLanguageIndex;
-    //const std::string defaultLanguage = "en";
+    std::map <std::string, int> DefaultLanguageIndex;
     /* ****************************************************************************
      * Global Variable
      * UseDb="0": 1 = true, 0 = false
@@ -120,10 +138,19 @@ namespace Crystallball
     std::map <std::string, std::string> DefaultTheme;
     /* ****************************************************************************
      * Global Variable
-     * Used to create database, turn off afterwards so you do not get errors
-     * FIXIT make admin function to change this on the fly *
+     * google-site-verification
      */
-    bool InitDb = true;
+    std::map <std::string, std::string> GoogleSiteVerifi;
+    /* ****************************************************************************
+     * Global Variable
+     * y_key: Yahoo Site Verisfication Key
+     */
+    std::map <std::string, std::string> Ykey;
+    /* ****************************************************************************
+     * Global Variable
+     * msvalidate.01
+     */
+    std::map <std::string, std::string> MsValidate;
     /* ****************************************************************************
      * Global Function
      * is File: Full Path to File: /home/domain.tdl/filename.ext
@@ -164,8 +191,8 @@ namespace Crystallball
         catch (std::exception& e)
         {
             std::cerr << e.what() << std::endl;
-            std::cerr << "Crystallball::SetCookie: Failed writting cookie: " << name;
-            Wt::log("error") << "Crystallball::SetCookie()  Failed writting cookie: " << name;
+            std::cerr << "CrystalBall::SetCookie: Failed writting cookie: " << name;
+            Wt::log("error") << "CrystalBall::SetCookie()  Failed writting cookie: " << name;
         }
     } // end SetCookie
     /* ****************************************************************************
@@ -182,24 +209,30 @@ namespace Crystallball
         catch (std::exception& e)
         {
             std::cerr << e.what() << std::endl;
-            std::cerr << "Crystallball::GetCookie: Failed reading cookie: " << name;
-            Wt::log("error") << "Crystallball::GetCookie()  Failed reading cookie: " << name;
+            std::cerr << "CrystalBall::GetCookie: Failed reading cookie: " << name;
+            Wt::log("error") << "CrystalBall::GetCookie()  Failed reading cookie: " << name;
         }
         return myCookie;
-    } // end std::string Crystallball::GetCookie
+    } // end std::string CrystalBall::GetCookie
     /* ****************************************************************************
      * String Replace
-     * std::string myCookie = GetCookie("videoman");
-     * std::string string(" $name");
-     * StringReplace(string, "/en/", "/cn/");
+     * StringReplace(string, "this", "that");
      */
     bool StringReplace(std::string& string2replace, const std::string& changefrom, const std::string& changeTo)
     {
         size_t start_pos = string2replace.find(changefrom);
-        if(start_pos == std::string::npos)
-        {
-            return false;
-        }
+        if(start_pos == std::string::npos) { return false; }
+        string2replace.replace(start_pos, changefrom.length(), changeTo);
+        return true;
+    } // end StringReplace
+    /* ****************************************************************************
+     * String Replace
+     * StringReplace(string, "this", "that");
+     */
+    bool WStringReplace(std::wstring& string2replace, const std::wstring& changefrom, const std::wstring& changeTo)
+    {
+        size_t start_pos = string2replace.find(changefrom);
+        if(start_pos == std::wstring::npos) { return false; }
         string2replace.replace(start_pos, changefrom.length(), changeTo);
         return true;
     } // end StringReplace
@@ -218,15 +251,16 @@ namespace Crystallball
      * GetConnectionPoolInfo
      * FIXIT: Would it be faster to save this to a database? That was a Joke.
      */
-    bool GetConnectionPoolInfo(const std::string filePath)
+    bool GetConnectionPoolInfo(const std::string filePath, std::string domainName)
     {
+        bool showDebug = false;
         if (IsFile(filePath))
         {
-            Wt::log("info") << "Starting version: " << Version << " XML Configuration File GetConnectionPoolInfo(" << filePath << ")";
+            if (showDebug) { Wt::log("start") << "Starting version: " << Version << " XML Configuration File CrystalBall::GetConnectionPoolInfo(" << filePath << ")"; }
         }
         else
         {
-            Wt::log("error") << "-> Missing XML Configuration File GetConnectionPoolInfo(" << filePath << ")";
+            if (showDebug) { Wt::log("error") << "-> Missing XML Configuration File GetConnectionPoolInfo(" << filePath << ")"; }
             return false;
         }
         // Open XML File
@@ -247,88 +281,117 @@ namespace Crystallball
                 return false;
             }
             std::string myDomainHost(x_item->value(), x_item->value_size());
-            DomainHost[myDomainHost] = myDomainHost;
-            // dbName
-            x_item = domain_node->first_attribute("dbName");
-            if (!x_item)
+            if (domainName == myDomainHost)
             {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbName";
-                return false;
-            }
-            DbName[myDomainHost] = x_item->value();
-            // defaultLanguageIndex
-            x_item = domain_node->first_attribute("defaultLanguageIndex");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: defaultLanguageIndex";
-                return false;
-            }
-            DefaultLanguageIndex[myDomainHost] = x_item->value();
-            // useDb
-            x_item = domain_node->first_attribute("useDb");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: useDb";
-                return false;
-            }
-            UseDb[myDomainHost] = x_item->value();
-            // dbUser
-            x_item = domain_node->first_attribute("dbUser");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbUser";
-                return false;
-            }
-            DbUser[myDomainHost] = x_item->value();
-            // dbPassword
-            x_item = domain_node->first_attribute("dbPassword");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbPassword";
-                return false;
-            }
-            DbPassword[myDomainHost] = x_item->value();
-            // dbPort
-            x_item = domain_node->first_attribute("dbPort");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbPort";
-                return false;
-            }
-            DbPort[myDomainHost] = x_item->value();
-            // gaAccount
-            x_item = domain_node->first_attribute("gaAccount");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: gaAccount";
-                return false;
-            }
-            GaAccount[myDomainHost] = x_item->value();
-            // gasAccount
-            x_item = domain_node->first_attribute("gasAccount");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: gasAccount";
-                return false;
-            }
-            GasAccount[myDomainHost] = x_item->value();
-            // moduleIncludes
-            x_item = domain_node->first_attribute("moduleIncludes");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: moduleIncludes";
-                return false;
-            }
-            ModuleIncludes[myDomainHost] = x_item->value();
-            // defaultTheme
-            x_item = domain_node->first_attribute("defaultTheme");
-            if (!x_item)
-            {
-                Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: defaultTheme";
-                return false;
-            }
-            DefaultTheme[myDomainHost] = x_item->value();
+                DomainHost[myDomainHost] = myDomainHost;
+                // dbName
+                x_item = domain_node->first_attribute("dbName");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbName";
+                    return false;
+                }
+                DbName[myDomainHost] = x_item->value();
+                // defaultLanguageIndex
+                x_item = domain_node->first_attribute("defaultLanguageIndex");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: defaultLanguageIndex";
+                    return false;
+                }
+                DefaultLanguageIndex[myDomainHost] = std::stoi(x_item->value());
+                // useDb
+                x_item = domain_node->first_attribute("useDb");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: useDb";
+                    return false;
+                }
+                UseDb[myDomainHost] = x_item->value();
+                // dbUser
+                x_item = domain_node->first_attribute("dbUser");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbUser";
+                    return false;
+                }
+                DbUser[myDomainHost] = x_item->value();
+                // dbPassword
+                x_item = domain_node->first_attribute("dbPassword");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbPassword";
+                    return false;
+                }
+                DbPassword[myDomainHost] = x_item->value();
+                // dbPort
+                x_item = domain_node->first_attribute("dbPort");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: dbPort";
+                    return false;
+                }
+                DbPort[myDomainHost] = x_item->value();
+                // gaAccount
+                x_item = domain_node->first_attribute("gaAccount");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: gaAccount";
+                    return false;
+                }
+                GaAccount[myDomainHost] = x_item->value();
+                // gasAccount
+                x_item = domain_node->first_attribute("gasAccount");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: gasAccount";
+                    return false;
+                }
+                GasAccount[myDomainHost] = x_item->value();
+                // moduleIncludes
+                x_item = domain_node->first_attribute("moduleIncludes");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: moduleIncludes";
+                    return false;
+                }
+                ModuleIncludes[myDomainHost] = x_item->value();
+                // defaultTheme
+                x_item = domain_node->first_attribute("defaultTheme");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: defaultTheme";
+                    return false;
+                }
+                DefaultTheme[myDomainHost] = x_item->value();
+                // googlesiteverifi
+                x_item = domain_node->first_attribute("googlesiteverifi");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: googlesiteverifi";
+                    return false;
+                }
+                GoogleSiteVerifi[myDomainHost] = x_item->value();
+                // ykey
+                x_item = domain_node->first_attribute("ykey");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: ykey";
+                    return false;
+                }
+                Ykey[myDomainHost] = x_item->value();
+                // msvalidate
+                x_item = domain_node->first_attribute("msvalidate");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: msvalidate";
+                    return false;
+                }
+                MsValidate[myDomainHost] = x_item->value();
+                break;
+            } // end if (domainName == myDomainHost)
         } // end for (rapidxml::xml_node<> * domain_node = root_node->first_node("domain"); domain_node; domain_node = domain_node->next_sibling("domain"))
+        if (showDebug) { Wt::log("end") << "CrystalBall::GetConnectionPoolInfo()"; }
         return true;
     } // end bool GetConnectionPoolInfo
     /* ****************************************************************************
@@ -364,14 +427,14 @@ namespace Crystallball
                 #endif // FIREBIRD
                 dbConnection->setProperty("show-queries", "true");
                 // We need to convert it FixedSqlConnectionPool to SqlConnectionPool, not sure if I should just refactor to use FixedSqlConnectionPool, or do not use Fixed pool size
-                Wt::Dbo::SqlConnectionPool *dbConnection_ = new Wt::Dbo::FixedSqlConnectionPool(dbConnection, 10); // FIXIT, size of pool
+                Wt::Dbo::SqlConnectionPool* dbConnection_ = new Wt::Dbo::FixedSqlConnectionPool(dbConnection, 10); // FIXIT, size of pool
                 ConnectionPool[domainName] = dbConnection_;
             }
             catch (std::exception& e)
             {
                 std::cerr << e.what() << std::endl;
                 std::cerr << "Error Connecting to domains database: " << domainName;
-                Wt::log("error") << "Crystallball::SetSqlConnectionPool()  Failed Connecting to domains database: " << domainName;
+                Wt::log("error") << "CrystalBall::SetSqlConnectionPool()  Failed Connecting to domains database: " << domainName;
                 return false;
             }
         }
@@ -381,5 +444,5 @@ namespace Crystallball
         }
         return true;
     } // end SetSqlConnectionPool
-} // end namespace Crystallball
+} // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
