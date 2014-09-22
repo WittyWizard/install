@@ -8,6 +8,4 @@
 #ifdef VIDEOMAN
     #include "view/VideoManView.h"
 #endif
-#ifdef VIDEOMAN
-    #include "view/VideoManView.h"
-#endif
+// --- End Of File ------------------------------------------------------------
