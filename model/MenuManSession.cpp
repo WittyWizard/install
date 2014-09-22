@@ -1,4 +1,3 @@
-#ifdef MENUMAN
 /* ****************************************************************************
  * Menu Manager Session
  * Witty Wizard
@@ -7,57 +6,102 @@
 /* ****************************************************************************
  * Menu Manager Session
  */
-MenuManSession::MenuManSession(const std::string& appPath, const std::string& useDb, Wt::Dbo::SqlConnectionPool& connectionPool) : appPath_(appPath), useDb_(useDb), connectionPool_(connectionPool)
+MenuManSession::MenuManSession(const std::string& appPath, const std::string& useDb, const std::string& lang, Wt::Dbo::SqlConnectionPool& connectionPool) : appPath_(appPath), useDb_(useDb), lang_(lang), connectionPool_(connectionPool)
 {
-    //Wt::log("start") << " *** MenuManSession::MenuManSession() *** ";
     if (useDb == "1")
     {
         setConnectionPool(connectionPool_);
         mapClass<MenuMan>("menuman"); // table name menuman
         Wt::WApplication* app = Wt::WApplication::instance();
         std::string path = app->internalPath(); // /lang/menuman/
-        bool doXmlUpdate = false;  // FIXME add security for logon or certificate
+        bool doXmlUpdate = false;
+        // FIXME add security for logon or certificate
         // hard code /admin/menuman/updatexml for admin work
         if (path.find("/admin/menuman/updatexml") != std::string::npos) { doXmlUpdate = true; }
-        if (Crystallball::InitDb)
+        //Wt::log("start") << " *** MenuManSession::MenuManSession() useDb | path = " << path << " | doXmlUpdate = " << doXmlUpdate << " *** ";
+        if (CrystalBall::InitDb || doXmlUpdate)
         {
             try
             {
                 Wt::Dbo::Transaction t(*this);
-                // Note: you must drop tables to do update
+                // Note: you must drop table to do update
                 if (doXmlUpdate)
                 {
-                    Wt::log("warning") << "MenuManSession::MenuManSession() droptables = ";
+                    Wt::log("warning") << "MenuManSession::MenuManSession() SQL Drop Table menuman";
                     dropTables();
+                    Wt::WApplication::instance()->setInternalPath("/", true);
                 }
                 createTables();
-                std::cerr << "Created database: menuman " << std::endl;
-                t.commit();
+                Wt::log("warning") << "Created database: menuman ";
                 if (!ImportXML())
                 {
                     Wt::log("error") << " *** MenuManSession::MenuManSession() ImportXML failed! *** ";
+                    return;
                 }
+                t.commit();
             }
             catch (std::exception& e)
             {
-                std::cerr << e.what() << std::endl;
-                std::cerr << "Using existing menuman database";
-                Wt::log("notice") << " *** MenuManSession::MenuManSession()  Using existing menuman database ";
+                Wt::log("warning") << " *** MenuManSession::MenuManSession()  Using existing menuman database = " << e.what();
             }
         }
     } // end if (useDb == "1")
     //Wt::log("end") << " *** MenuManSession::MenuManSession() *** ";
 } // end MenuManSession
 /* ****************************************************************************
+ * GetTemplate
+ */
+Wt::WString MenuManSession::GetTemplate(std::string id)
+{
+    if (id.empty()) { Wt::log("error") << " *** MenuManSession::GetTemplate() empty content id"; return ""; }
+#define STATIC_DATA
+#ifdef STATIC_DATA
+    //return "<div><p>This is a Test</p><p>And Only a Test</p></div>";
+    //return "test";
+    std::wstring line;
+    std::wifstream myfile (id);
+    std::wstring myTemplate;
+    int counter = 0;
+    if (myfile.is_open())
+    {
+      while ( getline (myfile, line) )
+      {
+          if (counter++ < 3) { continue; }
+          if (line.find(L"</message>") != std::string::npos)
+          {
+              break;
+          }
+          line.erase(std::remove(line.begin(), line.end(), '\t'), line.end());
+          line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+          CrystalBall::WStringReplace(line, L"“", L"&quot;");
+          CrystalBall::WStringReplace(line, L"”", L"&quot;");
+          myTemplate.append(line);
+      }
+      myfile.close();
+    }
+    else
+    {
+        Wt::log("error") << " *** MenuManSession::GetTemplate() Can not Read File " << id;
+    }
+#else
+    std::wstring myTemplate = L"<div><p>This is a Test</p><p>And Only a Test</p></div>";
+#endif
+    //const std::string temp( myTemplate.begin(), myTemplate.end() );
+    //Wt::log("notice") << " *** MenuManSession::GetTemplate() Read " << temp;
+    return myTemplate.c_str();
+} // end GetTemplate
+/* ****************************************************************************
  * Menu Man Session
  * Check Database for existing records and delete them
  * Read in XML file and populate Database
+ * <menuman name="" path="" type="" parent="" grandparent="" language="" content="" description="" keywords="" title="" copyright="" rating=""></menuman>
  */
 bool MenuManSession::ImportXML()
 {
     Wt::log("start") << " *** MenuManSession::ImportXML()  *** ";
-    std::string fullFilePath = appPath_ + "menuman-db-import.xml";
-    if (Crystallball::IsFile(fullFilePath))
+    // FIXME: Multilanguage support, _cn.xml for chinese, make a loop
+    std::string fullFilePath = appPath_ + "db/menuman-db-import.xml";
+    if (CrystalBall::IsFile(fullFilePath))
     {
         Wt::log("info") << "MenuManSession::ImportXML: " << fullFilePath;
     }
@@ -97,7 +141,7 @@ bool MenuManSession::ImportXML()
                 Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: name = " << domain_node->name();
                 return false;
             }
-            menuDb->name = nodeAttrib->value();
+            menuDb->name = Wt::WString::fromUTF8(nodeAttrib->value());
             Wt::log("progress") << "MenuManSession::ImportXML: name = " << nodeAttrib->value();
             // path of Menu Item that will be shown in address bar
             nodeAttrib = domain_node->first_attribute("path");
@@ -108,6 +152,34 @@ bool MenuManSession::ImportXML()
             }
             menuDb->path = nodeAttrib->value();
             Wt::log("progress") << "MenuManSession::ImportXML: path = " << nodeAttrib->value();
+            // type
+            nodeAttrib = domain_node->first_attribute("type");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: type = " << domain_node->name();
+                return false;
+            }
+            std::string menuType = nodeAttrib->value();
+            menuDb->type = nodeAttrib->value();
+            Wt::log("progress") << "MenuManSession::ImportXML: type = " << nodeAttrib->value();
+            // parent
+            nodeAttrib = domain_node->first_attribute("parent");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: parent = " << domain_node->name();
+                return false;
+            }
+            menuDb->parent = nodeAttrib->value();
+            Wt::log("progress") << "MenuManSession::ImportXML: parent = " << nodeAttrib->value();
+            // grandparent
+            nodeAttrib = domain_node->first_attribute("grandparent");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: grandparent = " << domain_node->name();
+                return false;
+            }
+            menuDb->grandparent = nodeAttrib->value();
+            Wt::log("progress") << "MenuManSession::ImportXML: grandparent = " << nodeAttrib->value();
             // language of Menu Item that will be shown in address bar: en, cn, ru...
             nodeAttrib = domain_node->first_attribute("language");
             if (!nodeAttrib)
@@ -118,14 +190,65 @@ bool MenuManSession::ImportXML()
             menuDb->language = nodeAttrib->value();
             Wt::log("progress") << "MenuManSession::ImportXML: language = " << nodeAttrib->value();
             // content of page for menu item, XHTML for WidgetFunction
-            nodeAttrib = domain_node->first_attribute("content");
+
+            // Read from file
+            if (menuType == "" || menuType == "submenu")
+            {
+                nodeAttrib = domain_node->first_attribute("content");
+                if (!nodeAttrib)
+                {
+                    Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: content = " << domain_node->name();
+                    return false;
+                }
+                std::string fileName = nodeAttrib->value();
+                menuDb->content = GetTemplate(appPath_ + "xml/" + fileName + ".xml");
+                Wt::log("progress") << "MenuManSession::ImportXML: content";
+            }
+            // description
+            nodeAttrib = domain_node->first_attribute("description");
             if (!nodeAttrib)
             {
-                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: content = " << domain_node->name();
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: description = " << domain_node->name();
                 return false;
             }
-            menuDb->content = nodeAttrib->value();
-            Wt::log("progress") << "MenuManSession::ImportXML: content = " << nodeAttrib->value();
+            menuDb->description = Wt::WString::fromUTF8(nodeAttrib->value());
+            Wt::log("progress") << "MenuManSession::ImportXML: description";
+            // keywords
+            nodeAttrib = domain_node->first_attribute("keywords");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: keywords = " << domain_node->name();
+                return false;
+            }
+            menuDb->keywords = Wt::WString::fromUTF8(nodeAttrib->value());
+            Wt::log("progress") << "MenuManSession::ImportXML: keywords";
+            // title
+            nodeAttrib = domain_node->first_attribute("title");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: title = " << domain_node->name();
+                return false;
+            }
+            menuDb->title = Wt::WString::fromUTF8(nodeAttrib->value());
+            Wt::log("progress") << "MenuManSession::ImportXML: title";
+            // copyright
+            nodeAttrib = domain_node->first_attribute("copyright");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: copyright = " << domain_node->name();
+                return false;
+            }
+            menuDb->copyright = Wt::WString::fromUTF8(nodeAttrib->value());
+            Wt::log("progress") << "MenuManSession::ImportXML: copyright";
+            // rating
+            nodeAttrib = domain_node->first_attribute("rating");
+            if (!nodeAttrib)
+            {
+                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: rating = " << domain_node->name();
+                return false;
+            }
+            menuDb->rating = nodeAttrib->value();
+            Wt::log("progress") << "MenuManSession::ImportXML: rating = " << nodeAttrib->value();
             // Commit Transaction
             t.commit();
         } // end for
@@ -140,5 +263,5 @@ bool MenuManSession::ImportXML()
     Wt::log("end") << "MenuManSession::ImportXML()";
     return true;
 } // end void MenuManSession::MenuManSession::ImportXML
-#endif // MENUMAN
+
 // --- End Of File ------------------------------------------------------------

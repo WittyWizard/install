@@ -9,7 +9,7 @@
 #include <Wt/Dbo/Impl>
 #include <Wt/Dbo/Types>
 #include <Wt/Dbo/QueryModel>
-#include "Crystallball.h"
+#include "CrystalBall.h"
 #include "HitCounterMan.h"
 /* ****************************************************************************
  * Hit Counter Man Session

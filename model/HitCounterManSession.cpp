@@ -12,7 +12,7 @@ HitCounterManSession::HitCounterManSession(Wt::Dbo::SqlConnectionPool& connectio
     //Wt::log("start") << " *** HitCounterManSession::HitCounterManSession() *** ";
     setConnectionPool(connectionPool_);
     mapClass<HitCounterMan>("hitcounterman"); // table name hitcounterman
-    if (Crystallball::InitDb)
+    if (CrystalBall::InitDb)
     {
         try
         {
@@ -31,7 +31,7 @@ HitCounterManSession::HitCounterManSession(Wt::Dbo::SqlConnectionPool& connectio
         {
             std::cerr << e.what() << std::endl;
             std::cerr << "Using existing hitcounterman database";
-            Wt::log("notice") << " *** HitCounterManSession::HitCounterManSession()  Using existing hitcounterman database ";
+            //Wt::log("notice") << " *** HitCounterManSession::HitCounterManSession()  Using existing hitcounterman database ";
         }
     }
     Update();
