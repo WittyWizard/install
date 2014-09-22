@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<messages>
+    <message id="home-template">
+    
+        <div style='text-align:left'>
+            <h1>内容管理系统 AKA &quot;CMS&quot;</h1>
+            <br />
+            <p>
+                内容管理系统和CMS，是一种计算机程序，可以帮助用户或组织管理内容，
+                所以在大多数情况下，它的文档管理系统DMS或，所以每次你想叫什么，
+                我把它叫做机智向导或WW短，
+                其目的是管理内容或文件系统，
+                所以用户呈现，是一个文档视图，也称为内容视图的各个方面，
+                所以如何组织和管理这些文档的所有问题。
+                内容管理系统
+            </p>
+            <br />
+            <p>
+                重量（发音为威达）是一个C+ +库，用于开发Web应用程序。
+            </p>
+            <br />
+            <p>
+                该API插件为中心，采用经过良好测试的桌面图形用户界面的开发模式量身打造的网络。给开发者，
+                    它提供了多种网络具体实施细则，包括客户端 - 服务器协议（HTTP，AJAX，WebSockets的）抽象，
+                    并释放从HTML中的JavaScript繁琐的操作和处理跨浏览器问题的开发商。
+                    相反，由于重量，你可以专注于实际功能与一组丰富的功能完整的小部件。
+            </p>
+            <br />
+            <p>
+            不像老派的基于页面的框架或目前的日单页JavaScript的'框架'，
+            重量允许您创建有状态的应用程序都在同一时间高度互动（使用的WebSockets和Ajax的一切）
+            但依然支持使用自动优雅降级或渐进增强普通HTML浏览器或Web爬虫。
+            事情是自然和简单，重量，需要发力，否则的不切实际量：交换使用动画控件，同时保持干净的URL和浏览器导航功能，
+            或者具有持续性聊天工具，在整个应用程序中打开，即使工作在传统的浏览器，如Microsoft Internet Explorer 6中。
+            </p>
+            <br />
+            <p>
+                该库提供，作为一个独立的HTTP（S）/ WebSocket的服务器或通过集成的FastCGI与其他Web服务器应用程序服务器。
+            </p>
+            <br />
+            <p>
+                功能丰富
+            </p>
+            <ul>
+                <li>使用布局 <a href='http://www.webtoolkit.eu/widgets/layout/html-templates' target='_blank'>HTML模板</a> 或智能 <a href='http://www.webtoolkit.eu/widgets/layout/layout-managers' target='_blank'>布局管理器</a> 和主题化的外观和感觉，包括支持 <a href='http://getbootstrap.com' target='_blank'>Twitter的引导</a> versions 2 or 3.</li>
+                <li>创建和使用，建立可重用的和自足的小部件维护的复杂性。</li>
+                <li>带有一个大组功能丰富的小工具，其中包括了 <a href='http://www.webtoolkit.eu/widgets/forms/' target='_blank'>form widgets</a>, <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-table-views' target='_blank'>table</a> and <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-tree-views' target='_blank'>tree views</a>, <a href='http://www.webtoolkit.eu/widgets/layout/dialogs' target='_blank'>dialogs</a>, <a href='http://www.webtoolkit.eu/widgets/navigation/popup-menu' target='_blank'>popup menu's</a>, etc...</li>
+                <li>Unified <a href='http://www.webtoolkit.eu/widgets/graphics-charts' target='_blank'>graphics</a> APIs, 2D (SVG, HTML5 Canvas, VML, PNG, and PDF) and 3D (client side WebGL and server-side OpenGL).</li>
+                <li>功能丰富 <a href='http://www.webtoolkit.eu/widgets/media/pdf-output' target='_blank'>HTML to PDF renderer</a> for dynamic report generation.</li>
+                <li>优雅的基于模板的c + +的数据库抽象层 (Wt::Dbo)</li>
+                <li>内置对常见的漏洞，如安全 <a href='http://en.wikipedia.org/wiki/Cross-site_scripting' target='_blank'>XSS(跨站脚本攻击)</a> or <a href='http://en.wikipedia.org/wiki/Cross-site_request_forgery' target='_blank'>CSRF (Cross-Site Request Forgery)</a></li>
+            </ul>
+            <br />
+            <p>
+                典型应用场景:
+            </p>
+            <ul>
+                <li><b>高性能，复杂</b> web应用程序的完全个性化（并因此不能从高速缓存中受益），完全支持Ajax，并在同一时间完全访问和搜索引擎优化。</li>
+                <li>基于Web的GUI为嵌入式系统受益于一个C+ +的Web应用程序服务器的低排放。</li>
+                <li>需要与（现有）C+ +库整合基于web的图形用户界面，例如用于科学或工程应用中，或者现有的C+ +桌面应用程序。</li>
+            </ul>
+            <br />
+            <p>
+                这就是说，根据重量不育系具有真正的潜力，
+                    但截至目前为止，还没有人真正写了一个，
+                    虽然有些已经开始，其他人谈论它，有的说不能做，
+                    所以我把它放在自己这样做，
+                    但我发现了真正的快速，
+                    这将是一大创举，
+                    我不仅不知道库，
+                    但编写C+ +程序编写Web应用程序的整个概念，是一个新的我，新的整个世界，
+                    因为大多数人使用了Apache，PHP，Python或那大多是解释性的无数其他语言，
+                    这意味着它们必须使用一些程序来解释的代码，并让它做它的魔力，
+                    因为大多数人并不怎么在意的东西都做，只要是这样，
+                    和大多数不知道有关计算机语言，给他们的只是魔术，
+                    所以他们把它留给了计算机程序员，使这个魔术发生，
+                    这意味着程序员是一个魔术师，使这个魔术发生，
+                    所以我的第一个法术是写所有我想要这个CMS做的事情，
+                    并且由于法术是奇才工艺，在某些语言魔术师和精灵的意思是一样的东西，
+                    所以我决定把这个CMS的机智向导。
+            </p>
+            <br />
+            <p>
+                俏皮精灵会尝试使用最佳实践，使这个CMS的现实，
+                    这意味着它会占用大量的计算机程序员过目所有的法术，
+                    并确保我拼写他们以正确的方式和最有效的方式，
+                    所以，如果你是一个C+ +重量向导，你的眼睛在看所有的法术，
+                    并留下关于如何提高性能的意见，将有助于使这一最佳实践守则，
+                    或最佳法术，这就是为什么我把它叫做机智精灵，
+                    所以我会教它像一个诙谐会向导。
+            </p>
+            <br />
+            <p>
+            基本概念是使用Wt的途径其意欲使用，
+                    这是一个大开眼界对我来说，
+                    因为它就像我认为它应该在时间没有工作什么，
+                    所以我一定要找出重量的方式是什么，这需要大量的问题来回答，
+                    那就是人的问题就在，工作小组论坛和邮件列表，
+                    没有一个良好的纪录，在回答问题的，
+                    如果有错误，他们都在，但对如何使用它去大多是没有答案的一般性问题，
+                    虽然他们尽最大努力回答他们，他们更注重的图书馆本身，
+                    这是他们应该重点关注，
+                    而不是人们如何使用它，他们留给你的，
+                    这给我留下了唯一的例子我能找到，
+                    它没有包含正确的法术，使一个CMS，我想顺便说一下，
+                    而在这一点上仍然没有定义，
+                    因为我的目标是利用重量的方式，它的设计，
+                    但我必须得到它做什么，我希望的CMS做的，
+                    而在点仍然没有定义，所以它的魔力，而这正是机智的精灵是怎么一回事。
+            </p>
+            <br />
+            <p>
+                从计算机程序员的视角谁想要学习重量，使一些杀手级的Web应用程序，
+                    也许不是很熟悉C或C+ +，
+                    这不是我的，我学会了早在上世纪70年代，
+                    但就像我说的，不是做Web应用程序，而不是使用重量，
+                    所以这对我来说是一个学习的经验也，
+                    但如果程序员不知道的C那么好，如果在所有，并有权了解重量最重要的是，
+                    那么他们可能只是放弃了，这哪里是机智精灵进来，
+                    并回答了这个问题：你如何学习C语言和WT图书馆不够好学习写那些杀手的Web应用程序，
+                    答案是：机智精灵。
+            </p>
+            <br />
+            <p>
+            俏皮精灵，谁是真正的只是我，
+                    这在精灵条款只是短暂的肉，
+                    所以这意味着肉，
+                    和肉有很多含义在许多语言中，
+                    所以我们要在讲什么语言？
+                    我只知道口语和英语的语言文字，
+                    但我需要把这种让每个人都能了解的机智奇才的CMS，
+                    所以它的多语种，但其基础上名为C语言，
+                    这都将被写入无论程序员用来沟通的语言，在语言英语，
+                    所以它明确指出什么人字意味着一种语言，它在其他语言中的许多不同的含义，
+                    而C的语言只有每字一个意思，其他语言有多种含义，
+                    例如：我的名字是杰弗里·斯科特Flesher，
+                    我的曾祖父母是来自德国在1752年登上了一个叫凤凰船舶，
+                    而我们原来的名字有弗莱舍，使它美国他们放弃了对IC，
+                    其中大多数人在美国没有C I，
+                    这是光明面的我，这有时被称为灵魂，
+                    所以它的I和我，或IAM...
+                    相反，他们只有C中的阴暗面，
+                    所以肉，这意味着在德国同样的事情，因为它在英语：
+                    1（鞣）的人或机器fleshes皮或毛皮
+                    2，苏格兰人的人谁卖的肉;屠夫
+                    <br/>
+                    而因为我的中间名是斯科特和我母亲的曾祖父母是来自苏格兰，
+                    并命名为我杰弗里神弗雷之后，所以其发音杰夫 - 弗雷和杰夫 - 免费。
+                    我可以告诉你我的祖父母是如何定义的肉，
+                    这意味着肉，我的身体是肉做的，
+                    所以它在我肉体或肉体存在。
+                    现在说，这是我怎么教你C + +和重量的同时，
+                    在你了解他们的方式定义的概念，
+                    通过实例和解释，而不只是像告诉你我的名字，并在此留报表，
+                    所以我给了你是谁（IAM），以及一个定义和如何将其连发音的历史，
+                    所以作为一个概念，你会明白，在肉体的我的概念，
+                    并了解我的曾祖父母们也泥瓦匠，所以我们保守秘密，我们调用的代码，
+                    而且他们的德系犹太人，使他们保持一个秘密，但高智商的，
+                    所以你知道，我们每个人都有亚斯伯格症候群，所以我们Aspies，
+                    因为我们都是奇才，
+                    的顺序一样古老的地球本身的后裔，
+                    和我们如何教一个主题，使我们奇才，我们做了向导的风格，
+                    就像大多数向导，你知道，像精灵梅林，我的步骤父亲的名字叫梅林，
+                    所以名字只是迷惑大多数人，首先，
+                    这就是为什么我在这你能理解他们的方式定义词的含义，
+                    但与精灵的神秘主义是谁再次每次死亡时间出生的，
+                    所以你可以杀了我，但我永远不会死，
+                    但你崩溃我的计划，我会杀了你，
+                    所以他们学习的东西，只有时间可以教，
+                    所以它的时间来展开教学。
+            </p>
+            <br />
+            <p>
+            秘密编写好的程序，是尝试不同的事情，看看有什么效果最好，
+                    所以不育系我跟开始时，大概不会是我结了，
+                    正因为如此，我会继续我的代码片段下来到一个小尺寸的，所以我们只谈论一件事，
+                    而不是试图教你如何在整个程序的工作原理，我只会尽量展现你撕成小块它是如何可以工作，
+                    但会改变，当我发现这样做的更好的方式，所以此CMS是活的，
+                    它的成长，它的成熟，它下降到疯狂和崩溃和愤怒只是为了再次在自己的浴火重生，
+                    很像神秘的凤凰，我的曾祖父母乘坐的，
+                    所以现在如果我说的IC，你知道的IAM谈论。
+            </p>
+            <br />
+            <p>
+            作为CMS的一般概述，也有我们想要的东西，
+                    第一个是运行多个URL，并让他们拉起自己的内容的能力，
+                    在组织中，我们可能想分享整个网址的数据，而不必重复这些内容，
+                    但我们是债券的规则没有XSS（跨站点脚本）
+                    因此，我们将其运行在服务器上的共享我们的应用的基本路径，
+                    然后共享一个家的根文件夹为approot和文档根目录/资源下的每个URL，
+                    这是还没有被定义，这两个机智的概念，所以深入重量，我们一定要去，
+                    在为approot是我们的文件，我们不希望公用存储来访问，如用于维护网站，如用于数据库导入XML文件凭证和资料，
+                    和文档根是其中所有的资源去，随着资源文件夹中，这是另一种Wt的概念，用于存储所有的资源文件。
+            </p>
+            <br />
+            <p>
+            当一个CMS处理，大多数人看的后端，管理部分，
+                    这将是一个重要的特征，
+                    但并不需要是一个必需的要素，
+                    和我的意思是，必须有一个替代使用后端，
+                    如此设计，我创建了一个叫做视频的人，它是一个视频管理器的第一个模块，
+                    它允许一个顶部和底部的HTML页面去的视频，其中有使用你管的iFrame视频的选项，
+                    重量提供或媒体播放器，或替代方案由视频的人提供的，
+                    并且还将支持其他玩家在市场上。
+                    它的主要特点是，它使用一个XML文件导入的数据，这也将有一个后端，使您可以添加，编辑和删除视频，
+                    但工作原理同样也没有后端，
+                    这给维护人员更多的方式来推动安全更新，
+                    由于没有后台，你强迫所有更新以更安全的方式来完成，
+                    你甚至可以关闭FTP和只使用SSH与身份验证凭据的证书，
+                    它可以免费使用命令行工具和向导的安装提供了一个bash脚本来生成，
+                    它可以让rsync的更新，以及，
+                    该数据库将来自后端采用的内部路径导入XML文件：/视频/ updatexml
+                    我说的后端，但其实际上只是模块，
+                    为安全起见，你必须通过身份验证才能运行此命令，
+                    或者你可以运行一个命令行导入SQL备份，
+                    只是删除表为该域名（domain.tdl〜看到domain.xml中的数据库用户凭据）
+                    从一个SQL查询插入导入数据，这取决于不同的后端数据库：SQLite的，MySQL和火鸟或推荐的PostgreSQL，
+                    你可以从后端与路径做到这一点： /vide/updatesql.
+            </p>
+            <br />
+            <p>
+            后端会有不同的部分，你将有一个后端的每一个模块，因此，网络管理者将有机会获得此功能，
+                    并且会有一个管理部分，以保持服务器本身，这将有助于维护数据库，FTP，电子邮件和其他服务，因为它影响所有站点，
+                    你会想给了管理员权限，以选定的个人，因为此CMS的设计在各种情况下使用，
+                    如：企业，政府和ISP托管的CMS系统管理员承担维护所有的URL该服务器，以及农场的作用，
+                    因为此CMS的目的是在服务器场运行，因此一些设置可以定义为在多个服务器上运行，
+                    并有功能，让您备份，恢复和同步服务器。
+            </p>
+            <br />
+            <p>
+                此CMS被设计为使用 <a href='http://mmonit.com/monit/' target='_blank'>monit</a>, 它的一个开源项目，这将确保应用程序运行在任何时候，
+                在检查过程中，在规定的时间间隔，如果它不是正在执行将重新启动应用程序，它也将启动该应用起来如果服务器重启。
+            </p>
+            <br />
+            <p>
+                此CMS被设计为使用 <a href='http://www.haproxy.org/' target='_blank'>haproxy</a>,
+                它的一个开源项目，将作为代理为机智向导设置从运行的端口，
+                        因此，如果其设定为在端口8080上运行，HAProxy的将它转换到80端口，使正常的URL将工作，而无需端口号添加到URL，
+                        它也将做负载均衡，如果你有一个服务器场设置，
+                        同时还将添加所需的前缀路径的URL，这是一个重量的概念，它是需要做出漂亮的URL，它在main.cpp中全局定义，
+                        在一个名为rootPrefix变量，默认情况下我将它设置为WW，对机智精灵，这个路径不存在的文件夹中，而是作为重量虚拟路径
+                        它也可以WWW重定向到非WWW网址，反之亦然。.
+            </p>
+            <br />
+            <p>
+                该CMS使用其他各种库目前都是开源项目，如 <a href='http://www.boost.org/' target='_blank'>Boost</a>,
+                <a href='http://rapidxml.sourceforge.net/' target='_blank'>Rapid XML</a>, <a href='http://asciidoc.org/' target='_blank'>AsciiDoc</a>, 和多.
+            </p>
+            <br />
+            <p>
+                此CMS的目的是要根据wthttpd运行，这是一个独立的Web服务器，根据 <a href='http://think-async.com/Asio/' target='_blank'>Asio C++ Library </a>,
+                建议删除了Apache，PHP和其他类似的网络服务器，这将减少软件漏洞的风险，并进行了更安全的环境。
+            </p>
+            <br />
+            <p>
+            俏皮精灵的CMS将被设计得非常安全，因此将有许多认证协议来访问后端，并最终将有购物车，
+                    这将是PCI兼容，它也将是可配置的，以允许基于安全的站点标准认证的特定类型，
+                    因为这需要为企业和政府使用足够安全，它会使用最新，最安全协议提供。
+            </p>
+            <br />
+            <p>
+            不同于传统的基于PHP的CMS的，机智的精灵是从头设计的要快，这是不是有些慢语的解释，为什么我用c + +，
+                    这是一个基于Apache或其他Web的服务器，有它自己的安全问题，更何况我之所以使用C + +是速度，
+                    操作系统本身是用C或C+ +，但有人会说速度的因素，但结果不言自明。
+            </p>
+            <br />
+            <p>
+                在此CMS的核心是菜单系统，它是由XML文件创建了这样的条目:<br />
+                &lt;menuman name='Menu_Name' path='internal_path' type='topsub,topend,subsub,subend,submenu' parent='path_to_parent' grandparent='path_to_grandparent' language='en,cn,ru...' content='Content' description='Meta Data' keywords='Meta Data' title='Tile' rating='general'>&lt;/menuman&gt;<br />
+                如果useDb真正的，它导入到这个数据库，如果为false，它使用模板。
+                的内容，然后通过一个程序，有标记的标签筛选，例如，如果我想的视频添加到我的内容，我所要做的就是用一个标签是这样:<br />
+                Dollar-Sign Right-Curly-Braket widget: audio id='widget_ID' align='center,left or right' class='wtaudio' type='Enchancments' width='580' height='33' src='/resources/source_path.mp3' altsrc='/resources/source.ogg' title='Title' Left-Curly-Bracket
+                这将创建要么和HTML5视频播放器，或回退的Flash视频播放器，还支持优管。
+                        有更多的窗口小部件将在WidgetFunction可用。
+            </p>
+            <br />
+            <p>
+            即将推出的功能将包括多个模块，其中一个模块是一个独立的小工具，以及一个Widget是一个组件，它允许你做一个任务，
+                    所以博客模块是一个小工具，可以让你的博客，但如果我不需要博客网站，我简单的不包括它，
+                    这是通过指定哪些模块你想要的网站，此文件被称为domain.xml中完成的情况下，每个服务器只有一个，
+                    它定义了可以使用CMS的每个URL，一个典型的进入会是这个样子:<br />
+                    &lt;domain domainHost='domain.tdl' defaultLanguageIndex='0' useDb='1' dbName='DB_Name' dbUser='DB_User' dbPassword='DB_Password' dbPort='Port_Address' gaAccount='UA-xxxxxxxx-x' gasAccount='pub-xxxxxxxxxxxxxxxx' googlesiteverifi='Webmaster_Validation_Code' ykey='Webmaster_Validation_Code' msvalidate='Webmaster_Validation_Code' moduleIncludes='|VideoMan|HitCounterMan|' defaultTheme='red,white,blue,...'>&lt;/domain&gt;<br />
+                它可以让我定义域主机，这是domain.tdl，
+                        数据库凭据，您的谷歌帐户信息的谷歌Analytics（分析）和谷歌的AdSense，
+                        与我含，这是选择模块，
+                        和默认主题使用的网站。
+                        新模块将包括：论坛，聊天，购物车，日历事件，社会媒体管理器，游戏，等实用功能。
+            </p>
+            <br />
+            <p>
+            一个CMS大多数是功能，用户界面​​最肉很多用户的需求，而不是所有用户都喜欢看数据的方式相同，
+                    因此该系统最有多个视图，以适应所有用户的需求，不使其过于复杂。
+            </p>
+            <br />
+            <p>
+            俏皮精灵CMS是对旅程我把创建此CMS，它是一个学习的经验，所以我会制作视频，教我学会了，
+                    但最终的目标是拥有一个功能齐全的安全的CMS，所以你不需要知道重量甚至是c + +什么，了解影片，
+                    因为它们都是围绕概念面向，有什么命令或法术，你用得到这份工作做，所以我会教这在向导的方式，
+                    一步一个脚印，我们将学习如何才能创建一个CMS，你也许会学会在该旅使用WT和C + +。
+            </p>
+            <br /><br />
+        </div>
+
+    </message>
+</messages>

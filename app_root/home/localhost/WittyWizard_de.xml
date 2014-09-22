@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<messages>
+
+    <message id="ww-template">
+        <link id="wittywizardstylesheet" href="" type="text/css" rel="stylesheet" />
+        <link id="wittywizardmenustylesheet" href="" type="text/css" rel="stylesheet" />
+        <div id="page" style="padding:10px;">
+            <div id="banner_wrapper">
+                <div id="banner_content">
+                    <div id="banner_end">
+                        <div id="banner">
+                            ${banner}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main_wrapper" class="sfmenufixhorz">
+                <div id="main_menu" class="sfmenumodhorz">
+                    ${menu}
+                </div>
+                <div class="clearall"></div>
+            </div>
+
+            <div id="main_content" class="panel">
+                <div id="content" class="panel-body">
+                    ${contents}
+                </div>
+            </div>
+
+            <div id="footer_wrapper" class="panel">
+                <div id="footer_content" class="panel-footer">
+                    <div id="footer_copyright" style="display: inline;">
+                        ${copyright}
+                    </div>
+
+                    <div id="footer_menu" style="float: right; display: inline;">
+                        ${footermenu}
+                    </div>
+
+                    <div id="hitcounterman">
+                        ${hitcounterman}
+                    </div>
+
+                    <div class="clearall"></div>
+                </div>
+            </div>  <!-- id="footer_wrapper" -->
+        </div> <!-- id="page" -->
+        <div id="ga">
+            ${ga}
+        </div>
+    </message> <!-- id="ww-template" -->
+
+    <message id="home">Zuhause</message>
+    <message id="blog">Blog</message>
+    <message id="chat">plaudern</message>
+    <message id="contact">Kontakt</message>
+    <message id="language">Sprache</message>
+    <message id="search">Suche</message>
+    <message id="help">Hilfe</message>
+    <message id="options">Optionen</message>
+
+    <message id="theme">Thema</message>
+    <message id="red">rot</message>
+    <message id="white">weiß</message>
+    <message id="blue">blau</message>
+    <message id="green">grün</message>
+    <message id="tan">wie</message>
+    <message id="default">Default</message>
+
+    <message id="hits">Hits</message>
+    <message id="unique-hits">unique hits</message>
+
+    <message id="banner-source"></message>
+    <message id="banner-alt">Witty Wizard CMS</message>
+    <message id="copyright">Witty Wizard Content Management System (CMS)</message>
+
+    <message id="rss-url">http://wittywizard.org/ww/en/blog</message>
+    <message id="rss-title">Witty Wizard blog</message>
+    <message id="rss-description">Witty Wizard blog</message>
+
+    <message id="VideoMan" description="VideoMan Module Menu Name">Video</message>
+    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+
+</messages>

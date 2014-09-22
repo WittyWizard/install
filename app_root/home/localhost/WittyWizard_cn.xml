@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<messages>
+    <message id="ww-template">
+        <link id="wittywizardstylesheet" href="" type="text/css" rel="stylesheet" />
+        <link id="wittywizardmenustylesheet" href="" type="text/css" rel="stylesheet" />
+        <div id="page" style="padding:10px;">
+            <div id="banner_wrapper">
+                <div id="banner_content">
+                    <div id="banner_end">
+                        <div id="banner">
+                            ${banner}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main_wrapper" class="sfmenufixhorz">
+                <div id="main_menu" class="sfmenumodhorz">
+                    ${menu}
+                </div>
+                <div class="clearall"></div>
+            </div>
+
+            <div id="main_content" class="panel">
+                <div id="content" class="panel-body">
+                    ${contents}
+                </div>
+            </div>
+
+            <div id="footer_wrapper" class="panel">
+                <div id="footer_content" class="panel-footer">
+                    <div id="footer_copyright" style="display: inline;">
+                        ${copyright}
+                    </div>
+
+                    <div id="footer_menu" style="float: right; display: inline;">
+                        ${footermenu}
+                    </div>
+
+                    <div id="hitcounterman">
+                        ${hitcounterman}
+                    </div>
+
+                    <div class="clearall"></div>
+                </div>
+            </div>
+        </div>
+        <div id="ga">
+            ${ga}
+        </div>
+    </message>
+
+    <message id="home">家</message>
+    <message id="blog">博客</message>
+    <message id="chat">聊天</message>
+    <message id="contact">联系</message>
+    <message id="language">语</message>
+    <message id="search">搜索</message>
+    <message id="help">帮助</message>
+    <message id="options">选项</message>
+
+    <message id="theme">主题</message>
+    <message id="red">红</message>
+    <message id="white">白</message>
+    <message id="blue">蓝色</message>
+    <message id="green">绿色</message>
+    <message id="tan">所以</message>
+    <message id="default">默认</message>
+
+    <message id="hits">点击</message>
+    <message id="unique-hits">独特点击数</message>
+
+    <message id="banner-source"></message>
+    <message id="banner-alt">俏皮精灵的CMS</message>
+    <message id="copyright">俏皮精灵内容管理系统（CMS）</message>
+
+    <message id="VideoMan">视频</message>
+    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+
+</messages>

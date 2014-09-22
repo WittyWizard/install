@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<domains location="nano -c /home/wittywizard/app_root/domains.xml">
+    <domain domainHost="localhost"       defaultLanguageIndex="0" useDb="1" dbName="DatabaseName" dbUser="DatabaseUser" dbPassword="DatabasePassword" dbPort="DatabasePort" gaAccount="UA-XXXXXXXX-X" gasAccount="pub-XXXXXXXXXXXXXXXXXX" googlesiteverifi="XXXXXXXXXXXXXXXXXX" ykey="XX" msvalidate="XX" moduleIncludes="|HitCounterMan|" defaultTheme="blue"></domain>
+    <domain domainHost="wittywizard.org" defaultLanguageIndex="0" useDb="1" dbName="DatabaseName" dbUser="DatabaseUser" dbPassword="DatabasePassword" dbPort="DatabasePort" gaAccount="UA-XXXXXXXX-X" gasAccount="pub-XXXXXXXXXXXXXXXXXX" googlesiteverifi="XXXXXXXXXXXXXXXXXX" ykey="XX" msvalidate="XX" moduleIncludes="|HitCounterMan|" defaultTheme="blue"></domain>
+</domains>

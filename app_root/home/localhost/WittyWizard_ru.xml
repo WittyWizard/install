@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<messages>
+
+    <message id="ww-template">
+        <link id="wittywizardstylesheet" href="" type="text/css" rel="stylesheet" />
+        <link id="wittywizardmenustylesheet" href="" type="text/css" rel="stylesheet" />
+        <div id="page" style="padding:10px;">
+            <div id="banner_wrapper">
+                <div id="banner_content">
+                    <div id="banner_end">
+                        <div id="banner">
+                            ${banner}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main_wrapper" class="sfmenufixhorz">
+                <div id="main_menu" class="sfmenumodhorz">
+                    ${menu}
+                </div>
+                <div class="clearall"></div>
+            </div>
+
+            <div id="main_content" class="panel">
+                <div id="content" class="panel-body">
+                    ${contents}
+                </div>
+            </div>
+
+            <div id="footer_wrapper" class="panel">
+                <div id="footer_content" class="panel-footer">
+
+                    <div id="footer_copyright" style="display: inline;">
+                        ${copyright}
+                    </div>
+
+                    <div id="footer_menu" style="float: right; display: inline;">
+                        ${footermenu}
+                    </div>
+
+                    <div id="hitcounterman">
+                        ${hitcounterman}
+                    </div>
+
+                    <div class="clearall"></div>
+                </div>
+            </div>
+        </div>
+        <div id="ga">
+            ${ga}
+        </div>
+    </message>
+
+    <message id="home">домой</message>
+    <message id="blog">Блог</message>
+    <message id="chat">Чат</message>
+    <message id="contact">контакт</message>
+    <message id="language">язык</message>
+    <message id="search">поиск</message>
+    <message id="help">Помогите</message>
+    <message id="options">Опции</message>
+
+    <message id="theme">тема</message>
+    <message id="red">красный</message>
+    <message id="white">белый</message>
+    <message id="blue">синий</message>
+    <message id="green">зеленый</message>
+    <message id="tan">так</message>
+    <message id="default">дефолт</message>
+
+    <message id="hits">Просмотров</message>
+    <message id="unique-hits">Уникальные Хиты</message>
+
+    <message id="banner-source"></message>
+    <message id="banner-alt">Остроумный Мастер CMS</message>
+    <message id="copyright">Мастер Остроумный система управления контентом (CMS)</message>
+
+    <message id="VideoMan">видео</message>
+    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+
+</messages>
