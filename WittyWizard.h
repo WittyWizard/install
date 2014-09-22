@@ -21,15 +21,15 @@
 #include <Wt/WImage>
 #include <Wt/WLineEdit>
 #include <Wt/WAudio>
+#include <Wt/WBootstrapTheme>
+#include <Wt/WGlobal>
 #include <boost/algorithm/string.hpp>
 #include <boost/any.hpp>
 #include <boost/algorithm/string.hpp>
 #include <map>
-#include <Wt/WBootstrapTheme>
-#include "Crystallball.h"
-#ifdef MENUMAN
-    #include "view/MenuManView.h"
-#endif
+#include "CrystalBall.h"
+#include "view/MenuManView.h"
+#include <WidgetFunction.h>
 // Plugin System
 #include "WittyWizardPlugins.h"
 /* ****************************************************************************
@@ -45,27 +45,22 @@ class DeferredWidget : public Wt::WContainerWidget
 {
     public:
         DeferredWidget(Function f) : f_(f) { }
-
     private:
         void load()
         {
             Wt::WContainerWidget::load();
-            if (count() == 0)
-            {
-                addWidget(f_());
-            }
+            if (count() == 0) { addWidget(f_()); }
         }
-
         Function f_;
-};
+}; // end class DeferredWidget
 /* ****************************************************************************
- * deferCreate
+ * defer Create
  */
 template <typename Function>
 DeferredWidget<Function>* deferCreate(Function f)
 {
     return new DeferredWidget<Function>(f);
-}
+} // end deferCreate
 /* ****************************************************************************
  * Lang
  * name: en, cn, ru
@@ -76,17 +71,19 @@ DeferredWidget<Function>* deferCreate(Function f)
  */
 struct Lang
 {
-    Lang(const std::string& name, const std::string& code, const std::string& shortDescription, const std::string& longDescription) : name_(name), code_(code), shortDescription_(shortDescription), longDescription_(longDescription) { }
-    std::string name_, code_, shortDescription_, longDescription_;
-};
+    Lang(const std::string& name, const std::string& code, const Wt::WString& shortDescription, const Wt::WString& longDescription) : name_(name), code_(code), shortDescription_(shortDescription), longDescription_(longDescription) { }
+    std::string name_, code_;
+    Wt::WString shortDescription_, longDescription_;
+
+}; // end struct Lang
 /* ****************************************************************************
  * Theme
  */
 struct Theme
 {
-    Theme(const std::string& name) : name_(name) { }
-    std::string name_;
-};
+    Theme(const Wt::WString& name) : name_(name) { }
+    Wt::WString name_;
+}; // end struct Theme
 /* ****************************************************************************
  * App
  */
@@ -98,10 +95,6 @@ class WittyWizard : public Wt::WApplication
         void ReInit();
         void CreateMenu();
         void InternalPathChange(const std::string& path);
-        Wt::WWidget* Home();
-        Wt::WWidget* Contact();
-        Wt::WWidget* About();
-        void UpdateTitle();
         int GetDefaultLanguage();
         void HandleLanguagePopup(int data);
         void HandleThemePopup(int data);
@@ -110,49 +103,53 @@ class WittyWizard : public Wt::WApplication
         const Lang& GetLanguage(std::string languageName);
         const Lang& GetLanguage(int index);
         int GetLanguageIndex(std::string languageName);
+        std::string GetLanguageName();
         int IsPathLanguage(std::string langPath);
         void SetBaseURL();
         void CallPluginSetLanguage(std::string moduleName, std::string languageName, int newLanguage);
         bool PluginHandlePathChange(std::string moduleName, int newLanguage);
         void CallPlugin();
         void CallMenuPlugin();
+        std::string GetCookie(std::string name);
+        bool SetCookie(std::string name, std::string myValue);
+        std::string GetPath();
+        Wt::WWidget* MenuMan();
         Wt::WWidget* GetTemplate(Wt::WString content);
         WidgetFunction widgetFunction;
         // FIXME Plugin System - how do I fix this?
-        #ifdef VIDEOMAN
-            Wt::WWidget* VideoMan();
-        #endif
         #ifdef HITCOUNTERMAN
             Wt::WWidget* HitCounterMan();
         #endif
-        #ifdef MENUMAN
-            MenuManView* thisMenu;
-        #endif
+        //
+        Wt::WTemplate* homeTemplate = NULL;
+        Wt::WContainerWidget* container = NULL;
+        int myLanguageIndex = -1; // Language Index: -1 means uninitilized
+        // Language Vector Array
+        std::vector<Lang> languages;
         // Add Language
         void AddLanguage(const Lang& l) { languages.push_back(l); }
+        // Theme Vector Array
+        std::vector<Theme> themes;
         // Add Theme
         void AddTheme(const Theme& l) { themes.push_back(l); }
-        //
-        Wt::WTemplate* homeTemplate_ = NULL;
-        Wt::WWidget* homePage_;
         //
         std::string myHost;
         std::string myUrlScheme;
         std::string myBaseUrl;
-        std::string domainName = "";
-        Wt::Dbo::SqlConnectionPool *dbConnection_;
+        std::string myLanguage = "";
+        std::string domainName = "";       
+        Wt::Dbo::SqlConnectionPool* dbConnection;
         std::string theIncludes = "";
-        // Language Vector Array
-        std::vector<Lang> languages;
-        int language_ = -1; // Language Index: -1 means uninitilized
-        // Theme Vector Array
-        std::vector<Theme> themes;
         Wt::WMenu* mainMenu_;
         // Used to prevent internalPath changes
         bool isPathChanging = false;
-
+        std::string path = "";
+        void SetMyLocale();
+        std::string myLocale = "";
+        std::string myPath = "";
+        std::vector<std::string> parts;
 };
-Wt::WApplication* create_app(const Wt::WEnvironment& env);
+//Wt::WApplication* CreateApp(const Wt::WEnvironment& env);
 
 #endif // APP_H
 // --- End Of File ------------------------------------------------------------
