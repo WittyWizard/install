@@ -2,8 +2,9 @@
 #ifndef HITMANCOUNTERIMPL_H
 #define HITMANCOUNTERIMPL_H
 #include <Wt/WApplication>
-#include <Wt/WContainerWidget>
 #include <Wt/WEnvironment>
+#include <Wt/WLogger>
+#include <Wt/WContainerWidget>
 #include "model/HitCounterMan.h"
 #include "model/HitCounterManSession.h"
 /* ****************************************************************************
@@ -29,6 +30,7 @@ class HitCounterManImpl : public Wt::WContainerWidget
         long hits = 0;
         long uniqueHits = 0;
         std::string theLocale;
+        typedef Wt::Dbo::collection< Wt::Dbo::ptr<HitCounterMan> > HitCounterMans;
 }; // end class HitCounterManImpl
 #endif // HITMANCOUNTERIMPL_H
 #endif // HITCOUNTERMAN

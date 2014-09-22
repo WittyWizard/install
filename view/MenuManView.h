@@ -1,7 +1,6 @@
 /* ****************************************************************************
  * Menu Manager View
  */
-#ifdef MENUMAN
 #ifndef MENUMANVIEW_H
 #define MENUMANVIEW_H
 //
@@ -17,11 +16,15 @@ class MenuManImpl;
 class MenuManView : public Wt::WCompositeWidget
 {
     public:
-        MenuManView(const std::string& appPath, const std::string& basePath, Wt::Dbo::SqlConnectionPool& db, const std::string& lang, const std::string& useDb, const std::string& domainName);
-        void SetInternalBasePath(const std::string& basePath);
+        MenuManView(const std::string& appPath, Wt::Dbo::SqlConnectionPool& db, const std::string& lang, const std::string& useDb, const std::string& domainName, Wt::Orientation menuOrientation);
+        Wt::WString GetMenu(const std::string& menuPath);
+        void GetMenus();
+        // Menu Vector Array
+        std::vector<MasterMenu> mastermenus;
+        void SetMasterMenu();
+        MetaData* GetMetaData(const std::string& menuPath);
     private:
         MenuManImpl* impl_;
 }; // end class MenuManView
 #endif // MENUMANVIEW_H
-#endif // MENUMAN
 // --- End Of File ------------------------------------------------------------

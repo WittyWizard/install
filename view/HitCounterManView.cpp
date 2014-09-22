@@ -1,8 +1,8 @@
 #ifdef HITCOUNTERMAN
 /* ****************************************************************************
  * Hit Counter Manager View
+ * Witty Wizard
  */
-#include <Wt/WText>
 #include "HitCounterManView.h"
 /* ****************************************************************************
  * Hit Counter Man View

@@ -2,6 +2,7 @@
 #ifndef HITCOUNTERMANVIEW_H
 #define HITCOUNTERMANVIEW_H
 #include <Wt/WCompositeWidget>
+#include <Wt/WText>
 #include "HitCounterManImpl.h"
 /* ****************************************************************************
  * Prototype Hit Counter Man Impl

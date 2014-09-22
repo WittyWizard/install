@@ -1,4 +1,3 @@
-#ifdef MENUMAN
 /* ****************************************************************************
  * Menu Manager View
  * Witty Wizard
@@ -10,22 +9,44 @@
 /* ****************************************************************************
  * Menu Man View
  * appPath: appRoot() + "home/" + domainName + "/"
- * basePath: "/" + langPath + "/video/"
  * connectionPool: SQL Database Connection Pool
  * lang: Language
+ * useDb:
+ * domainName:
+ * menuOrientation: Wt::Horizontal or Wt::Vertical
  */
-MenuManView::MenuManView(const std::string& appPath, const std::string& basePath, Wt::Dbo::SqlConnectionPool& connectionPool, const std::string& lang, const std::string& useDb, const std::string& domainName)
+MenuManView::MenuManView(const std::string& appPath, Wt::Dbo::SqlConnectionPool& connectionPool, const std::string& lang, const std::string& useDb, const std::string& domainName, Wt::Orientation menuOrientation)
 {
-    impl_ = new MenuManImpl(appPath, basePath, connectionPool, lang, useDb, domainName);
+    impl_ = new MenuManImpl(appPath, connectionPool, lang, useDb, domainName, menuOrientation);
     setImplementation(impl_);
 } // end MenuManView
 /* ****************************************************************************
- * Set Internal Base Path
- * basePath:
+ * Get Menu
  */
-void MenuManView::SetInternalBasePath(const std::string& basePath)
+Wt::WString MenuManView::GetMenu( const std::string& menuPath)
 {
-    impl_->SetInternalBasePath(basePath);
-} // end SetInternalBasePath
-#endif // MENUMAN
+    return impl_->GetMenu(menuPath);
+} // end GetMenu
+/* ****************************************************************************
+ * Get Menus
+ */
+void MenuManView::GetMenus()
+{
+    impl_->GetMenus();
+    SetMasterMenu();
+} // end GetMenus
+/* ****************************************************************************
+ * Menu Count
+ */
+void MenuManView::SetMasterMenu()
+{
+    mastermenus = impl_->mastermenus;
+}
+/* ****************************************************************************
+ * Get Meta Data
+ */
+MetaData* MenuManView::GetMetaData(const std::string& path)
+{
+    return impl_->GetMetaData(path);
+} // end GetMetaData
 // --- End Of File ------------------------------------------------------------

@@ -2,16 +2,7 @@
 /* ****************************************************************************
  * Hit Counter Man Implement
  */
-#include <Wt/WApplication>
-#include <Wt/WEnvironment>
-#include <Wt/WLogger>
-#include <Wt/WContainerWidget>
-#include <Wt/WText>
-
-#include "WittyWizard.h"
-#include "model/HitCounterMan.h"
 #include "HitCounterManImpl.h"
-typedef Wt::Dbo::collection< Wt::Dbo::ptr<HitCounterMan> > HitCounterMans;
 /* ****************************************************************************
  * Hit Counter Man Implement
  */
