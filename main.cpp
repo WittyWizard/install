@@ -15,27 +15,35 @@ Wt::WApplication* createWittyWizardApplication(const Wt::WEnvironment& env)
  */
 int main(int argc, char **argv)
 {
-    try
+    if (1)
     {
-        Wt::WServer server(argv[0]);
-        //
-        server.setServerConfiguration(argc, argv, WTHTTP_CONFIGURATION);
-        //
-        server.addEntryPoint(Wt::Application, boost::bind(&createWittyWizardApplication,  _1), "", "favicon.ico");
-        // Start the Server
-        if (server.start())
+        return Wt::WRun(argc, argv, createWittyWizardApplication);
+    }
+    else
+    {
+        // Bug with progressive-bootstrap
+        try
         {
-            Wt::WServer::waitForShutdown();
-            server.stop();
+            Wt::WServer server(argv[0]);
+            //
+            server.setServerConfiguration(argc, argv, WTHTTP_CONFIGURATION);
+            //
+            server.addEntryPoint(Wt::Application, boost::bind(&createWittyWizardApplication,  _1), "", "favicon.ico");
+            // Start the Server
+            if (server.start())
+            {
+                Wt::WServer::waitForShutdown();
+                server.stop();
+            }
         }
-    }
-    catch (Wt::WServer::Exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "exception: " << e.what() << std::endl;
+        catch (Wt::WServer::Exception& e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << "exception: " << e.what() << std::endl;
+        }
     }
 } // end main
 // --- End Of File ------------------------------------------------------------
