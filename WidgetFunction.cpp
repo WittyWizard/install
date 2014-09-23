@@ -271,7 +271,7 @@ Wt::WWidget* WidgetFunction::createVideo(const std::vector<Wt::WString>& args)
     if (!myNext.empty() || !myPrevious.empty())
     {
         Wt::WToolBar* toolBar = new Wt::WToolBar(npContainer);
-        toolBar->setStyleClass("center");
+        toolBar->setStyleClass("centerit");
         if (!myPrevious.empty())
         {
             toolBar->addButton(WidgetFunction::createButton(Wt::WString::tr("previous"), "", myPrevious));
