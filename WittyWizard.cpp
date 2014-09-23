@@ -113,6 +113,7 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
     setLocale("");
     // Add Language: Do not forget to change WittyWizard::DefaultLanguageIndex
     //               name, code,    shortDescription,             longDescription
+    // FIXME: I should get this from domain.xml
     AddLanguage(Lang("en", "en_US", "en",                         "English"));
     AddLanguage(Lang("cn", "zh_CN", Wt::WString::fromUTF8("汉语"), Wt::WString::fromUTF8("中文 (Chinese)")));
     AddLanguage(Lang("ru", "ru_RU", Wt::WString::fromUTF8("ру"),  Wt::WString::fromUTF8("Русский (Russian)")));
@@ -121,6 +122,7 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
     myLocale = env.locale().name().c_str();
     SetMyLocale();
     // Add Theme
+    // FIXME: I should get this from domain.xml
     AddTheme(Theme("red"));
     AddTheme(Theme("white"));
     AddTheme(Theme("blue"));
@@ -294,7 +296,7 @@ void WittyWizard::CreateMenu()
     // Setup a Left-aligned menu.
     mainMenu_ = new Wt::WMenu(contents, container);
     mainMenu_->setStyleClass("sfhmenu");
-    mainMenu_->removeStyleClass("nav", true); // top level li of sfhmenu with children
+    //mainMenu_->removeStyleClass("nav", true); // top level li of sfhmenu with children
     std::map <std::string, Wt::WSubMenuItem *> myPopupMenu;
     std::map <std::string, Wt::WMenu *> myMenuItem;
     std::string selectedMenuItem = "";
@@ -394,7 +396,7 @@ void WittyWizard::CreateMenu()
                 if(myPopupMenu.find(menu.path_) == myPopupMenu.end())
                 {
                     myPopupMenu[menu.path_] = new Wt::WSubMenuItem(menu.name_); // , "/" + l.path_ , container
-                    myPopupMenu[menu.path_]->removeStyleClass("dropdown", true); // top level li of sfhmenu with children
+                    //myPopupMenu[menu.path_]->removeStyleClass("dropdown", true); // top level li of sfhmenu with children
                     if (menu.isSelected_)
                     {
                         if (showDebug) { Wt::log("notice") << "WittyWizard::CreateHome: isSelected_ topsub myPopupMenu[" << menu.path_ << "] |  new WSubMenuItem(" << menu.name_; }
@@ -471,7 +473,7 @@ void WittyWizard::CreateMenu()
 #else
     mainMenu_ = new Wt::WMenu(contents, container);
     mainMenu_->setStyleClass("sfhmenu");
-    mainMenu_->removeStyleClass("nav", true); // top level li of sfhmenu with children
+    //mainMenu_->removeStyleClass("nav", true); // top level li of sfhmenu with children
 #endif
     // Call Menu Plugin
     CallMenuPlugin();
@@ -558,7 +560,14 @@ void WittyWizard::CreateMenu()
     // CopyRight
     Wt::WText* copyright = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("copyright") + "</a>", Wt::XHTMLUnsafeText); // FIXIT add copyright page to CMS
     // Footer Menu
-    Wt::WText* footermenu = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("home") + "</a> | <a href='" + myBaseUrl + "contact'>" + Wt::WString::tr("contact") + "</a>", Wt::XHTMLUnsafeText);
+    //
+    std::string menuExtras = "";
+    // FIXME: Make this an xml item <message id="contacts">name1|path1|name2|path2</message> replace with contact below, split
+    if (theIncludes.find("|Contact|") != std::string::npos)
+    {
+        menuExtras = "| <a href='" + myBaseUrl + "contact'>" + Wt::WString::tr("contact").toUTF8() + "</a>";
+    }
+    Wt::WText* footermenu = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("home") + "</a> " + menuExtras, Wt::XHTMLUnsafeText);
     // Google Analytics
     Wt::WText* ga = new Wt::WText("<script>/*<![CDATA[*/(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', '" + CrystalBall::GaAccount[domainName] + "', '" + myHost + "');ga('send', 'pageview');/* ]]> */</script>", Wt::XHTMLUnsafeText);
     //
@@ -585,36 +594,46 @@ void WittyWizard::SetBaseURL()
  */
 Wt::WWidget* WittyWizard::MenuMan()
 {
-    std::string thePath = GetPath();
+    std::string thePath = GetPath(); // FIXME: make sure this is clean
     //if (showDebug) { Wt::log("start") << " WittyWizard::MenuMan() thePath = " << thePath; }
     if (thePath.empty()) { thePath = "home"; }
     //if (showDebug) { Wt::log("start") << " WittyWizard::MenuMan() moduleName = " << thePath; }
-    if (CrystalBall::UseDb[domainName] == "1")
-    {
-        MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
-        Wt::WString theMenuContent = myMenu->GetMenu("/" + thePath);
-        if (theMenuContent.empty())
-            { return new Wt::WText("Page Not Found"); }
-        else
-            { return GetTemplate(theMenuContent); }
-    }
-    else
-    {
-        return new Wt::WText(Wt::WString::tr("page." + thePath));
-    }
+    return GetTemplate(thePath);
 } // end MenuMan
 /* ****************************************************************************
  * Get Template
  */
-Wt::WWidget* WittyWizard::GetTemplate(Wt::WString content)
+Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
 {
-    bool showDebug = false;
+    bool showDebug = true;
+    Wt::WString content;
     int useWidgetFun = 0;
     if (useWidgetFun == 0)
     {
+        if (CrystalBall::UseDb[domainName] == "0")
+        {
+            MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
+            content = myMenu->GetMenu("/" + thePath);
+            if (content.empty())
+                { return new Wt::WText("Page Not Found"); }
+        }
+        else
+        {
+            if (!CrystalBall::IsFile(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"))
+            {
+                if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() Template not found " << appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"; }
+            }
+            messageResourceBundle().use(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath, false);
+            size_t found = thePath.find_last_of("/\\");
+            if (found != std::string::npos)
+            {
+                thePath = thePath.substr(found + 1);
+            }
+            content = Wt::WString::tr(thePath + "-template");
+        } // end if (CrystalBall::UseDb[domainName] == "0")
         //
-        bool tagFound = false;
         Wt::WTemplate* myTemplate = new Wt::WTemplate(content);
+        bool tagFound = false;
         if (content.toUTF8().find("widget:audio") != std::string::npos)
         {
             if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() found audio tag: useWidgetFun == 0"; }
