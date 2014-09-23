@@ -114,7 +114,7 @@ class WittyWizard : public Wt::WApplication
         bool SetCookie(std::string name, std::string myValue);
         std::string GetPath();
         Wt::WWidget* MenuMan();
-        Wt::WWidget* GetTemplate(Wt::WString content);
+        Wt::WWidget* GetTemplate(std::string thePath);
         WidgetFunction widgetFunction;
         // FIXME Plugin System - how do I fix this?
         #ifdef HITCOUNTERMAN
