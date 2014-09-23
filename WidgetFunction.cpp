@@ -1,5 +1,7 @@
 /* ****************************************************************************
  * Widget Function
+ * Provided by Koen Deforche
+ *
  */
 #include "WidgetFunction.h"
 /* ****************************************************************************
@@ -20,8 +22,8 @@ bool WidgetFunction::doAddFunction()
 } // end getTemplate
 /* ****************************************************************************
  * set Template
- * widgets:
- * widgetFunction:
+ * widgets: this is the template or content
+ * widgetFunction: this does not work, not sure how to fix this
  */
 void WidgetFunction::setTemplate(Wt::WString widgets, WidgetFunction widgetFunction)
 {
