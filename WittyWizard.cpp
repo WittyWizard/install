@@ -610,7 +610,7 @@ Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
     int useWidgetFun = 0;
     if (useWidgetFun == 0)
     {
-        if (CrystalBall::UseDb[domainName] == "0")
+        if (CrystalBall::UseDb[domainName] == "1")
         {
             MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
             content = myMenu->GetMenu("/" + thePath);
