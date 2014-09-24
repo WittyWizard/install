@@ -100,7 +100,7 @@ namespace CrystalBall
     /* ****************************************************************************
      * Global Variable
      * Used to create database, turn off afterwards so you do not get errors
-     * FIXIT make admin function to change this on the fly *
+     * FIXME make admin function to change this on the fly *
      */
     extern bool InitDb;
     /* ****************************************************************************
@@ -147,5 +147,16 @@ namespace CrystalBall
      * SQL Database Connection
      */
     extern bool SetSqlConnectionPool(std::string domainName);
+    /* ****************************************************************************
+     * Returns a list of files in a directory (except the ones that begin with a dot)
+     * Andreas Bonini via http://stackoverflow.com/questions/306533/how-do-i-get-a-list-of-files-in-a-directory-in-c
+     */
+    extern void GetFilesInDirectory(std::vector<std::string> &out, const std::string &directory);
+    /* ****************************************************************************
+     * GetTemplate
+     * id: this is the Message ID <message id="ww-template">
+     * Returns the Contents
+     */
+    extern Wt::WString GetTemplate(std::string id);
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
