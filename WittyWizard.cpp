@@ -11,7 +11,7 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
     if (showDebug) { Wt::log("start") << " *** WittyWizard::WittyWizard() env.hostName() = " << env.hostName().c_str() << " *** "; }
     myHost = env.hostName().c_str();       // localhost:8088
     myUrlScheme = env.urlScheme().c_str(); // http or https
-    myBaseUrl = myUrlScheme + "://" + myHost + "/"; // FIXIT
+    myBaseUrl = myUrlScheme + "://" + myHost + "/"; // FIXME
     domainName = env.hostName().c_str();
     unsigned pos = domainName.find(":");
     if (pos > 0)
@@ -45,7 +45,7 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
     if (!CrystalBall::SetSqlConnectionPool(domainName))
     {
         Wt::log("error") << "(WittyWizard::WittyWizard: SetSqlConnectionPool failed for domain: " << domainName << ")";
-        // FIXIT make this a error page
+        // FIXME make this a error page
         return;
     }
     // Connect to Connection Pool
@@ -277,7 +277,7 @@ void WittyWizard::CreateMenu()
     // Create the stack where the contents will be located
     Wt::WStackedWidget* contents = new Wt::WStackedWidget();
     contents->setStyleClass("content");
-    // FIXIT
+    // FIXME
     // "|chat|blog|video|"
     theIncludes = CrystalBall::ModuleIncludes[domainName];
     if (showDebug) { Wt::log("notice") << "WittyWizard::CreateHome:  theIncludes=" << theIncludes; }
@@ -286,6 +286,8 @@ void WittyWizard::CreateMenu()
 #define MENU
 #ifdef MENU
     // query menu: lang,
+    // FIXME: I do not like hard coding directories
+    // FIXME: how do I know domainName is Clean
     MenuManView* thisMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
     if (myPath == "/admin/menuman/updatexml")
     {
@@ -487,7 +489,7 @@ void WittyWizard::CreateMenu()
     searchText->setEmptyText(Wt::WString::tr("search"));
     searchText->enterPressed().connect(std::bind([=] ()
     {
-        // FIXIT add a real search feature
+        // FIXME add a real search feature
         mainMenu_->select(4); // is the index a random menu item
         searchResult->setText(Wt::WString("Nothing found for {1}.").arg(searchText->text()));
     }));
@@ -558,7 +560,7 @@ void WittyWizard::CreateMenu()
     else
         { banner = new Wt::WText("<img src='" + myBannerSource + "' alt='" + myBannerAlt + "'>", Wt::XHTMLUnsafeText); }
     // CopyRight
-    Wt::WText* copyright = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("copyright") + "</a>", Wt::XHTMLUnsafeText); // FIXIT add copyright page to CMS
+    Wt::WText* copyright = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("copyright") + "</a>", Wt::XHTMLUnsafeText); // FIXME add copyright page to CMS
     // Footer Menu
     //
     std::string menuExtras = "";
@@ -607,32 +609,30 @@ Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
 {
     bool showDebug = true;
     Wt::WString content;
-    int useWidgetFun = 0;
-    if (useWidgetFun == 0)
+    //
+    if (CrystalBall::UseDb[domainName] == "1")
     {
-        if (CrystalBall::UseDb[domainName] == "1")
-        {
-            MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
-            content = myMenu->GetMenu("/" + thePath);
-            if (content.empty())
-                { return new Wt::WText("Page Not Found"); }
-        }
-        else
-        {
-            if (!CrystalBall::IsFile(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"))
-            {
-                if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() Template not found " << appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"; }
-            }
-            messageResourceBundle().use(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath, false);
-            size_t found = thePath.find_last_of("/\\");
-            if (found != std::string::npos)
-            {
-                thePath = thePath.substr(found + 1);
-            }
-            content = Wt::WString::tr(thePath + "-template");
-        } // end if (CrystalBall::UseDb[domainName] == "0")
+        MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal);
+        content = myMenu->GetMenu("/" + thePath);
+        if (content.empty())
+            { return new Wt::WText("Page Not Found"); }
+    }
+    else
+    {
+        if (!CrystalBall::IsFile(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"))
+            { if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() Template not found " << appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"; } }
+        messageResourceBundle().use(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath, false);
+        size_t found = thePath.find_last_of("/\\");
+        if (found != std::string::npos)
+            { thePath = thePath.substr(found + 1); }
+        content = Wt::WString::tr(thePath + "-template");
+    } // end if (CrystalBall::UseDb[domainName] == "0")
+#define FUNCT1x
+#ifdef FUNCT1
+        WidgetFunction widgetFunction;
         //
-        Wt::WTemplate* myTemplate = new Wt::WTemplate(content);
+        Wt::WTemplate* myTemplate;
+        myTemplate = new Wt::WTemplate(content);
         bool tagFound = false;
         if (content.toUTF8().find("widget:audio") != std::string::npos)
         {
@@ -660,41 +660,26 @@ Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
         }
         return myTemplate;
         //return new Wt::WText(myTemplate, Wt::XHTMLUnsafeText);
-    }
-    else if (useWidgetFun == 1)
-    {
+#else
         // This is so much cleaner, since we need to add more controls
         // I pass in referance to widgetFunction, this is not writen as a singleton
-        widgetFunction.setTemplate(content, widgetFunction);
-
+        WidgetFunction widgetFunction;
+        widgetFunction.setTemplate(content);
         if (widgetFunction.doAddFunction())
-        {
-            widgetFunction.getTemplate()->addFunction("widget", widgetFunction);
-        }
+            { widgetFunction.getTemplate()->addFunction("widget", widgetFunction); }
         return widgetFunction.getTemplate();
-    }
-    else
-    {
-        if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() found audio tag: useWidgetFun > 1"; }
-        //
-        Wt::WContainerWidget* result = new Wt::WContainerWidget();
-        if (!content.empty())
-        {
-            Wt::WText *w = new Wt::WText(content, Wt::XHTMLUnsafeText, result);
-            w->setInternalPathEncoding(true);
-        }
-        return result;
-    }
+#endif
 } // end GetTemplate
 /* ****************************************************************************
  * Get Path
  * remove language
+ * FIXME: make sure path is clean, no SQL Injections
  */
 std::string WittyWizard::GetPath()
 {
     // /lang/path/sub
-    std::string thePath = internalPath();
-    //
+    std::string thePath = internalPath(); // Always starts with /
+    // /en/
     if (!CrystalBall::StringReplace(thePath, "/" + GetLanguageName() + "/", ""))
     {
         thePath = internalPath();
@@ -736,7 +721,7 @@ int WittyWizard::GetDefaultLanguage()
         newLanguageIndex = IsPathLanguage(languageName);
         if (newLanguageIndex == -1)
         {
-            // FIXIT: Option to use Users Default Language, how do you get the default users language?
+            // FIXME: Option to use Users Default Language, how do you get the default users language?
             newLanguageIndex = IsPathLanguage(myLocale);
             if (newLanguageIndex == -1)
                 { newLanguageIndex = CrystalBall::DefaultLanguageIndex[domainName]; }
@@ -847,7 +832,7 @@ void WittyWizard::SetWizardTheme(bool fromCookie, int index)
     }
     if (!myTheme.empty())
     {
-        // FIXIT check for legal path - Note: even if they change the cookie, its still only going to change the file name, worse case it does not work
+        // FIXME check for legal path - Note: even if they change the cookie, its still only going to change the file name, worse case it does not work
         std::string jsCss = "document.getElementById('wittywizardstylesheet').href='" + Wt::WApplication::resourcesUrl() + "themes/wittywizard/" + myTheme + "/ww-" + myTheme + ".css';";
         this->doJavaScript(jsCss);
         jsCss = "document.getElementById('wittywizardmenustylesheet').href='" + Wt::WApplication::resourcesUrl() + "themes/wittywizard/" + myTheme + "/SfMenuHoriz.css';";
