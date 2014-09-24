@@ -43,6 +43,7 @@ struct MetaData
     Wt::WString title;            // title:
     Wt::WString description;      // description:
     Wt::WString keywords;         // keywords:
+    Wt::WString copyright;        // copyright:
     std::string rating;           // rating: general, mature, restricted, 14 years, safe for kids
 }; // end struct MetaData
 /* ****************************************************************************
@@ -62,7 +63,7 @@ class MenuManImpl : public Wt::WContainerWidget
          */
         MenuManSession& session()  { return session_;  }
         Wt::WString GetMenu(const std::string& menuPath);
-        void GetMenus();
+        bool GetMenus();
         MetaData* GetMetaData(const std::string& menuPath);
         // Menu Vector Array
         std::vector<MasterMenu> mastermenus;
