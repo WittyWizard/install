@@ -67,7 +67,7 @@ DeferredWidget<Function>* deferCreate(Function f)
  * code: en_US, zh_CN, ru_RU
  * short Description: en, 汉语, ру
  * long Description: English, 中文 (Chinese), Русский (Russian)
- * FIXIT: [warning] "WString: narrow(): loss of detail: ?? (Chinese)"
+ * FIXME: [warning] "WString: narrow(): loss of detail: ?? (Chinese)"
  */
 struct Lang
 {
@@ -115,7 +115,6 @@ class WittyWizard : public Wt::WApplication
         std::string GetPath();
         Wt::WWidget* MenuMan();
         Wt::WWidget* GetTemplate(std::string thePath);
-        WidgetFunction widgetFunction;
         // FIXME Plugin System - how do I fix this?
         #ifdef HITCOUNTERMAN
             Wt::WWidget* HitCounterMan();
