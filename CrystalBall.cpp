@@ -11,7 +11,7 @@
 #include <map>
 #include "rapidxml/rapidxml.hpp"
 #include "rapidxml/rapidxml_utils.hpp"
-
+#include <dirent.h>
 // Database
 #include <Wt/Dbo/Session>
 #include <Wt/Dbo/ptr>
@@ -29,7 +29,8 @@
 #ifdef WWUSEBOOST
     #include <boost/filesystem.hpp>
 #endif
-// do not #include "WittyWizard.h"
+// DO NOT INCLUDE THIS (its defined as External, this is like C, its Global) #include "WittyWizard.h"
+/*
 class MyCrystalBall
 {
     Wt::Dbo::SqlConnectionPool* connectionPool;  //
@@ -49,6 +50,7 @@ class MyCrystalBall
     std::string msValidate;                      // msvalidate.01
 
 } LookInTo;
+*/
 namespace CrystalBall
 {
     /* ****************************************************************************
@@ -65,7 +67,7 @@ namespace CrystalBall
     /* ****************************************************************************
      * Global Variable
      * Used to create database, turn off afterwards so you do not get errors
-     * FIXIT make admin function to change this on the fly *
+     * FIXME make admin function to change this on the fly * /admin/init
      */
     bool InitDb = false;
     /* ****************************************************************************
@@ -217,9 +219,14 @@ namespace CrystalBall
     /* ****************************************************************************
      * String Replace
      * StringReplace(string, "this", "that");
+     * string2replace: Actual string to be replaced
+     * changefrom: None Empty string to do replacement with
+     * changeTo: Can be Empty
      */
     bool StringReplace(std::string& string2replace, const std::string& changefrom, const std::string& changeTo)
     {
+        if (string2replace.empty()) { return false; }
+        if (changefrom.empty()) { return false; }
         size_t start_pos = string2replace.find(changefrom);
         if(start_pos == std::string::npos) { return false; }
         string2replace.replace(start_pos, changefrom.length(), changeTo);
@@ -249,7 +256,7 @@ namespace CrystalBall
     } // end FormatWithCommas
     /* ****************************************************************************
      * GetConnectionPoolInfo
-     * FIXIT: Would it be faster to save this to a database? That was a Joke.
+     * FIXME: Would it be faster to save this to a database? That was a Joke.
      */
     bool GetConnectionPoolInfo(const std::string filePath, std::string domainName)
     {
@@ -417,7 +424,7 @@ namespace CrystalBall
                 #elif MYSQL
                     dbConnection = new Wt::Dbo::backend::MySQL(myDbName[domainName], myDbUser[domainName], myDbPassword[domainName], "localhost");
                 #elif FIREBIRD
-                    // FIXIT Hard coded paths for firebird
+                    // FIXME Hard coded paths for firebird
                     #ifdef WIN32
                         myFile = "C:\\opt\\db\\firebird\\" + myDbName[domainName];
                     #else
@@ -427,7 +434,7 @@ namespace CrystalBall
                 #endif // FIREBIRD
                 dbConnection->setProperty("show-queries", "true");
                 // We need to convert it FixedSqlConnectionPool to SqlConnectionPool, not sure if I should just refactor to use FixedSqlConnectionPool, or do not use Fixed pool size
-                Wt::Dbo::SqlConnectionPool* dbConnection_ = new Wt::Dbo::FixedSqlConnectionPool(dbConnection, 10); // FIXIT, size of pool
+                Wt::Dbo::SqlConnectionPool* dbConnection_ = new Wt::Dbo::FixedSqlConnectionPool(dbConnection, 10); // FIXME, size of pool
                 ConnectionPool[domainName] = dbConnection_;
             }
             catch (std::exception& e)
@@ -444,5 +451,94 @@ namespace CrystalBall
         }
         return true;
     } // end SetSqlConnectionPool
+    /* ****************************************************************************
+     * Returns a list of files in a directory (except the ones that begin with a dot)
+     * Andreas Bonini via http://stackoverflow.com/questions/306533/how-do-i-get-a-list-of-files-in-a-directory-in-c
+     */
+    void GetFilesInDirectory(std::vector<std::string> &out, const std::string &directory)
+    {
+    #ifdef WINDOWS
+        HANDLE dir;
+        WIN32_FIND_DATA file_data;
+        if ((dir = FindFirstFile((directory + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE)
+            { return; /* No files found */ }
+        do
+        {
+            const string file_name = file_data.cFileName;
+            const string full_file_name = directory + "/" + file_name;
+            const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+            if (file_name[0] == '.')
+                { continue; }
+            if (is_directory)
+                { continue;}
+            out.push_back(full_file_name);
+        } while (FindNextFile(dir, &file_data));
+
+        FindClose(dir);
+    #else
+        DIR *dir;
+        class dirent *ent;
+        class stat st;
+        dir = opendir(directory.c_str());
+        while ((ent = readdir(dir)) != NULL)
+        {
+            const std::string file_name = ent->d_name;
+            const std::string full_file_name = directory + "/" + file_name;
+            if (file_name[0] == '.')
+                { continue; }
+            if (stat(full_file_name.c_str(), &st) == -1)
+                { continue; }
+            const bool is_directory = (st.st_mode & S_IFDIR) != 0;
+            if (is_directory)
+                { continue; }
+            out.push_back(full_file_name);
+        }
+        closedir(dir);
+    #endif
+    } // GetFilesInDirectory
+    /* ****************************************************************************
+     * GetTemplate
+     * id: this is the Message ID <message id="ww-template">
+     * Returns the Contents
+     */
+    Wt::WString GetTemplate(std::string id)
+    {
+        if (id.empty()) { Wt::log("error") << " *** MenuManSession::GetTemplate() empty content id"; return ""; }
+    #define STATIC_DATA
+    #ifdef STATIC_DATA
+        //return "<div><p>This is a Test</p><p>And Only a Test</p></div>";
+        //return "test";
+        std::wstring line;
+        std::wifstream myfile (id);
+        std::wstring myTemplate;
+        int counter = 0;
+        if (myfile.is_open())
+        {
+          while ( getline (myfile, line) )
+          {
+              if (counter++ < 3) { continue; }
+              if (line.find(L"</message>") != std::string::npos)
+              {
+                  break;
+              }
+              line.erase(std::remove(line.begin(), line.end(), '\t'), line.end());
+              line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+              WStringReplace(line, L"“", L"&quot;");
+              WStringReplace(line, L"”", L"&quot;");
+              myTemplate.append(line);
+          }
+          myfile.close();
+        }
+        else
+        {
+            Wt::log("error") << " *** MenuManSession::GetTemplate() Can not Read File " << id;
+        }
+    #else
+        std::wstring myTemplate = L"<div><p>This is a Test</p><p>And Only a Test</p></div>";
+    #endif
+        //const std::string temp( myTemplate.begin(), myTemplate.end() );
+        //Wt::log("notice") << " *** MenuManSession::GetTemplate() Read " << temp;
+        return myTemplate.c_str();
+    } // end GetTemplate
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
