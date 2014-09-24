@@ -14,6 +14,12 @@ namespace MyWidgetFunction
     std::map <std::string, Wt::WComboBox *> ComboQuality;
 }
 /* ****************************************************************************
+ * set Template
+ * widgets: this is the template or content
+ * widgetFunction: this does not work, not sure how to fix this
+ */
+//WidgetFunction::WidgetFunction() { } // end
+/* ****************************************************************************
  * get TypeFound
  */
 bool WidgetFunction::doAddFunction()
@@ -25,9 +31,9 @@ bool WidgetFunction::doAddFunction()
  * widgets: this is the template or content
  * widgetFunction: this does not work, not sure how to fix this
  */
-void WidgetFunction::setTemplate(Wt::WString widgets, WidgetFunction widgetFunction)
+void WidgetFunction::setTemplate(Wt::WString& widgets)
 {
-    (void)widgetFunction;
+    //(void)widgetFunction;
     if (debugLog) { Wt::log("start") << " WidgetFunction::WidgetFunction()"; }
     myTemplate_ = new Wt::WTemplate(widgets);
     if (widgets.toUTF8().find("widget:audio") != std::string::npos)
@@ -54,7 +60,8 @@ void WidgetFunction::setTemplate(Wt::WString widgets, WidgetFunction widgetFunct
     {
         // My guess is that passing in the pointer to the widgetFunction is not pulling up the same instance,
         // which makes no sence, this is not writen as a singleton
-        // FIXME myTemplate_->addFunction("widget", widgetFunction);
+        // FIXME
+        //myTemplate_->addFunction("widget", f);
     }
 
     if (debugLog) { Wt::log("end") << " WidgetFunction::WidgetFunction()"; }
@@ -292,7 +299,7 @@ Wt::WWidget* WidgetFunction::createVideo(const std::vector<Wt::WString>& args)
          *
          */
         //
-        std::string size = sizesFields[0]; // FIXIT read from combobox
+        std::string size = sizesFields[0]; // FIXME read from combobox
         int sizeCount = sizesFields.size();
         if (sizeCount > 1)
         {
