@@ -15,7 +15,7 @@
  */
 void WittyWizard::CallMenuPlugin()
 {
-    // FIXIT: Make sure you can completly remove any module, make this a plugin
+    // FIXME: Make sure you can completly remove any module, make this a plugin
     #ifdef BLOGMAN
         if (theIncludes.find("|blog|") != std::string::npos)
         {
