@@ -29,13 +29,14 @@
 class WidgetFunction
 {
     public:
+        //WidgetFunction();
         typedef boost::function<Wt::WWidget* (const std::vector<Wt::WString>&)> InstatiateWidget;
 
         bool operator()(Wt::WTemplate* t, const std::vector<Wt::WString>& args, std::ostream& result);
 
         void registerType(const std::string& name, InstatiateWidget instatiate);
         bool doAddFunction();
-        void setTemplate(Wt::WString widgets, WidgetFunction widgetFunction);
+        void setTemplate(Wt::WString& widgets);
         Wt::WTemplate* getTemplate();
         bool typeFound = false;
 
