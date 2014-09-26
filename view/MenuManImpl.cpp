@@ -61,11 +61,11 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
         std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
         if (CrystalBall::IsFile(fullFilePath))
         {
-            Wt::log("info") << "MenuManImpl::GetMenus: " << fullFilePath;
+            Wt::log("info") << "MenuManImpl::GetMenu: " << fullFilePath;
         }
         else
         {
-            Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMenus: " << fullFilePath;
+            Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMenu: " << fullFilePath;
             return "";
         }
         try
@@ -85,9 +85,9 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
             rapidxml::xml_attribute<> *nodeAttrib;
             for (rapidxml::xml_node<> * domain_node = root_node->first_node("menuman"); domain_node; domain_node = domain_node->next_sibling("menuman"))
             {
-                Wt::log("progress") << "MenuManImpl::GetMenus: Start Loop = " << domain_node->name();
+                Wt::log("progress") << "MenuManImpl::GetMenu: Start Loop = " << domain_node->name();
                 std::string language = nodeAttrib->value();
-                Wt::log("progress") << "MenuManImpl::GetMenus: language = " << nodeAttrib->value();
+                Wt::log("progress") << "MenuManImpl::GetMenu: language = " << nodeAttrib->value();
                 //
                 if (lang_ == language)
                 {
@@ -95,22 +95,22 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
                     nodeAttrib = domain_node->first_attribute("type");
                     if (!nodeAttrib)
                     {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: type = " << domain_node->name();
+                        Wt::log("error") << "MenuManImpl::GetMenu: Missing XML Element: type = " << domain_node->name();
                         return "";
                     }
                     std::string type = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: type = " << nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMenu: type = " << nodeAttrib->value();
                     if (type == "submenu")
                     {
                         // path of Menu Item that will be shown in address bar
                         nodeAttrib = domain_node->first_attribute("path");
                         if (!nodeAttrib)
                         {
-                            Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: path = " << domain_node->name();
+                            Wt::log("error") << "MenuManImpl::GetMenu: Missing XML Element: path = " << domain_node->name();
                             return "";
                         }
                         std::string path = nodeAttrib->value();
-                        Wt::log("progress") << "MenuManImpl::GetMenus: path = " << nodeAttrib->value();
+                        Wt::log("progress") << "MenuManImpl::GetMenu: path = " << nodeAttrib->value();
                         // Read from file
                         if (path == "" || path == "submenu")
                         {
@@ -133,7 +133,7 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
         }
         catch (std::exception& e)
         {
-            Wt::log("error") << "-> MenuManImpl::GetMenus()  Failed writting to menuman database: " << e.what();
+            Wt::log("error") << "-> MenuManImpl::GetMenu()  Failed writting to menuman database: " << e.what();
             return "";
         }
         return content;
@@ -318,11 +318,11 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
         std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
         if (CrystalBall::IsFile(fullFilePath))
         {
-            Wt::log("info") << "MenuManImpl::GetMenus: " << fullFilePath;
+            Wt::log("info") << "MenuManImpl::GetMetaData: " << fullFilePath;
         }
         else
         {
-            Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMenus: " << fullFilePath;
+            Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMetaData: " << fullFilePath;
             return NULL;
         }
         try
@@ -342,17 +342,17 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
             rapidxml::xml_attribute<> *nodeAttrib;
             for (rapidxml::xml_node<> * domain_node = root_node->first_node("menuman"); domain_node; domain_node = domain_node->next_sibling("menuman"))
             {
-                Wt::log("progress") << "MenuManImpl::GetMenus: Start Loop = " << domain_node->name();
+                Wt::log("progress") << "MenuManImpl::GetMetaData: Start Loop = " << domain_node->name();
                 // name of Menu Item that will be shown in Menu
                 // language of Menu Item that will be shown in address bar: en, cn, ru...
                 nodeAttrib = domain_node->first_attribute("language");
                 if (!nodeAttrib)
                 {
-                    Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: language = " << domain_node->name();
+                    Wt::log("error") << "MenuManImpl::GetMetaData: Missing XML Element: language = " << domain_node->name();
                     return NULL;
                 }
                 std::string language = nodeAttrib->value();
-                Wt::log("progress") << "MenuManImpl::GetMenus: language = " << nodeAttrib->value();
+                Wt::log("progress") << "MenuManImpl::GetMetaData: language = " << nodeAttrib->value();
                 //
                 if (lang_ == language)
                 {
@@ -360,22 +360,22 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
                     nodeAttrib = domain_node->first_attribute("type");
                     if (!nodeAttrib)
                     {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: type = " << domain_node->name();
+                        Wt::log("error") << "MenuManImpl::GetMetaData: Missing XML Element: type = " << domain_node->name();
                         return NULL;
                     }
                     std::string type = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: type = " << nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMetaData: type = " << nodeAttrib->value();
                     if (type == "submenu" || type == "")
                     {
                         // path of Menu Item that will be shown in address bar
                         nodeAttrib = domain_node->first_attribute("path");
                         if (!nodeAttrib)
                         {
-                            Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: path = " << domain_node->name();
+                            Wt::log("error") << "MenuManImpl::GetMetaData: Missing XML Element: path = " << domain_node->name();
                             return NULL;
                         }
                         std::string path = nodeAttrib->value();
-                        Wt::log("progress") << "MenuManImpl::GetMenus: path = " << nodeAttrib->value();
+                        Wt::log("progress") << "MenuManImpl::GetMetaData: path = " << nodeAttrib->value();
                         if (path == lookupPath)
                         {
                             // title
@@ -431,7 +431,7 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
         }
         catch (std::exception& e)
         {
-            Wt::log("error") << "-> MenuManImpl::GetMenus()  Failed writting to menuman database: " << e.what();
+            Wt::log("error") << "-> MenuManImpl::GetMetaData()  Failed writting to menuman database: " << e.what();
             return NULL;
         }
         return NULL;

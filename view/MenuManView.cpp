@@ -15,8 +15,10 @@
  * domainName:
  * menuOrientation: Wt::Horizontal or Wt::Vertical
  */
-MenuManView::MenuManView(const std::string& appPath, Wt::Dbo::SqlConnectionPool& connectionPool, const std::string& lang, const std::string& useDb, const std::string& domainName, Wt::Orientation menuOrientation)
+MenuManView::MenuManView(const std::string& appPath, Wt::Dbo::SqlConnectionPool& connectionPool, const std::string& lang, const std::string& useDb, const std::string& domainName, Wt::Orientation menuOrientation, std::string path)
 {
+    myPath = path;
+    myLanguage = lang;
     impl_ = new MenuManImpl(appPath, connectionPool, lang, useDb, domainName, menuOrientation);
     setImplementation(impl_);
 } // end MenuManView
