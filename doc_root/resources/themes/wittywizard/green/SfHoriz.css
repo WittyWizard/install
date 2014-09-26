@@ -1,0 +1,483 @@
+/*! Binary Bit Blue SfHoriz.css Suckerfish Menubar Horizontal
+ *  Drupal
+ *  Binary Bit LAN
+ *  Author: Jeffrey Scott and Rod Remelin
+ *  Copyright (C) 2008 Binary Bit LAN. All Rights Reserved.
+ *  http://binarybit.com
+ *  TechSupport@binarybit.com
+ *  Last Update: 7-May-2010
+ *  Version 1.0.3
+ */
+/*
+   Problems:
+   1. IE 6 and 7; Opacity
+   2. Ghost
+   3. Hide behind
+   4. Combo boxs bleeding thru
+   **********************************************************************
+   See Menu Check List
+   **********************************************************************
+   1. Menubar Static, No Hover
+   1AI.    Font Size                       10pt
+   1AI.    Font                            Arial,Helvetica,Verdana,sans-serif
+   1AI.    font-weight                     normal (Note do not to a replace all; go to around line 148 and manually replace in both places)
+   1AI.    font-style                      normal (Note do not to a replace all; go to around line 148 and manually replace in both places)
+   1AII.   Menubar Font                    FG FFFFFE
+   1AIII.  See Images/sprite.gif
+   1B.     See Menubar Borders             (border-style: none solid none none; border-width: 0pt 1px 0pt 0pt;)
+   1C.     Menubar Dividers                                     BR FFFFF1
+   1D.     Selected Menubar No Children    FG 020202  BG Sprite
+   1E.     Has Children
+   1EI.    None Selected w/Children        FG FFFFFC
+   1EII.   Selected Menubar w/Children     FG 006000  BG AEDB55
+   1EIII.  Menubar w/Child Selected        FG FFD863
+   **********************************************************************
+   2. Menubar Hover No Subs (Has No Children)
+   2A.     Menubar Hover No Children       FG 000001  BG E5E5E5 (Note BG Only if Image is missing or not shown; otherwise you can't see it)
+   2B.     Border Color                    none
+   2C.     Active Selected Menubar Item    Same as below
+   2D.     Selected Menubar Item           FG 1A3370
+   **********************************************************************
+   3. Menubar Hover with Subs (Has Children)
+   3A.     Sub Menu Dropdown               FG 000003  BG DDFFE2
+   3B.     Sub Menu Hover                  FG FFFCFC  BG 72C17C
+   3C.     Menubar w/Children of none Active7 and Active Menu; Hover over first Sub menu item; Notice Menubar Background and Foreground and Image if applies.
+   3CI.    Menubar w/Child Selected Hover  FG FFFFF8  BG 006400
+   3CII.   Menubar w/Children Hover No Sel FG 0A0A0A  BG DAFF7F
+   3DI.    Selected Sub Menu No Hover      FG 004900  BG BEE288
+   3DII.   Selected Sub Menu Hover         FG 00380E  BG CEEF94
+   3EI.    Sub Menu w/Children No Hover    FG FFFFFD  BG 518757
+   3EII.   Sub Menu w/Children Hover       FG FFEF00  BG 81B500
+   3FI.    Sub Menu w/Child Selected       FG 074C00  BG 35E14B
+   3FII.   Sub Menu w/Child Selected Hover FG DEFF0A  BG 8CAD4E
+   3GI.    Selected Sub w/Children         FG FFF544  BG 95BF9A
+   3GII.   Selected Sub w/Children Hover   FG 005B09  BG D8FF19
+   3H.     Selected Main w/Children Hover  FG 003D06  BG A3FFAF
+   3I.     Borders: See Sub Menu Dividers; None
+   3J.     Sub Menu Dividers                                     BT A2C1AA
+   3K.     See Images/sprite.gif
+   3L.     See Images/sprite.gif
+   3M.     See CSS Levels 1-5
+   3N.     No Selectors for this
+   **********************************************************************
+   * Position and Size ***
+   Start Menubar: Height 33px
+   Top Sub Menu: One less than hieght of Menubar of 33px = 32px
+   Sub Menu Width 160px
+   Sub Sub Menu Position 21 less than Sub Menu Width 160px = 140px
+*/
+/* IE6 HACK */
+.nav
+{
+   margin-bottom: 1.5em;
+}
+/* IE6 HACK */
+.nav ul
+{
+   background: #A2C1AA;
+   padding: 0;
+}
+/* IE7 Hack */
+div#sfmenu li:hover
+{
+   background-position: 0 0;
+}
+/*  Menu Div List container */
+div.suckerfish ul
+{
+   list-style: none;
+   width: auto;
+   padding: 0;
+   margin: 0;
+}
+/* Menu Div List */
+div.suckerfish li
+{
+   list-style-type: none;
+   width: auto;
+   padding: 0;
+   float: left;
+}
+/* Menubar: Height 33px */
+#sfmenu
+{
+   background-color: transparent; /* Only if Image is Missing or Not Shown */
+   width: 100%;
+   height: 33px;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 0;
+   background-repeat: repeat-x;
+   /*
+   This makes a fixes the ghost but makes a drop behind
+   position: relative; 
+   z-index: 1 !important;
+   z-index: 1;
+      */
+   z-index: 1;
+}
+/* 1C. Menubar Borders Menubar Dividers BR FFFFF1 */
+ul#sfnav li
+{
+   border-right: #FFFFF1;
+   border-style: none solid none none;
+   border-width: 0pt 1px 0pt 0pt;
+   list-style: none;
+   background: none;
+   margin: 0;
+   padding: 0;
+   display: inline;
+   position: relative;
+   text-align: left;
+   float: left;
+   z-index: 9999;
+}
+/* Top Sub Menu: One less than hieght of Menubar 32px */
+ul#sfnav ul
+{
+   top: 32px;
+   width: 160px;
+   list-style: none;
+   display: none;
+   border: 0 none;
+   margin: 0;
+   padding: 0;
+   position: absolute;
+   left: 0;
+}
+/* Hack IE 7 */
+ul#sfnav ul:after
+{
+   clear: both;
+   content: ".";
+   display: block;
+   font: 1px/0px serif;
+   height: 0;
+   visibility: hidden;
+}
+/* List Size */
+ul#sfnav ul li
+{
+   width: 160px;
+   top: 0;
+   bottom: 0;
+   border-right: 0;
+   display: block !important;
+   display: inline;
+   text-align: left;
+   float: left;
+}
+/* 1AI. Font Size, Family, Weight and Style;
+   Start Menubar normal state: Menubar Font FG FFFFFE */
+ul#sfnav a
+{
+   color: #FFFFFE;
+   background-image: none;
+   font-family: Arial;
+   font-size: 10pt;
+   font-weight: normal;
+   font-style: normal;
+   line-height: 33px;
+   padding: 0 10px;    /* Side of Menubar Items */
+   margin: 0;
+   float: none !important;
+   float: left;
+   display: block;
+   text-decoration: none;
+   height: auto !important;
+   height: 1%;
+   text-align: left;
+}
+/* 2A. Menubar Hover No Children FG 000001 BG E5E5E5 */
+ul#sfnav a:hover,
+ul#sfnav li:hover a,
+ul#sfnav li.sfHover a
+{
+   color: #000001;
+   background-color: #E5E5E5; /* Only if Image is Missing or Not Shown */
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -200px; /* Full Size */
+   background-repeat: repeat-x;
+} 
+/* Normal State for all levels with no children */
+/* 3A. Sub Menu Dropdown FG 000003 BG DDFFE2 */
+ul#sfnav li:hover li a,                            /* 2nd Menu Normal State */
+ul#sfnav li.sfHover li a,
+ul#sfnav li:hover li:hover li a,                   /* 3rd Menu Normal State */
+ul#sfnav li.sfHover li.sfHover li a,
+ul#sfnav li:hover li:hover li:hover li a,          /* 4th Menu Normal State */
+ul#sfnav li.sfHover li.sfHover li.sfHover li a,
+ul#sfnav li:hover li:hover li:hover li:hover li a, /* 5th Menu Normal State */
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a
+{
+   color: #000003;
+   background-color: #DDFFE2;
+   background-image: none;
+   float: none;
+   border: none;
+   padding: 5px 10px;
+   line-height: 20px;
+   text-align: left;
+}
+/* seems to make a ghost Hack */
+ul#sfnav li li
+{
+   line-height: 20px;
+   border: none;
+}
+/* 3J. Sub Menu Dividers BT A2C1AA */
+ul#sfnav li li span
+{
+   border-top: 1px solid #A2C1AA;
+   display: block;
+}
+/* 3B. Sub Menu Hover FG FFFCFC BG 72C17C */
+ul#sfnav li:hover li a:hover,                            /* 2nd Menu Hover Persistence */
+ul#sfnav li:hover li:hover a,
+ul#sfnav li.sfHover li a:hover,
+ul#sfnav li.sfHover li.sfHover a,
+ul#sfnav li:hover li:hover li a:hover,                   /* 3rd Menu Hover Persistence */
+ul#sfnav li:hover li:hover li:hover a,
+ul#sfnav li.sfHover li.sfHover li a:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover a,
+ul#sfnav li:hover li:hover li:hover li a:hover,          /* 4th Menu Hover Persistence */
+ul#sfnav li:hover li:hover li:hover li:hover a,
+ul#sfnav li.sfHover li.sfHover li.sfHover li a:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover a,
+ul#sfnav li:hover li:hover li:hover li:hover li a:hover, /* 5th Menu Hover Persistence */
+ul#sfnav li:hover li:hover li:hover li:hover li:hover a,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li.sfHover a
+{
+   color: #FFFCFC;
+   background-color: #72C17C;
+   background-image: none;
+}
+/* Active state on all levels w/Children */
+/* Sub Sub Menu Position 21 less than Sub Menu Width 160px = 140px */
+ul#sfnav ul ul,
+ul#sfnav ul ul ul
+{
+   left: 140px;
+   display: none;
+   position: absolute;
+   top: 0;
+   margin-left: 19px;
+}
+/* Sub Menu Width 160px */
+ul#sfnav ul ul li
+{
+   width: 160px;
+}
+/* Hack Don't Move - Must Come Before display:block for Gecko */
+ul#sfnav li:hover ul ul,
+ul#sfnav li:hover ul ul ul,
+ul#sfnav li.sfHover ul ul,
+ul#sfnav li.sfHover ul ul ul
+{
+   display: none;
+}
+ul#sfnav li:hover ul,
+ul#sfnav ul li:hover ul,
+ul#sfnav ul ul li:hover ul,
+ul#sfnav li.sfHover ul,
+ul#sfnav ul li.sfHover ul,
+ul#sfnav ul ul li.sfHover ul
+{
+   display: block;
+}
+/* **************************** Details ************************************************************* */
+/* 1D. Selected Menubar No Children FG 020202 BG Sprite */
+ul#sfnav #selectedmmlink
+{
+   color: #020202;
+   background-color: transparent; /* Only if Image is Missing or Not Shown */
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -100px;
+   background-repeat: repeat-x;
+}
+/* 2D. Selected Menubar Item No Children Hover FG FFFD91 */
+ul#sfnav #selectedmmlink:active,
+ul#sfnav #selectedmmlink:active.sfHover,
+ul#sfnav #selectedmmlink:hover,
+ul#sfnav #selectedmmlink.sfHover,
+ul#sfnav #selectedmmlink:focus,
+ul#sfnav #selectedmmlink:focus.sfHover,
+ul#sfnav #selectedmmlink:hover:focus,
+ul#sfnav #selectedmmlink:hover:focus.sfHover
+{
+   color: #FFFD91;
+   background-color: transparent; /* Only if Image is Missing or Not Shown */
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -100px;
+   background-repeat: repeat-x;
+}
+/* 1EI. Menubar None Selected w/Children FG FFFFFC */
+ul#sfnav a.mmwithchildren
+{
+   color: #FFFFFC;
+   background-color: transparent;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2580px;
+   background-repeat: no-repeat;
+}
+/* 1EII. Selected Menubar w/Children FG 006000 BG AEDB55 */
+ul#sfnav #selectedmmlinkwc
+{
+   color: #006000;
+   background-color: #AEDB55;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2735px;
+   background-repeat: no-repeat;
+}
+/* 1EIII. Menubar w/Child Selected No Hover FG FFD863 Arrow Color */
+#sfnav a#activemmlinkwc
+{
+   color: #FFD863;
+   background-color: transparent; /* Menubar image */
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2660px;
+   background-repeat: no-repeat;
+}
+/* 3CI. Menubar w/Child Selected Hover FG FFFFF8 BG 006400 */
+#sfnav a#activemmlinkwc:hover,
+#sfnav a#activemmlinkwc.sfHover
+{
+   color: #FFFFF8;
+   background-color: #006400;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2700px;
+   background-repeat: no-repeat;
+} 
+/* 3CII. Menubarbar w/Children Hover None Selected FG 0A0A0A BG DAFF7F */
+ul#sfnav a.mmwithchildren:hover,
+ul#sfnav a.mmwithchildren.sfHover
+{
+   color: #0A0A0A;
+   background-color: #DAFF7F;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2620px;
+   background-repeat: no-repeat;
+}
+/* 3DI. Selected Sub Menu No Hover FG 004900 BG BEE288 */
+ul#sfnav a#selectedsmlink
+{
+   color: #004900;
+   background-color: #BEE288;
+   background-image: none;
+   font-weight: normal;
+}
+/* 3DII. Selected Sub Menu Hover FG 00380E BG CEEF94 */
+ul#sfnav a#selectedsmlink:hover,
+ul#sfnav a#selectedsmlink.sfHover
+{
+   color: #00380E;
+   background-color: #CEEF94;
+   background-image: none;
+}
+/* 3EI. Sub Menu w/Children No Hover FG FFFFFD BG 518757 */
+ul#sfnav li:hover li a.smwithchildren,                            /* 2nd Menu Normal State - w/Children */
+ul#sfnav li.sfHover li a.smwithchildren,
+ul#sfnav li:hover li:hover li a.smwithchildren,                   /* 3rd Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li a.smwithchildren,
+ul#sfnav li:hover li:hover li:hover li a.smwithchildren,          /* 4th Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li.sfHover li a.smwithchildren,
+ul#sfnav li:hover li:hover li:hover li:hover li a.smwithchildren, /* 5th Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a.smwithchildren
+{
+   color: #FFFFFD;
+   background-color: #518757;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2407px; /* Arrow transparent */
+   background-repeat: no-repeat;
+   float: none;
+}
+/* 3EII. Sub Menu w/Children Hover FG FFEF00   BG 81B500 */
+ul#sfnav li:hover li a.smwithchildren:hover,                            /* 2nd Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover a.smwithchildren,
+ul#sfnav li.sfHover li a.smwithchildren:hover,
+ul#sfnav li.sfHover li.sfHover a.smwithchildren,
+ul#sfnav li:hover li:hover li a.smwithchildren:hover,                   /* 3rd Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover a.smwithchildren,
+ul#sfnav li.sfHover li.sfHover li a.smwithchildren:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover a.smwithchildren,
+ul#sfnav li:hover li:hover li:hover li a.smwithchildren:hover,          /* 4th Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover li:hover a.smwithchildren,
+ul#sfnav li.sfHover li.sfHover li.sfHover li a.smwithchildren:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover a.smwithchildren,
+ul#sfnav li:hover li:hover li:hover li:hover li a.smwithchildren:hover, /* 5th Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover li:hover li:hover a.smwithchildren,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a.smwithchildren:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li.sfHover a.smwithchildren
+{
+   color: #FFEF00;
+   background-color: #81B500;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2462px;
+   background-repeat: no-repeat;
+}
+/* 3FI. Sub Menu w/Child Selected (Active) No Hover FG 074C00 BG 35E14B */
+ul#sfnav li:hover li a.activesmwc,                            /* 2nd Menu Normal State - w/Children */
+ul#sfnav li.sfHover li a.activesmwc,
+ul#sfnav li:hover li:hover li a.activesmwc,                   /* 3rd Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li a.activesmwc,
+ul#sfnav li:hover li:hover li:hover li a.activesmwc,          /* 4th Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li.sfHover li a.activesmwc,
+ul#sfnav li:hover li:hover li:hover li:hover li a.activesmwc, /* 5th Menu Normal State - w/Children */
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a.activesmwc
+{
+   color: #074C00;
+   background-color: #35E14B;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2510px;
+   background-repeat: no-repeat;
+}
+/* 3FII. Sub Menu w/Child Selected (Active) Hover FG DEFF0A BG 8CAD4E */
+ul#sfnav li:hover li a.activesmwc:hover,                           /* 2nd Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover a.activesmwc,
+ul#sfnav li.sfHover li a.activesmwc:hover,
+ul#sfnav li.sfHover li.sfHover a.activesmwc,
+ul#sfnav li:hover li:hover li a.activesmwc:hover,                  /* 3rd Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover a.activesmwc,
+ul#sfnav li.sfHover li.sfHover li a.activesmwc:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover a.activesmwc,
+ul#sfnav li:hover li:hover li:hover li a.activesmwc:hover,         /* 4th Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover li:hover a.activesmwc,
+ul#sfnav li.sfHover li.sfHover li.sfHover li a.activesmwc:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover a.activesmwc,
+ul#sfnav li:hover li:hover li:hover li:hover li a.activesmwc:hover, /* 5th Menu Hover State - w/Children */
+ul#sfnav li:hover li:hover li:hover li:hover li:hover a.activesmwc,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li a.activesmwc:hover,
+ul#sfnav li.sfHover li.sfHover li.sfHover li.sfHover li.sfHover a.activesmwc
+{
+   color: #DEFF0A;
+   background-color: #8CAD4E;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2550px;
+   background-repeat: no-repeat;
+}
+/* 3GI. Selected Sub w/Children FG FFF544  BG 95BF9A */
+#sfnav #selectedsmlinkwc
+{
+   color: #FFF544;
+   background-color: #95BF9A;
+   background-image: none;
+}
+/* 3GII. Selected Sub w/Children Hover FG 005B09  BG D8FF19 */
+#sfnav #selectedsmlinkwc:hover,
+#sfnav #selectedsmlinkwc.sfHover
+{
+   color: #005B09;
+   background-color: #D8FF19;
+   background-image: none;
+}
+/* 3H. Selected Menubar w/Children Hover FG 003D06 BG A3FFAF Arrow Color */
+ul#sfnav #selectedmmlinkwc:hover,
+ul#sfnav #selectedmmlinkwc.sfHover
+{
+   color: #003D06;
+   background-color: #A3FFAF;
+   background-image: url(Images/sprite.gif);
+   background-position: 0 -2775px;
+   background-repeat: no-repeat;
+}
+/* ********** End CSS ******************************************* */

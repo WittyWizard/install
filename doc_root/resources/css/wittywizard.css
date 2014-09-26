@@ -1,0 +1,88 @@
+/* Witty Wizard CSS Document */
+/* */
+body
+{
+    background-color: #696C86;
+}
+/* */
+select.form-control
+{
+    width: 220px;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    display: inline;
+}
+/* */
+#videocan
+{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+/* For hard to center div's use this */
+.centerit
+{
+    text-align: center;
+    margin: 0 auto;
+}
+/* Left */
+.left
+{
+    text-align: left;
+}
+/* right */
+.right
+{
+    text-align: right;
+}
+/* Float Left */
+.floatleft
+{
+    float: left;
+}
+/* float right */
+.floatright
+{
+    float: right;
+}
+/* float right */
+#floatright
+{
+    float: right;
+}
+.navbar-right a
+{
+    float: right;
+}
+/* MsoNormal */
+.MsoNormal
+{
+    margin: 0;
+    font-size: 100%;
+    font-family: 'Times New Roman';
+}
+/* MsoNormal */
+p.MsoNormal
+{
+    margin: 0;
+    font-size: 100%;
+    font-family: 'Times New Roman';
+}
+/* MsoNormal 2 */
+p.MsoNormal2
+{
+    font-family: 'Times New Roman';
+    font-size: 110%;
+    margin: 0px 40px 10px;
+
+}
+/* MsoNormal 2 */
+.MsoNormal2
+{
+    font-family: 'Times New Roman';
+    font-size: 110%;
+
+    margin: 0px 40px 10px;
+    text-align: justify;
+}
+/* End of File */
