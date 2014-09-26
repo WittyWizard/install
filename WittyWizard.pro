@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Witty Wizard Project 23 Sep 2014
+# Witty Wizard Project 25 Sep 2014
 #
 # run --docroot . --http-address 0.0.0.0 --http-port 8088
 # --gdb --docroot "./doc_root" --approot "./app_root" --deploy-path /ww --http-address 0.0.0.0 --http-port 8088
@@ -23,13 +23,13 @@ SOURCES += main.cpp WittyWizard.cpp WidgetFunction.cpp WittyWizardPlugins.cpp Cr
     model/HitCounterMan.cpp model/HitCounterManSession.cpp \
     view/HitCounterManImpl.cpp view/HitCounterManView.cpp \
     model/MenuMan.cpp model/MenuManSession.cpp \
-    view/MenuManImpl.cpp view/MenuManView.cpp \
+    view/MenuManImpl.cpp view/MenuManView.cpp
 
 HEADERS += WittyWizard.h WidgetFunction.h WittyWizardPlugins.h CrystalBall.h \
     model/HitCounterMan.h model/HitCounterManSession.h \
     view/HitCounterManImpl.h view/HitCounterManView.h \
     model/MenuMan.h model/MenuManSession.h \
-    view/MenuManImpl.h view/MenuManView.h \
+    view/MenuManImpl.h view/MenuManView.h
 
 
 # PostgreSql
