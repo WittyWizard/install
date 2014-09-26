@@ -78,6 +78,17 @@ namespace CrystalBall
     extern std::map <std::string, std::string> ModuleIncludes;
     /* ****************************************************************************
      * Global Variable
+     * languages="|en|de|cn|ru|"
+     * See domain.xml:languages="|en|de|cn|ru|"
+     */
+    extern std::map <std::string, std::string> Languages;
+    /* ****************************************************************************
+     * Global Variable
+     * See domain.xml:themes="|red|white|blue|green|tan|default|"
+     */
+    extern std::map <std::string, std::string> Themes;
+    /* ****************************************************************************
+     * Global Variable
      * defaultTheme="blue"
      * See domain.xml:defaultTheme="blue"
      */
@@ -158,5 +169,12 @@ namespace CrystalBall
      * Returns the Contents
      */
     extern Wt::WString GetTemplate(std::string id);
+    /* ****************************************************************************
+     * Get Path
+     * remove language
+     * language: en, cn, ru, de...
+     */
+    extern std::string GetPath(std::string thePath, std::string language);
+
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
