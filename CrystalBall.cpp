@@ -1,5 +1,5 @@
 /* ****************************************************************************
- * Witty Wizard
+ * Witty Wizard CrystalBall is a set of Global Functions and Variables.
  */
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
@@ -29,28 +29,7 @@
 #ifdef WWUSEBOOST
     #include <boost/filesystem.hpp>
 #endif
-// DO NOT INCLUDE THIS (its defined as External, this is like C, its Global) #include "WittyWizard.h"
-/*
-class MyCrystalBall
-{
-    Wt::Dbo::SqlConnectionPool* connectionPool;  //
-    std::string domainHost;                      // domainHost="wittywizard.org"
-    int defaultLanguageIndex;                    // index of AddLanguage
-    bool useDb;                                  // UseDb="0": 1 = true, 0 = false
-    std::string dbName;                          // dbName="wittywizard"
-    std::string dbUser;                          // dbUser="wittywizard"
-    std::string dbPassword;                      // password="Secret"
-    std::string dbPort;                          // dbPort="" : PostgreSQL=5432
-    std::string gasAccount;                      // Google Adsense: gasAccount="pub-123456789012345"   google.com/adsense/
-    std::string gaAccount;                       // Google Analytic Account: gaAccount="UA-xxxxxxxx-x" google.com/analytics/
-    std::string moduleIncludes;                  // Include Modules "|ModuleName|"
-    std::string defaultTheme;                    // Default Theme:
-    std::string googleSiteVerifi;                // google-site-verification
-    std::string yKey;                            // Yahoo Site Verisfication Key
-    std::string msValidate;                      // msvalidate.01
-
-} LookInTo;
-*/
+// DO NOT INCLUDE #include "WittyWizard.h" (its defined as External, this is like C, its Global)
 namespace CrystalBall
 {
     /* ****************************************************************************
@@ -134,6 +113,17 @@ namespace CrystalBall
     std::map <std::string, std::string> ModuleIncludes;
     /* ****************************************************************************
      * Global Variable
+     * languages="|en|de|cn|ru|"
+     * See domain.xml:languages="|en|de|cn|ru|"
+     */
+    std::map <std::string, std::string> Languages;
+    /* ****************************************************************************
+     * Global Variable
+     * See domain.xml:themes="|red|white|blue|green|tan|default|"
+     */
+    std::map <std::string, std::string> Themes;
+    /* ****************************************************************************
+     * Global Variable
      * defaultTheme="blue"
      * See domain.xml:defaultTheme="blue"
      */
@@ -175,9 +165,7 @@ namespace CrystalBall
     {
         struct stat sb;
         if (stat(pathName.c_str(), &sb) == 0 && S_ISDIR(sb.st_mode))
-        {
-            return true;
-        }
+            { return true; }
         return false;
     }
     /* ****************************************************************************
@@ -363,6 +351,22 @@ namespace CrystalBall
                     return false;
                 }
                 ModuleIncludes[myDomainHost] = x_item->value();
+                // languages
+                x_item = domain_node->first_attribute("languages");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: languages";
+                    return false;
+                }
+                Languages[myDomainHost] = x_item->value();
+                // themes
+                x_item = domain_node->first_attribute("themes");
+                if (!x_item)
+                {
+                    Wt::log("error") << "-> GetConnectionPoolInfo(" << filePath << ") Missing XML Element: themes";
+                    return false;
+                }
+                Themes[myDomainHost] = x_item->value();
                 // defaultTheme
                 x_item = domain_node->first_attribute("defaultTheme");
                 if (!x_item)
@@ -540,5 +544,24 @@ namespace CrystalBall
         //Wt::log("notice") << " *** MenuManSession::GetTemplate() Read " << temp;
         return myTemplate.c_str();
     } // end GetTemplate
+    /* ****************************************************************************
+     * Get Path
+     * remove language
+     * language: en, cn, ru, de...
+     * FIXME: make sure path is clean, no SQL Injections
+     */
+    std::string GetPath(std::string thePath, std::string language)
+    {
+        // /lang/path/sub
+        // /en/
+        std::string myPath = thePath;
+        if (!StringReplace(myPath, "/" + language + "/", ""))
+        {
+            myPath = thePath;
+            myPath = myPath.substr(myPath.find("/") + 1);
+        }
+        //Wt::log("notice") << " WittyWizard::GetPath() thePath = " << thePath;
+        return myPath;
+    } // end GetPath
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
