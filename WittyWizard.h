@@ -81,8 +81,9 @@ struct Lang
  */
 struct Theme
 {
-    Theme(const Wt::WString& name) : name_(name) { }
+    Theme(const Wt::WString& name, const std::string& path) : name_(name), path_(path) { }
     Wt::WString name_;
+    std::string path_;
 }; // end struct Theme
 /* ****************************************************************************
  * App
@@ -91,6 +92,7 @@ class WittyWizard : public Wt::WApplication
 {
     public:
         WittyWizard(const Wt::WEnvironment& e);
+        Wt::WWidget* MenuMan();
     private:
         void ReInit();
         void CreateMenu();
@@ -110,10 +112,7 @@ class WittyWizard : public Wt::WApplication
         bool PluginHandlePathChange(std::string moduleName, int newLanguage);
         void CallPlugin();
         void CallMenuPlugin();
-        std::string GetCookie(std::string name);
-        bool SetCookie(std::string name, std::string myValue);
         std::string GetPath();
-        Wt::WWidget* MenuMan();
         Wt::WWidget* GetTemplate(std::string thePath);
         // FIXME Plugin System - how do I fix this?
         #ifdef HITCOUNTERMAN
@@ -146,7 +145,6 @@ class WittyWizard : public Wt::WApplication
         void SetMyLocale();
         std::string myLocale = "";
         std::string myPath = "";
-        std::vector<std::string> parts;
 };
 //Wt::WApplication* CreateApp(const Wt::WEnvironment& env);
 
