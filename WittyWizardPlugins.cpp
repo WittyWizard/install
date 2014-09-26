@@ -11,25 +11,6 @@
  */
 #include "WittyWizard.h"
 /* ****************************************************************************
- * Call Menu Plugin
- */
-void WittyWizard::CallMenuPlugin()
-{
-    // FIXME: Make sure you can completly remove any module, make this a plugin
-    #ifdef BLOGMAN
-        if (theIncludes.find("|blog|") != std::string::npos)
-        {
-            mainMenu_->addItem(Wt::WString::tr("blog"),  deferCreate(boost::bind(&WittyWizard::Blog, this))); // http://localhost:8088/?_=/blog or http://localhost:8088/blog
-        }
-    #endif // BLOGMAN
-    #ifdef CHATMAN
-        if (theIncludes.find("|chat|") != std::string::npos)
-        {
-            mainMenu_->addItem(Wt::WString::tr("chat"),  deferCreate(boost::bind(&WittyWizard::Chat, this))); //
-        }
-    #endif // CHATMAN
-} // end CallMenuPlugin
-/* ****************************************************************************
  * Call Plugin
  */
 void WittyWizard::CallPlugin()
