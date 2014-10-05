@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<messages>
+	<message id="theme-template">
+
+		<p>
+			Our Theme is based on CSS that changes the colors of what ever Theme you have sitting on top of it, currently that is Bootstrap.
+		</p>
+
+		<p>
+			Currently there is a Bug in the App that causes the Cookie to revert back, hopfully I can get this fixed soon.
+		</p>
+
+	</message>
+</messages>

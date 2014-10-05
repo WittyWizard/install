@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menusman>
+    <menuman name="首页"       path="/"                        type=""        parent=""               grandparent=""          language="cn" description="诙谐的向导内容管理系统（CMS）" keywords="诙谐，精灵，内容，管理，系统，内容管理系统，C + +，重量，机智精灵，内容管理系统，文档，PDF格式，视频，音频，窗口小部件，Qt的" title="诙谐的向导内容管理系统（CMS）" copyright="俏皮精灵" rating="general"></menuman>
+
+    <menuman name="产品特点"     path="/features"                type="topsub"  parent="/features"      grandparent=""          language="cn" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Themes"     path="/features/theme"          type="submenu" parent="/features"      grandparent=""          language="cn" description="Theme Manager" keywords="Witty,Wizard,Content,Management,System,CMS,C++,Wt, 俏皮精灵,Content Management System,Document,PDF,Video,Audio,Widget,Qt,Menu,Manager" title="俏皮精灵 Theme Manager" copyright="俏皮精灵" rating="general"></menuman>
+
+
+    <menuman name="菜单"        path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="cn" description="" keywords="" title="" copyright="" rating="general"></menuman>
+
+    <menuman name="Sub Menu"   path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="cn" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Sub Menu 1" path="/features/menu/sub-menu1" type="submenu" parent="/features/menu" grandparent="/features" language="cn" description="Sub Menu 1" keywords="Witty,Wizard,Content,Management,System,CMS" title="Sub Menu 1" copyright="Light Wizzard" rating="general"></menuman>
+    <menuman name="Sub Menu"   path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="cn" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="菜单"       path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="cn" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+
+    <menuman name="产品特点"   path="/features"                type="topend"  parent="/features"      grandparent=""          language="cn" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="关于"      path="/about"                   type=""        parent=""               grandparent=""          language="cn" description="关于威达向导的内容管理系统（CMS）" keywords="诙谐，精灵，内容，管理，系统，内容管理系统，C + +，重量，机智精灵，内容管理系统，文档，PDF格式，视频，音频，窗口小部件，Qt的" title="关于威达向导的内容管理系统（CMS）" copyright="俏皮精灵" rating="general"></menuman>
+</menusman>

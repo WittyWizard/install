@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menusman>
+    <menuman name="Главная"       path="/"                        type=""        parent=""               grandparent=""          language="ru" description="Мастер Остроумный Content Management System (CMS)" keywords="Остроумный, Мастер, контент, управление, система, CMS, C ++, Вт, Мастер Остроумный, система управления контентом, документ, PDF, видео, аудио, Виджет, Qt" title="Система управления контентом Мастер Остроумный (CMS)" title="The Мастер Остроумный Content Management System (CMS)" copyright="Мастер Остроумный" rating="general"></menuman>
+
+    <menuman name="Особенности"   path="/features"                type="topsub"  parent="/features"      grandparent=""          language="ru" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Themes"     path="/features/theme"          type="submenu" parent="/features"      grandparent=""          language="ru" description="Theme Manager" keywords="Остроумный, Мастер, контент, управление, система, CMS, C ++, Вт, Мастер Остроумный, система управления контентом, документ, PDF, видео, аудио, Виджет, Qt" title="Система управления контентом Мастер Остроумный (CMS),Menu,Manager" title="Мастер Остроумный Theme Manager" copyright="Мастер Остроумный" rating="general"></menuman>
+
+
+    <menuman name="Меню"       path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="ru" description="" keywords="" title="" copyright="" rating="general"></menuman>
+
+    <menuman name="Sub Menu"   path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="ru" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Sub Menu 1" path="/features/menu/sub-menu1" type="submenu" parent="/features/menu" grandparent="/features" language="ru" description="Sub Menu 1" keywords="Остроумный, Мастер, контент, управление, система, CMS, C ++, Вт, Мастер Остроумный, система управления контентом, документ, PDF, видео, аудио, Виджет, Qt" title="Sub Menu 1" copyright="Мастер Остроумный" rating="general"></menuman>
+    <menuman name="Sub Menu"   path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="ru" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="Меню"       path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="ru" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+
+    <menuman name="Особенности" path="/features"                type="topend"  parent="/features"      grandparent=""          language="ru" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="об этом"      path="/about"                   type=""        parent=""               grandparent=""          language="ru" description="Мастер Остроумный Content Management System (CMS)" keywords="Остроумный, Мастер, контент, управление, система, CMS, C ++, Вт, Мастер Остроумный, система управления контентом, документ, PDF, видео, аудио, Виджет, Qt" title="Система управления контентом Мастер Остроумный (CMS)" title="О системе управления контентом мастера Остроумный (CMS)" copyright="Мастер Остроумный" rating="general"></menuman>
+</menusman>

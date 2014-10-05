@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-
     <message id="ww-template">
         <link id="wittywizardstylesheet" href="" type="text/css" rel="stylesheet" />
         <link id="wittywizardmenustylesheet" href="" type="text/css" rel="stylesheet" />
@@ -30,7 +29,6 @@
 
             <div id="footer_wrapper" class="panel">
                 <div id="footer_content" class="panel-footer">
-
                     <div id="footer_copyright" style="display: inline;">
                         ${copyright}
                     </div>
@@ -73,10 +71,16 @@
     <message id="unique-hits">Уникальные Хиты</message>
 
     <message id="banner-source"></message>
-    <message id="banner-alt">Остроумный Мастер CMS</message>
-    <message id="copyright">Мастер Остроумный система управления контентом (CMS)</message>
+    <message id="banner-alt">Система управления контентом Мастер Остроумный</message>
+    <message id="copyright">Мастер Остроумный</message>
 
-    <message id="VideoMan">видео</message>
-    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+    <message id="rss-url">http://WittyWizard/ww/en/blue/blog</message>
+    <message id="rss-title">Мастер Остроумный Свет</message>
+    <message id="rss-description">Мастер Остроумный Свет</message>
+
+    <message id="previous">Предыдущая</message>
+    <message id="next">Следующая</message>
+
+    <message id="page-not-found">Страница не найдена</message>
 
 </messages>

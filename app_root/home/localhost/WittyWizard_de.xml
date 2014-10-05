@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-
     <message id="ww-template">
         <link id="wittywizardstylesheet" href="" type="text/css" rel="stylesheet" />
         <link id="wittywizardmenustylesheet" href="" type="text/css" rel="stylesheet" />
@@ -44,12 +43,12 @@
 
                     <div class="clearall"></div>
                 </div>
-            </div>  <!-- id="footer_wrapper" -->
-        </div> <!-- id="page" -->
+            </div>
+        </div>
         <div id="ga">
             ${ga}
         </div>
-    </message> <!-- id="ww-template" -->
+    </message>
 
     <message id="home">Zuhause</message>
     <message id="blog">Blog</message>
@@ -72,14 +71,16 @@
     <message id="unique-hits">unique hits</message>
 
     <message id="banner-source"></message>
-    <message id="banner-alt">Witty Wizard CMS</message>
-    <message id="copyright">Witty Wizard Content Management System (CMS)</message>
+    <message id="banner-alt">Die witzigen Assistenten Content Management System</message>
+    <message id="copyright">Witty-Assistenten</message>
 
-    <message id="rss-url">http://wittywizard.org/ww/en/blog</message>
-    <message id="rss-title">Witty Wizard blog</message>
-    <message id="rss-description">Witty Wizard blog</message>
+    <message id="rss-url">http://WittyWizard/ww/en/blue/blog</message>
+    <message id="rss-title">Witty-Assistenten Blog</message>
+    <message id="rss-description">Witty-Assistenten Blog</message>
 
-    <message id="VideoMan" description="VideoMan Module Menu Name">Video</message>
-    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+    <message id="previous">früher</message>
+    <message id="next">nächste</message>
+
+    <message id="page-not-found">Seite nicht gefunden</message>
 
 </messages>

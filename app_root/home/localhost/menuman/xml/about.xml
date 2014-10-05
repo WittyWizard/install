@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-    <message id="about-template">
-    
-        <h1>
-            About Witty Wizard Content Management System (CMS)
-        </h1>
+	<message id="about-template">
+	
+		<h1>
+			About Witty Wizard Content Management System (CMS)
+		</h1>
 
-        <p>
-            Witty Wizard CMS is an Open Source Project,
-            its a Web Application that uses the Wt Library,
-            which is also an Open Source Project,
-            its Goal is to create an Easy to Use,
-            yet very Secure Web Application that can run multiple Domains under the same Application,
-            this allows full utilization of a VPS account to host the Web Application.
-        </p>
+		<p>
+			Witty Wizard CMS is an Open Source Project,
+			its a Web Application that uses the Wt Library,
+			which is also an Open Source Project,
+			its Goal is to create an Easy to Use,
+			yet very Secure Web Application that can run multiple Domains under the same Application,
+			this allows full utilization of a VPS account to host the Web Application.
+		</p>
 
-        <p>
-            Witty Wizard CMS is designed in a way where the Back End,
-            or Admin Area, is not Required,
-            all the Content can be Maintained via FTP or SSH,
-            thous reducing its Security Footprint,
-            it does not require Apache to run,
-            instead it uses a special application called wthttp to run the Wt Application,
-            farther reducing its Security Footprint,
-            it can also be configured to use SSL Certificates to Authenticate Log ins,
-            making it a very secure Web Application.
-        </p>
+		<p>
+			Witty Wizard CMS is designed in a way where the Back End,
+			or Admin Area, is not Required,
+			all the Content can be Maintained via FTP or SSH,
+			thous reducing its Security Footprint,
+			it does not require Apache to run,
+			instead it uses a special application called wthttp to run the Wt Application,
+			farther reducing its Security Footprint,
+			it can also be configured to use SSL Certificates to Authenticate Log ins,
+			making it a very secure Web Application.
+		</p>
 
-        <p>
-            The Core of the Application uses a Menu System which can run in Static or Database mode,
-            both methods use Templates,
-            which are unique to Wt,
-            but are just HTML Markup with added Tags which allow Widgets to be able to be accessed from within the Content,
-            this gives the Page Author the Power of C++ using HTML Markup,
-            and will give them the power to create very powerful pages with little effort.
-            All of the Content and Settings are stored in XML files,
-            this makes it easy to maintain without the Traditional Admin Section with a GUI to maintain the Content,
-            although the Admin Section will be made Available for all Operations,
-            the Goal is to be able to Maintain the Site without it,
-            since the Admin Section on any System is its weakest Link when it comes to Security.
-        </p>
+		<p>
+			The Core of the Application uses a Menu System which can run in Static or Database mode,
+			both methods use Templates,
+			which are unique to Wt,
+			but are just HTML Markup with added Tags which allow Widgets to be able to be accessed from within the Content,
+			this gives the Page Author the Power of C++ using HTML Markup,
+			and will give them the power to create very powerful pages with little effort.
+			All of the Content and Settings are stored in XML files,
+			this makes it easy to maintain without the Traditional Admin Section with a GUI to maintain the Content,
+			although the Admin Section will be made Available for all Operations,
+			the Goal is to be able to Maintain the Site without it,
+			since the Admin Section on any System is its weakest Link when it comes to Security.
+		</p>
 
-    </message>
+	</message>
 </messages>

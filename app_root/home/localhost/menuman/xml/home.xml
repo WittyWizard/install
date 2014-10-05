@@ -1,288 +1,244 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-    <message id="home-template">
+	<message id="home-template">
 
-        <div style='text-align:left'>
-            <h1>Content Management System AKA &quot;CMS&quot;</h1>
-            <p>
-                A Content Management System, or CMS, is a Computer Program that helps a User or Organization Manage Content,
-                so for the most part, its a Document Management System or DMS, so what every you want to call it,
-                I will call it Witty Wizard or WW for short,
-                its a System designed to Manage Content or Documents,
-                so every aspect of the view the user is Presented with, is a Document View, also known as Content,
-                so its all a matter of how to Organize and Manage those Documents.
-            </p>
-            <p>
-                Wt (pronounced as Witty) is a C++ library for developing web applications.
-            </p>
-            <p>
-                The API is widget-centric and uses well-tested patterns of desktop GUI development tailored to the web. To the developer, it offers abstraction of many web-specific implementation details, including client-server protocols (HTTP, Ajax, WebSockets), and frees the developer from tedious JavaScript manipulations of HTML and dealing with cross-browser issues. Instead, with Wt, you can focus on actual functionality with a rich set of feature-complete widgets.
-            </p>
-            <p>
-                Unlike old-school page-based frameworks or current-day single-page JavaScript &quot;frameworks&quot;, Wt allows you to create stateful applications that are at the same time highly interactive (using WebSockets and Ajax for everything) but still support plain HTML browsers or web crawlers using automatic graceful degradation or progressive enhancement. Things that are natural and simple with Wt would require an impractical amount of development effort otherwise: switching widgets using animations, while retaining clean URLs and browser navigation functions, or having a persistent chat widget open throughout the entire application, that even works in legacy browsers like Microsoft Internet Explorer 6.
-            </p>
-            <p>
-                The library comes with an application server that acts as a stand-alone Http(s)/WebSocket server or integrates through FastCGI with other web servers.
-            </p>
-            <p>
-                Feature Rich:
-            </p>
-            <ul>
-                <li>
-                    Layout using <a href='http://www.webtoolkit.eu/widgets/layout/html-templates' target='_blank'>HTML templates</a> or
-                    intelligent <a href='http://www.webtoolkit.eu/widgets/layout/layout-managers' target='_blank'>layout managers</a> and themable look-and-feel,
-                    including support for <a href='http://getbootstrap.com' target='_blank'>Twitter Bootstrap</a> versions 2 or 3.
-                </li>
-                <li>Create and maintain complexity by using and building reusable and self-contained widgets.</li>
-                <li>
-                    Comes with a large set of feature-rich widgets that include <a href='http://www.webtoolkit.eu/widgets/forms/' target='_blank'>form widgets</a>,
-                    <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-table-views' target='_blank'>table</a> and
-                    <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-tree-views' target='_blank'>tree views</a>,
-                    <a href='http://www.webtoolkit.eu/widgets/layout/dialogs' target='_blank'>dialogs</a>,
-                    <a href='http://www.webtoolkit.eu/widgets/navigation/popup-menu' target='_blank'>popup menu&apos;s</a>, etc...
-                </li>
-                <li>
-                    Unified <a href='http://www.webtoolkit.eu/widgets/graphics-charts' target='_blank'>graphics</a> APIs, 2D (SVG, HTML5 Canvas, VML, PNG, and PDF) and
-                    3D (client side WebGL and server-side OpenGL).
-                </li>
-                <li>Feature rich <a href='http://www.webtoolkit.eu/widgets/media/pdf-output' target='_blank'>HTML to PDF renderer</a> for dynamic report generation.</li>
-                <li>Elegant template-based C++ Database abstraction layer (Wt::Dbo)</li>
-                <li>
-                    Built-in security against common vulnerabilities such as <a href='http://en.wikipedia.org/wiki/Cross-site_scripting' target='_blank'>XSS(Cross-Site-Scripting)</a> or
-                    <a href='http://en.wikipedia.org/wiki/Cross-site_request_forgery' target='_blank'>CSRF (Cross-Site Request Forgery)</a>
-                </li>
-            </ul>
-            <p>
-                Typical use scenarios:
-            </p>
-            <ul>
-                <li><b>High performance, complex</b> web applications which are fully personalized (and thus cannot benefit from caching), fully Ajax enabled and at the same time entirely accessible and Search Engine Optimized.</li>
-                <li>Web-based GUIs for <b>embedded systems</b> benefit from the low footprint of a C++ web application server.</li>
-                <li>Web-based GUIs that require <b>integration with (existing) C++ libraries</b>, for example for scientific or engineering applications, or <b>existing C++ desktop applications</b>.</li>
-            </ul>
-            <p>
-                That said, a CMS based on Wt has real potential,
-                yet as of this date, no one has really written one,
-                although some have started, others talk about it, and some say not to do it,
-                so I took it on myself to do so,
-                but as I found out real fast,
-                this was going to be a major undertaking,
-                not only did I not know the Library,
-                but the whole concept of writing a C++ Program to write Web Applications, is new to me, and new to the Whole World,
-                since most people use Apache, PHP, Python, or countless other Languages that are mostly interpretive,
-                meaning that they have to use some program to interpret the code and make it do its Magic,
-                because most people do not care how something gets done, as long as it does,
-                and most have no idea about Computer Languages, to them its just Magic,
-                so they leave it up to the Computer Programmers to make this Magic happen,
-                which means the Programmer has to be a Magician, to make this Magic Happen,
-                so my first Spell was to Write out all the things I want this CMS to do,
-                and since Spells are a Wizards Craft, and in some Languages Magician and Wizard mean the same thing,
-                so I decided to call this CMS Witty Wizard.
-            </p>
-            <p>
-                Witty Wizard will try to use the Best Practices to make this CMS a Reality,
-                which means it will take a lot of Computer Programmers to look over all the Spells,
-                and make sure I Spelled them the Right way, and the Most Efficient Way,
-                so if you are a C++ Wt Wizard, your Eyes looking over all the Spells,
-                and leaving comments about how to Improve Performance, would help to make this a Best Practice Code,
-                or Best Spells, which is why I call it Witty Wizard,
-                so I will teach it like a Witty Wizard would.
-            </p>
-            <p>
-                The Basic Concept is to use Wt the Way its was intended to be used,
-                which was an Eye Opener for me,
-                because it did not work anything like I think it should at times,
-                so I have to find out what the Wt Way is, which requires a lot of Questions to be Answered,
-                and that is were the Problem came in, the Wt Forums and Mailing List,
-                do not have a good Track Record at Answering Questions,
-                if you have Bugs, they are all over it, but general Questions on how to use it go mostly unanswered,
-                although they do their best to answer them, they are more focused on the Library itself,
-                which is what they should focus on,
-                and not how people can use it, they leave that up to you,
-                which left me with only the Examples I could find,
-                which did not contain the Right Spells to make a CMS the way I wanted,
-                which at this point is still Not Defined,
-                because my Goal was to use Wt the way it was Designed,
-                but still I had to get it to do what I wanted the CMS to to do,
-                which at the Point is still not Defined, so its Magic, and that is what Witty Wizard is all about.
-            </p>
-            <p>
-                From the View of a Computer Programmer who wants to learn Wt to make some Killer Web Apps,
-                and maybe not very familiar with C, or C++,
-                which is not me, I learned it back in the Early 70's,
-                but like I said, not for doing Web Apps and not using Wt,
-                so this is a Learning Experience for me also,
-                but if the Programmer does not know C all that well if at all, and has to Learn Wt on top of that,
-                then they might just give it up, which is where the Witty Wizard comes in,
-                and answers the Question: How do you learn the C++ Language and Wt Library well enough to learn to write those Killer Web Apps,
-                and the Answer is: Witty Wizard.
-            </p>
-            <p>
-                The Witty Wizard, who is actually just Me,
-                which in Wizard Terms is just short for Meat,
-                so it means Flesh,
-                and Flesh has many Meanings in many Languages,
-                so what Language are we Speaking?
-                I only know the Spoken and Written Language of English,
-                yet I need to Translate this so everyone can Learn the Witty Wizards CMS,
-                so its Multilingual, yet its based on the Language called C,
-                which will all be written in the Language English, regardless of the Language the Programmer uses to Communicate with,
-                so its Clear that what one Word means in one Language, it has many different meanings in other Languages,
-                whereas the Language of C only has one meaning per word, Other Languages have many meanings,
-                for Example: My Name is Jeffrey Scott Flesher,
-                my Great Grandparents came from Germany in 1752 aboard a Ship called the Phoenix,
-                and our original name there was Fleischer, to make it American they Dropped the IC,
-                which most people in America do not C I,
-                which is the Light side of Me, which is sometimes called a Soul,
-                so its I And Me, or IAM...
-                Instead they only C the Darkside,
-                so Flesh, which means the same thing in German as it does in English:
-                1. (Tanning) a person or machine that fleshes hides or skins
-                2. Scot a person who sells meat; butcher
-                <br />
-                and since my middle name is Scott, and my Mothers Great Grandparents were from Scotland,
-                and named me Jeffrey after the God Frey, so its pronounced Jef-Frey or Jef-Free.
-                I can tell you how my Grand Parents Defined Flesh,
-                which means Meat, and my Body is made of Meat,
-                so its Me in the Flesh, or a Flesh Being.
-                Now that said, this is how I will teach you C++ and Wt at the Same time,
-                by Defining Concepts in a way that you understand them,
-                by example and explanation, not just in Statements like telling you my name and leaving it at that,
-                so I gave you the History of who IAM, as well as a Definition and how its Pronounced even,
-                so as a Concept you would understand the concept of Me in the Flesh,
-                and understand that my Great Grandparents were also Masons, so we keep Secrets, we call the Code,
-                and they were Ashkenazi Jews, so they keep that a Secret, but with High IQ's,
-                so you know that we all have Asperger's Syndrome, so we are Aspies,
-                because we were all Wizards,
-                descendants of an Order as Old as the Earth itself,
-                and its how we Teach a Subject that makes us Wizards, we do it with the Style of a Wizard,
-                much like most Wizards you know about, like the Wizard Merlin, my Step Fathers name was Merlin,
-                so Names just confuse most people to begin with,
-                which is why I define Words and meanings in a way that you can understand them,
-                yet with the Mysticism of a Wizard who is born again every time they die,
-                so you can Kill Me, but I will never Die,
-                but you crash my Program and I will Kill you,
-                so they learn things that only time can teach,
-                so its time to start teaching.
-            </p>
-            <p>
-                The Secret to writing a good program, is to try different things and see what works the best,
-                so the CMS I start off with, will probably not be the one I end up with,
-                as such, I will keep my code Fragments down to a small size, so we are only talking about one thing,
-                instead of trying to teach you how the whole program works, I will only try to show you peaces of how it could work,
-                but will change when I find a better way of doing that, so this CMS is Alive,
-                its growing, it matures, it descends into Madness and Crashes and Burns just to be Reborn again in its own Ashes,
-                much like the Mystical Phoenix that my Great Grandparents Rode in on,
-                so now if I say IC, you know what IAM talking about.
-            </p>
-            <p>
-                As a General Overview of the CMS, there are things we want,
-                the first is the ability to run multiple URLs and have them pull up their own content,
-                in an Organization we might want to share data across URL's without having to duplicate that content,
-                yet we are bond by the rule No XSS (Cross-Site-Scripting),
-                so we will share our Applications Base path on the server its running on,
-                then share a home root folder for every URL under appRoot and docRoot/resources,
-                which are both Witty Concepts that have not yet been defined, so deeper into Wt we must go,
-                the appRoot is where we store files that we do Not want the Public to Access, like credentials and data used to maintain the site, like xml files used for database importing,
-                and docRoot is where all the resources go, along with the resources folder, which is another Wt concept for storing all the resource files.
-            </p>
-            <p>
-                When dealing with a CMS, most people look at the back-end, the Admin Section,
-                which is going to be an Important feature,
-                but does not need to be a required feature,
-                and by that I mean that there has to be an alternative to using the back-end,
-                so by design, I created the first Module called Video Man, its a Video Manager,
-                it allows a top and bottom HTML page to go with the video, which has the option to use a You Tube Video iFrame,
-                or media players provided by Wt, or alternatives provided by Video Man,
-                and will also support other players on the market.
-                Its main feature is that it uses an XML file to import its data, it will also have a back-end that allows you to add, edit and delete videos,
-                but works equally as well without the back-end,
-                this gives the maintainer more ways to push secure updates,
-                since with no back-end, you force all updates to be done in a more secure way,
-                you can even shut down FTP, and just use ssh with Authenticated Credential Certificates,
-                which can be generated for free using command line tools and a bash script provided in the Wizard Installation,
-                it allows rsync updates as well,
-                the database will import XML files from the back-end using the Internal Path: /video/updatexml
-                I say back-end, but its really just the module,
-                for security reasons you must be Authenticated to run this command,
-                or you could run a command line to import SQL backups,
-                just drop the table for that domain Name (domain.tdl ~ see domain.xml for database users credentials),
-                and import the data from an SQL Insert Query, this various depending on the Database Back-end: SQLite, MySQL, FireBird or the Recommended PostgreSQL,
-                you can do this from the back-end with path: /vide/updatesql.
-            </p>
-            <p>
-                The back-end will have different sections, you will have a back-end for every Module, as such, Webmasters will have access to this feature,
-                and there will be an Admin section to maintain the Server itself, this will help maintain Databases, FTP, Email and other services, because it effects all Sites,
-                you will want to give out admin rights to selected Individuals, since this CMS is designed to be used in various scenarios,
-                like: Corporations, Governments and ISP hosted CMS systems, admins take on the role of maintaining all the URLs for that server, as well as Farms,
-                since this CMS is designed to run in a Server Farm, so some settings can be defined to run across multiple servers,
-                and there are features that allow you to backup, restore and synchronize servers.
-            </p>
-            <p>
-                This CMS was designed to use <a href='http://mmonit.com/monit/' target='_blank'>monit</a>, its an Open Source Project that will ensure the application is running at all times,
-                it checks the process at defined intervals and will restart the App if it is not running, it will also start the app up if the server is reboot.
-            </p>
-            <p>
-                This CMS was designed to use <a href='http://www.haproxy.org/' target='_blank'>haproxy</a>,
-                its an Open Source Project that will act as a Proxy for the ports that Witty Wizard is set to run from,
-                so that if its set to run on port 8080, haproxy will translate that to port 80, so that normal URLs will work without having to add the Port number to the URL,
-                its will also do load balancing if you have a Server Farm setup,
-                and will also add the required prefix path to the URL, which is a Wt Concept, which is needed to make Pretty URL's, its defined globally in main.cpp,
-                in a variable called rootPrefix, by default I set it to ww, for Witty Wizard, this path does not exist as a folder, but rather as a Virtual Path for Wt,
-                it can also redirect www to a non www URL or visa versa.
-            </p>
-            <p>
-                This CMS uses various other Libraries which currently are all Open Source projects, like <a href='http://www.boost.org/' target='_blank'>Boost</a>,
-                <a href='http://rapidxml.sourceforge.net/' target='_blank'>Rapid XML</a>, <a href='http://asciidoc.org/' target='_blank'>AsciiDoc</a>, and many more.
-            </p>
-            <p>
-                This CMS was designed to run under wthttpd, which is a standalone Web-server, based on <a href='http://think-async.com/Asio/' target='_blank'>Asio C++ Library </a>,
-                it is recommended to remove Apache, php and other such Web-servers, this will reduce risks from software exploits, and make a more secure environment.
-            </p>
-            <p>
-                Witty Wizard CMS is going to be designed to be very Secure, so it will have many Authentication protocols to access the back-end, and eventually will have a Shopping Cart,
-                which will be PCI Compliant, it will also be configurable to allow specific types of Authentication based on the Sites Criteria for Security,
-                since this needs to be Secure enough for Corporate and Government use, it will use the latest and most Secure Protocols available.
-            </p>
-            <p>
-                Unlike Traditional php based CMS's, Witty Wizard is designed from scratch to be fast, which is why I used C++, instead of some slow interpreted language,
-                which is based on Apache or some other Web-Server that has Security issues of its own, and not to mention that my reason for using C++ is speed,
-                the Operating System itself is written in C or C++, yet some will argue the speed factor, but the results speak for themselves.
-            </p>
-            <p>
-                At the Core of this CMS is the Menu system, it is created from xml files with entries like this:<br />
-                &lt;menuman name='Menu_Name' path='internal_path' type='topsub,topend,subsub,subend,submenu' parent='path_to_parent' grandparent='path_to_grandparent' language='en,cn,ru...' content='Content' description='Meta Data' keywords='Meta Data' title='Tile' rating='general'>&lt;/menuman&gt;<br />
-                If useDb in true, it imports this into a Database, if false it uses Templates.
-                The Content is then Filter through a program that has Markup tags, for example, if I wanted to add a video to my Content, all I have to do is use a tag like this:<br />
-                Dollar-Sign Right-Curly-Braket widget: audio id='widget_ID' align='center,left or right' class='wtaudio' type='Enchancments' width='580' height='33' src='/resources/source_path.mp3' altsrc='/resources/source.ogg' title='Title' Left-Curly-Bracket
-                this will create either and HTML5 Video Player, or Flash Fallback Video Player, it also supports You-Tube.
-                Many more Widgets will be available in the WidgetFunction.
-            </p>
-            <p>
-                Upcoming Features will include more modules, which a Module is a self-contained Widget, and a Widget is a Component that allows you to do a task,
-                so a Blog Module is a Widget that allows you to Blog, yet if I have a Website that does not required a Blog, I simple do not include it,
-                this is done by specifying what Modules you want for the Website, this file is called domain.xml, there is only one per server,
-                it defines every URL that can use the CMS, a typical entry would look something like this:<br />
-                &lt;domain domainHost='domain.tdl' defaultLanguageIndex='0' useDb='1' dbName='DB_Name' dbUser='DB_User' dbPassword='DB_Password' dbPort='Port_Address' gaAccount='UA-xxxxxxxx-x' gasAccount='pub-xxxxxxxxxxxxxxxx' googlesiteverifi='Webmaster_Validation_Code' ykey='Webmaster_Validation_Code' msvalidate='Webmaster_Validation_Code' moduleIncludes='|VideoMan|HitCounterMan|' defaultTheme='red,white,blue,...'>&lt;/domain&gt;<br />
-                It allows me to define the Domain Host, which is domain.tdl,
-                the database Credentials, your Google Account information for Google Analytics and Google AdSense,
-                and My Includes, which is the Module Selection,
-                and the Default Theme to use for the site.
-                The New Modules will include: Forum, Chat, Shopping Cart, Calender Events, Social Media Manager, Games, and other useful features.
-            </p>
-            <p>
-                A CMS most be Functional, the user Interface most meat the needs of a lot of Users, and not all users like to look at the data the same way,
-                so the System most have multiple views to accommodate all the Users needs, without making it too Complex.
-            </p>
-            <br />
-            <p>
-                Witty Wizard CMS is about the Journey I take to create this CMS, its a Learning experience, so I will make videos to teach what I have learned,
-                but the end goal is to have a fully functional Secure CMS, so you do not need to know anything about Wt or even C++, to understand the Videos,
-                since they are geared around concepts, what Commands or Spells do you use to get this job done, so I will teach this in the Ways of the Wizard,
-                Step by Step, we will learn what it takes to create a CMS, and you just might learn to use Wt and C++ on that Journey.
-            </p>
-            <br /><br />
-        </div>
+		<div style='text-align:left'>
+			<h1>Content Management System AKA &quot;CMS&quot;</h1>
+			<p>
+				A Content Management System, or CMS, is a Computer Program that helps a User or Organization Manage Content,
+				so for the most part, its a Document Management System or DMS, so what every you want to call it,
+				I will call it Witty Wizard or WW for short,
+				its a System designed to Manage Content or Documents,
+				so every aspect of the view the user is Presented with, is a Document View, also known as Content,
+				so its all a matter of how to Organize and Manage those Documents.
+			</p>
+			<p>
+				Witty Wizard CMS is written using Wt:
+				<a href='http://webtoolkit.eu' target='_blank'>Wt</a> (pronounced as Witty) is a C++ library for developing web applications.				
+			</p>
+			<p>
+				That said, a CMS based on Wt has real potential,
+				yet as of this date, no one has really written one,
+				although some have started, others talk about it, and some say not to do it,
+				so I took it on myself to do so,
+				but as I found out real fast,
+				this was going to be a major undertaking,
+				not only did I not know the Library,
+				but the whole concept of writing a C++ Program to write Web Applications is new to me, and new to the Whole World,
+				since most people use Apache, PHP, Python, or countless other Languages that are mostly interpretive,
+				meaning that they have to use some program to interpret the code and make it do its Magic,
+				because most people do not care how something gets done, as long as it does,
+				and most have no idea about Computer Languages, to them its just Magic,
+				so they leave it up to the Computer Programmers to make this Magic happen,
+				which means the Programmer has to be a Magician, to make this Magic Happen,
+				so my first Spell was to Write out all the things I want this CMS to do,
+				and since Spells are a Wizards Craft, and in some Languages Magician and Wizard mean the same thing,
+				so I decided to call this CMS Witty Wizard.
+			</p>
+			<p>
+				Witty Wizard will try to use the Best Practices to make this CMS a Reality,
+				which means it will take a lot of Computer Programmers to look over all the Spells,
+				and make sure I Spelled them the Right way, and the Most Efficient Way,
+				so if you are a C++ Wt Wizard, your Eyes looking over all the Spells,
+				and leaving comments about how to Improve Performance, would help to make this a Best Practice Code,
+				or Best Spells, which is why I call it Witty Wizard,
+				so I will teach it like a Witty Wizard would.
+			</p>
+			<p>
+				The Basic Concept is to use Wt the Way its was intended to be used,
+				which was an Eye Opener for me,
+				because it did not work anything like I think it should at times,
+				so I have to find out what the Wt Way is, which requires a lot of Questions to be Answered,
+				and that is were the Problem came in, the Wt Forums and Mailing List,
+				do not have a good Track Record at Answering Questions,
+				if you have Bugs, they are all over it, but general Questions on how to use it go mostly unanswered,
+				although they do their best to answer them, they are more focused on the Library itself,
+				which is what they should focus on,
+				and not how people can use it, they leave that up to you,
+				which left me with only the Examples I could find,
+				which did not contain the Right Spells to make a CMS the way I wanted,
+				which at this point is still Not Defined,
+				because my Goal was to use Wt the way it was Designed,
+				but still I had to get it to do what I wanted the CMS to to do,
+				which at the Point is still not Defined, so its Magic, and that is what Witty Wizard is all about.
+			</p>
+			<p>
+				From the View of a Computer Programmer who wants to learn Wt to make some Killer Web Apps,
+				and maybe not very familiar with C, or C++,
+				which is not me, I learned it back in the Early 70's,
+				but like I said, not for doing Web Apps and not using Wt,
+				so this is a Learning Experience for me also,
+				but if the Programmer does not know C all that well if at all, and has to Learn Wt on top of that,
+				then they might just give it up, which is where the Witty Wizard comes in,
+				and answers the Question: How do you learn the C++ Language and Wt Library well enough to learn to write those Killer Web Apps,
+				and the Answer is: Witty Wizard.
+			</p>
+			<p>
+				The Witty Wizard, who is actually just Me,
+				which in Wizard Terms is just short for Meat,
+				so it means Flesh,
+				and Flesh has many Meanings in many Languages,
+				so what Language are we Speaking?
+				I only know the Spoken and Written Language of English,
+				yet I need to Translate this so everyone can Learn the Witty Wizards CMS,
+				so its Multilingual, yet its based on the Language called C,
+				which will all be written in the Language English, regardless of the Language the Programmer uses to Communicate with,
+				so its Clear that what one Word means in one Language, it has many different meanings in other Languages,
+				whereas the Language of C only has one meaning per word, Other Languages have many meanings,
+				for Example: My Name is Jeffrey Scott Flesher,
+				my Great Grandparents came from Germany in 1752 aboard a Ship called the Phoenix,
+				and our original name there was Fleischer, to make it American they Dropped the IC,
+				which most people in America do not C I,
+				which is the Light side of Me, which is sometimes called a Soul,
+				so its I And Me, or IAM...
+				Instead they only C the Darkside,
+				so Flesh, which means the same thing in German as it does in English:
+				1. (Tanning) a person or machine that fleshes hides or skins
+				2. Scot a person who sells meat; butcher
+				<br />
+				and since my middle name is Scott, and my Mothers Great Grandparents were from Scotland,
+				and named me Jeffrey after the God Frey, so its pronounced Jef-Frey or Jef-Free.
+				I can tell you how my Grand Parents Defined Flesh,
+				which means Meat, and my Body is made of Meat,
+				so its Me in the Flesh, or a Flesh Being.
+				Now that said, this is how I will teach you C++ and Wt at the Same time,
+				by Defining Concepts in a way that you understand them,
+				by example and explanation, not just in Statements like telling you my name and leaving it at that,
+				so I gave you the History of who IAM, as well as a Definition and how its Pronounced even,
+				so as a Concept you would understand the concept of Me in the Flesh,
+				and understand that my Great Grandparents were also Masons, so we keep Secrets, we call the Code,
+				and they were Ashkenazi Jews, so they keep that a Secret, but with High IQ's,
+				so you know that we all have Asperger's Syndrome, so we are Aspies,
+				because we were all Wizards,
+				descendants of an Order as Old as the Earth itself,
+				and its how we Teach a Subject that makes us Wizards, we do it with the Style of a Wizard,
+				much like most Wizards you know about, like the Wizard Merlin, my Step Fathers name was Merlin,
+				so Names just confuse most people to begin with,
+				which is why I define Words and meanings in a way that you can understand them,
+				yet with the Mysticism of a Wizard who is born again every time they die,
+				so you can Kill Me, but I will never Die,
+				but you crash my Program and I will Kill you,
+				so they learn things that only time can teach,
+				so its time to start teaching.
+			</p>
+			<p>
+				The Secret to writing a good program, is to try different things and see what works the best,
+				so the CMS I start off with, will probably not be the one I end up with,
+				as such, I will keep my code Fragments down to a small size, so we are only talking about one thing,
+				instead of trying to teach you how the whole program works, I will only try to show you peaces of how it could work,
+				but will change when I find a better way of doing that, so this CMS is Alive,
+				its growing, it matures, it descends into Madness and Crashes and Burns just to be Reborn again in its own Ashes,
+				much like the Mystical Phoenix that my Great Grandparents Rode in on,
+				so now if I say IC, you know what IAM talking about.
+			</p>
+			<p>
+				As a General Overview of the CMS, there are things we want,
+				the first is the ability to run multiple URLs and have them pull up their own content,
+				in an Organization we might want to share data across URL's without having to duplicate that content,
+				yet we are bond by the rule No XSS (Cross-Site-Scripting),
+				so we will share our Applications Base path on the server its running on,
+				then share a home root folder for every URL under appRoot and docRoot/resources,
+				which are both Witty Concepts that have not yet been defined, so deeper into Wt we must go,
+				the appRoot is where we store files that we do Not want the Public to Access, like credentials and data used to maintain the site, like xml files used for database importing,
+				and docRoot is where all the resources go, along with the resources folder, which is another Wt concept for storing all the resource files.
+			</p>
+			<p>
+				When dealing with a CMS, most people look at the back-end, the Admin Section,
+				which is going to be an Important feature,
+				but does not need to be a required feature,
+				and by that I mean that there has to be an alternative to using the back-end,
+				so by design, I created the first Module called Video Man, its a Video Manager,
+				it allows a top and bottom HTML page to go with the video, which has the option to use a You Tube Video iFrame,
+				or media players provided by Wt, or alternatives provided by Video Man,
+				and will also support other players on the market.
+				Its main feature is that it uses an XML file to import its data, it will also have a back-end that allows you to add, edit and delete videos,
+				but works equally as well without the back-end,
+				this gives the maintainer more ways to push secure updates,
+				since with no back-end, you force all updates to be done in a more secure way,
+				you can even shut down FTP, and just use ssh with Authenticated Credential Certificates,
+				which can be generated for free using command line tools and a bash script provided in the Wizard Installation,
+				it allows rsync updates as well,
+				the database will import XML files from the back-end using the Internal Path: /video/updatexml
+				I say back-end, but its really just the module,
+				for security reasons you must be Authenticated to run this command,
+				or you could run a command line to import SQL backups,
+				just drop the table for that domain Name (domain.tdl ~ see domain.xml for database users credentials),
+				and import the data from an SQL Insert Query, this various depending on the Database Back-end: SQLite, MySQL, FireBird or the Recommended PostgreSQL,
+				you can do this from the back-end with path: /vide/updatesql.
+			</p>
+			<p>
+				The back-end will have different sections, you will have a back-end for every Module, as such, Webmasters will have access to this feature,
+				and there will be an Admin section to maintain the Server itself, this will help maintain Databases, FTP, Email and other services, because it effects all Sites,
+				you will want to give out admin rights to selected Individuals, since this CMS is designed to be used in various scenarios,
+				like: Corporations, Governments and ISP hosted CMS systems, admins take on the role of maintaining all the URLs for that server, as well as Farms,
+				since this CMS is designed to run in a Server Farm, so some settings can be defined to run across multiple servers,
+				and there are features that allow you to backup, restore and synchronize servers.
+			</p>
+			<p>
+				This CMS was designed to use <a href='http://mmonit.com/monit/' target='_blank'>monit</a>, its an Open Source Project that will ensure the application is running at all times,
+				it checks the process at defined intervals and will restart the App if it is not running, it will also start the app up if the server is reboot.
+			</p>
+			<p>
+				This CMS was designed to use <a href='http://www.haproxy.org/' target='_blank'>haproxy</a>,
+				its an Open Source Project that will act as a Proxy for the ports that Witty Wizard is set to run from,
+				so that if its set to run on port 8080, haproxy will translate that to port 80, so that normal URLs will work without having to add the Port number to the URL,
+				its will also do load balancing if you have a Server Farm setup,
+				and will also add the required prefix path to the URL, which is a Wt Concept, which is needed to make Pretty URL's, its defined globally in main.cpp,
+				in a variable called rootPrefix, by default I set it to ww, for Witty Wizard, this path does not exist as a folder, but rather as a Virtual Path for Wt,
+				it can also redirect www to a non www URL or visa versa.
+			</p>
+			<p>
+				This CMS uses various other Libraries which currently are all Open Source projects, like <a href='http://www.boost.org/' target='_blank'>Boost</a>,
+				<a href='http://rapidxml.sourceforge.net/' target='_blank'>Rapid XML</a>, <a href='http://asciidoc.org/' target='_blank'>AsciiDoc</a>, and many more.
+			</p>
+			<p>
+				This CMS was designed to run under wthttpd, which is a standalone Web-server, based on <a href='http://think-async.com/Asio/' target='_blank'>Asio C++ Library </a>,
+				it is recommended to remove Apache, php and other such Web-servers, this will reduce risks from software exploits, and make a more secure environment.
+			</p>
+			<p>
+				Witty Wizard CMS is going to be designed to be very Secure, so it will have many Authentication protocols to access the back-end, and eventually will have a Shopping Cart,
+				which will be PCI Compliant, it will also be configurable to allow specific types of Authentication based on the Sites Criteria for Security,
+				since this needs to be Secure enough for Corporate and Government use, it will use the latest and most Secure Protocols available.
+			</p>
+			<p>
+				Unlike Traditional php based CMS's, Witty Wizard is designed from scratch to be fast, which is why I used C++, instead of some slow interpreted language,
+				which is based on Apache or some other Web-Server that has Security issues of its own, and not to mention that my reason for using C++ is speed,
+				the Operating System itself is written in C or C++, yet some will argue the speed factor, but the results speak for themselves.
+			</p>
+			<p>
+				At the Core of this CMS is the Menu system, it is created from xml files with entries like this:<br />
+				&lt;menuman name='Menu_Name' path='internal_path' type='topsub,topend,subsub,subend,submenu' parent='path_to_parent' grandparent='path_to_grandparent' language='en,cn,ru...' content='Content' description='Meta Data' keywords='Meta Data' title='Tile' rating='general'>&lt;/menuman&gt;<br />
+				If useDb in true, it imports this into a Database, if false it uses Templates.
+				The Content is then Filter through a program that has Markup tags, for example, if I wanted to add a video to my Content, all I have to do is use a tag like this:<br />
+				Dollar-Sign Right-Curly-Braket widget: audio id='widget_ID' align='center,left or right' class='wtaudio' type='Enchancments' width='580' height='33' src='/resources/source_path.mp3' altsrc='/resources/source.ogg' title='Title' Left-Curly-Bracket
+				this will create either and HTML5 Video Player, or Flash Fallback Video Player, it also supports You-Tube.
+				Many more Widgets will be available in the WidgetFunction.
+			</p>
+			<p>
+				Upcoming Features will include more modules, which a Module is a self-contained Widget, and a Widget is a Component that allows you to do a task,
+				so a Blog Module is a Widget that allows you to Blog, yet if I have a Website that does not required a Blog, I simple do not include it,
+				this is done by specifying what Modules you want for the Website, this file is called domain.xml, there is only one per server,
+				it defines every URL that can use the CMS, a typical entry would look something like this:<br />
+				&lt;domain domainHost='domain.tdl' defaultLanguageIndex='0' useDb='1' dbName='DB_Name' dbUser='DB_User' dbPassword='DB_Password' dbPort='Port_Address' gaAccount='UA-xxxxxxxx-x' gasAccount='pub-xxxxxxxxxxxxxxxx' googlesiteverifi='Webmaster_Validation_Code' ykey='Webmaster_Validation_Code' msvalidate='Webmaster_Validation_Code' moduleIncludes='|VideoMan|HitCounterMan|' defaultTheme='red,white,blue,...'>&lt;/domain&gt;<br />
+				It allows me to define the Domain Host, which is domain.tdl,
+				the database Credentials, your Google Account information for Google Analytics and Google AdSense,
+				and My Includes, which is the Module Selection,
+				and the Default Theme to use for the site.
+				The New Modules will include: Forum, Chat, Shopping Cart, Calender Events, Social Media Manager, Games, and other useful features.
+			</p>
+			<p>
+				A CMS most be Functional, the user Interface most meat the needs of a lot of Users, and not all users like to look at the data the same way,
+				so the System most have multiple views to accommodate all the Users needs, without making it too Complex.
+			</p>
+			<br />
+			<p>
+				Witty Wizard CMS is about the Journey I take to create this CMS, its a Learning experience, so I will make videos to teach what I have learned,
+				but the end goal is to have a fully functional Secure CMS, so you do not need to know anything about Wt or even C++, to understand the Videos,
+				since they are geared around concepts, what Commands or Spells do you use to get this job done, so I will teach this in the Ways of the Wizard,
+				Step by Step, we will learn what it takes to create a CMS, and you just might learn to use Wt and C++ on that Journey.
+			</p>
+			<br /><br />
+		</div>
 
-    </message>
+	</message>
 </messages>

@@ -71,10 +71,16 @@
     <message id="unique-hits">独特点击数</message>
 
     <message id="banner-source"></message>
-    <message id="banner-alt">俏皮精灵的CMS</message>
-    <message id="copyright">俏皮精灵内容管理系统（CMS）</message>
+    <message id="banner-alt">光件向导在肉体</message>
+    <message id="copyright">俏皮精灵</message>
 
-    <message id="VideoMan">视频</message>
-    <message id="VideoManPath" description="VideoMan Module Menu Path: Not Translated">video</message>
+    <message id="rss-url">http://WittyWizard/ww/en/blue/blog</message>
+    <message id="rss-title">俏皮精灵</message>
+    <message id="rss-description">俏皮精灵</message>
+
+    <message id="previous">上一页</message>
+    <message id="next">下一页</message>
+
+    <message id="page-not-found">找不到网页</message>
 
 </messages>

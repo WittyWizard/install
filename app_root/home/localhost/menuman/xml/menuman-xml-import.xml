@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menusman>
+    <menuman name="Test" path="test" language="en" content="This is a test"></menuman>
+</menusman>

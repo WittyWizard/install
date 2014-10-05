@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-    <message id="about-template">
-    
-        <h1>
-            Über witzigen Assistenten Content Management System (CMS)
-        </h1>
+	<message id="about-template">
+	
+		<h1>
+			Über witzigen Assistenten Content Management System (CMS)
+		</h1>
 
-        <p>
-        Witty Wizard CMS ist ein Open Source-Projekt,
-             es ist eine Web-Anwendung, die der WT Bibliothek nutzt,
-             die auch ein Open Source-Projekt,
-             Sein Ziel ist eine einfach zu bedien zu erstellen, zu
-             noch sehr Secure Web Anwendung, die mehrere Domains unter der gleichen Anwendung ausgeführt werden kann,
-             Dies ermöglicht die volle Nutzung einer VPS-Konto, um die Web-Anwendung hosten.
-        </p>
+		<p>
+		Witty Wizard CMS ist ein Open Source-Projekt,
+			 es ist eine Web-Anwendung, die der WT Bibliothek nutzt,
+			 die auch ein Open Source-Projekt,
+			 Sein Ziel ist eine einfach zu bedien zu erstellen, zu
+			 noch sehr Secure Web Anwendung, die mehrere Domains unter der gleichen Anwendung ausgeführt werden kann,
+			 Dies ermöglicht die volle Nutzung einer VPS-Konto, um die Web-Anwendung hosten.
+		</p>
 
-        <p>
-        Witty Wizard CMS ist in einer Weise entwickelt, bei denen das hintere Ende,
-             oder Admin-Bereich, ist nicht erforderlich,
-             Alle Inhalte können über FTP oder SSH beibehalten werden,
-             TEUR Verringerung der Sicherheits Fußabdruck,
-             es nicht erforderlich Apache zu laufen,
-             stattdessen eine spezielle Anwendung wthttp aufgerufen, um die Anwendung auszuführen Wt verwendet,
-             weiter Verringerung der Sicherheits Fußabdruck,
-             es kann auch so konfiguriert werden SSL-Zertifikate verwenden, um sich ins authentifizieren,
-             dass es eine sehr sichere Web-Anwendung.
-        </p>
+		<p>
+		Witty Wizard CMS ist in einer Weise entwickelt, bei denen das hintere Ende,
+			 oder Admin-Bereich, ist nicht erforderlich,
+			 Alle Inhalte können über FTP oder SSH beibehalten werden,
+			 TEUR Verringerung der Sicherheits Fußabdruck,
+			 es nicht erforderlich Apache zu laufen,
+			 stattdessen eine spezielle Anwendung wthttp aufgerufen, um die Anwendung auszuführen Wt verwendet,
+			 weiter Verringerung der Sicherheits Fußabdruck,
+			 es kann auch so konfiguriert werden SSL-Zertifikate verwenden, um sich ins authentifizieren,
+			 dass es eine sehr sichere Web-Anwendung.
+		</p>
 
-        <p>
-        Der Kern der Anwendung verwendet ein Menüsystem, das in statische oder Datenbank-Modus ausgeführt werden kann,
-             beide Methoden verwenden, Vorlagen,
-             die sind einzigartig für Wt,
-             sind aber nur HTML Markup mit Mehr Tags, Widgets, um aus dem Inhalt zugegriffen werden kann ermöglichen,
-             dies gibt die Seite Urheber der Power von C ++ mit HTML-Markup,
-             und gibt ihnen die Macht, sehr mächtige Seiten mit wenig Aufwand erstellen.
-             Alle Inhalte und Einstellungen werden in XML-Dateien gespeichert,
-             Dies macht es einfach, ohne die traditionellen Admin-Bereich mit einer GUI zu halten, um den Inhalt zu erhalten,
-             obwohl der Admin-Bereich zur Verfügung gestellt werden für alle Operationen,
-             Das Ziel ist, in der Lage, die Website ohne es zu halten,
-             da der Admin-Bereich auf jedem System ist das schwächste Glied, wenn es um Sicherheit geht.
-        </p>
+		<p>
+		Der Kern der Anwendung verwendet ein Menüsystem, das in statische oder Datenbank-Modus ausgeführt werden kann,
+			 beide Methoden verwenden, Vorlagen,
+			 die sind einzigartig für Wt,
+			 sind aber nur HTML Markup mit Mehr Tags, Widgets, um aus dem Inhalt zugegriffen werden kann ermöglichen,
+			 dies gibt die Seite Urheber der Power von C ++ mit HTML-Markup,
+			 und gibt ihnen die Macht, sehr mächtige Seiten mit wenig Aufwand erstellen.
+			 Alle Inhalte und Einstellungen werden in XML-Dateien gespeichert,
+			 Dies macht es einfach, ohne die traditionellen Admin-Bereich mit einer GUI zu halten, um den Inhalt zu erhalten,
+			 obwohl der Admin-Bereich zur Verfügung gestellt werden für alle Operationen,
+			 Das Ziel ist, in der Lage, die Website ohne es zu halten,
+			 da der Admin-Bereich auf jedem System ist das schwächste Glied, wenn es um Sicherheit geht.
+		</p>
 
-    </message>
+	</message>
 </messages>

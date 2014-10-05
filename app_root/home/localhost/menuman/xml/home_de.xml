@@ -1,305 +1,305 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <messages>
-    <message id="home-template">
-    
-        <div style='text-align:left'>
-            <h1>Content Management System AKA &quot;CMS&quot;</h1>
-            <br />
-            <p>
-                Ein Content Management System, CMS oder, ist ein Computerprogramm, dass ein Benutzer oder Organisation hilft Inhalte verwalten,
-                     so zum größten Teil, es ist ein Dokumentenmanagement-System oder DMS, so was jeden Sie es nennen wollen,
-                     Ich werde es nennen Witty Wizard oder WW für kurze,
-                     es ist ein System, das auf Content-oder Dokumenten verwalten,
-                     so dass jeder Aspekt der Ansicht der Benutzer mit, ist ein Dokumentansicht, die auch als Inhalt bekannt Präsentiert,
-                     so dass ihr alle eine Frage, wie zu organisieren und zu verwalten, diese Dokumente.
-                Content Management System
-            </p>
-            <br />
-            <p>
-                Wt (ausgesprochen wie Witty) ist ein C ++ Bibliothek für die Entwicklung Web-Anwendungen.
-            </p>
-            <br />
-            <p>
-                Die API ist Widget-centric und nutzt bewährte Muster der Desktop-GUI-Entwicklung auf die Bahn abgestimmt. In den Entwickler,
-                     es bietet Abstraktion der vielen Web-spezifische Implementierungsdetails, einschließlich Client-Server-Protokolle (HTTP, Ajax, WebSockets)
-                     und befreit den Entwickler von langwierigen Manipulationen JavaScript von HTML und im Umgang mit Cross-Browser-Probleme.
-                     Stattdessen mit wt, können Sie sich auf die eigentliche Funktionalität mit einem umfangreichen Satz von Feature-complete-Widgets zu konzentrieren.
-            </p>
-            <br />
-            <p>
-            Im Gegensatz zu der alten Schule-Seite basierten Frameworks oder Strom-Tage-Single-Seite JavaScript '' Rahmenbedingungen '',
-            Gew können Sie Stateful-Anwendungen, die gleichzeitig hoch-interaktive sind (unter Verwendung von WebSockets und Ajax für alles) zu erstellen
-            aber immer noch unterstützt einfachem HTML-Browser oder Web-Crawler mit Hilfe der automatischen Graceful Degradation oder Progressive Enhancement.
-            Dinge, die mit WT-natürlich und einfach sind, würden eine unpraktische Entwicklungsaufwand erfordern anders: Schalt Widgets mit Animationen, unter Beibehaltung saubere URLs und Browser-Navigationsfunktionen,
-            oder mit einer anhaltenden Chat-Widget in der gesamten Anwendung geöffnet ist, dass selbst arbeitet im Legacy-Browsern wie Microsoft Internet Explorer 6.
-            </p>
-            <br />
-            <p>
-                Die Bibliothek ist mit einem Anwendungsserver, der als Stand-alone-HTTP (S) / WebSocket-Server fungiert oder integriert über FastCGI mit anderen Web-Servern.
-            </p>
-            <br />
-            <p>
-                reich an Funktionen
-            </p>
-            <ul>
-                <li>Layout mit <a href='http://www.webtoolkit.eu/widgets/layout/html-templates' target='_blank'>HTML-Templates</a> oder intelligente <a href='http://www.webtoolkit.eu/widgets/layout/layout-managers' target='_blank'>Layout-Manager</a> und Themable aussehen und sich anfühlen, einschließlich der Unterstützung für <a href='http://getbootstrap.com' target='_blank'>Twitter Bootstrap</a> versions 2 or 3.</li>
-                <li>Erstellen und pflegen Komplexität durch die Verwendung und den Aufbau wiederverwendbar und Selbstversorger-Widgets.</li>
-                <li>Kommt mit einem großen Satz von Feature-reiche Widgets, gehören <a href='http://www.webtoolkit.eu/widgets/forms/' target='_blank'>form widgets</a>, <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-table-views' target='_blank'>table</a> and <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-tree-views' target='_blank'>tree views</a>, <a href='http://www.webtoolkit.eu/widgets/layout/dialogs' target='_blank'>dialogs</a>, <a href='http://www.webtoolkit.eu/widgets/navigation/popup-menu' target='_blank'>popup menu's</a>, etc...</li>
-                <li>Unified <a href='http://www.webtoolkit.eu/widgets/graphics-charts' target='_blank'>graphics</a> APIs, 2D (SVG, HTML5 Canvas, VML, PNG, and PDF) and 3D (client side WebGL and server-side OpenGL).</li>
-                <li>reich an Funktionen <a href='http://www.webtoolkit.eu/widgets/media/pdf-output' target='_blank'>HTML to PDF renderer</a> for dynamic report generation.</li>
-                <li>Elegante Template-basierte C ++ Datenbank-Abstraktionsschicht (Wt::Dbo)</li>
-                <li>Integrierte Sicherheits gegen gemeinsame Schwachstellen wie <a href='http://en.wikipedia.org/wiki/Cross-site_scripting' target='_blank'>XSS(Cross-Site-Scripting)</a> or <a href='http://en.wikipedia.org/wiki/Cross-site_request_forgery' target='_blank'>CSRF (Cross-Site Request Forgery)</a></li>
-            </ul>
-            <br />
-            <p>
-                Typische Einsatzszenarien:
-            </p>
-            <ul>
-                <li><b>Hochleistungs-Komplex</b> Web-Anwendungen, die vollständig personalisiert werden (und somit nicht von Caching profitieren), voll Ajax aktiviert und gleichzeitig ganz zugänglich und Suchmaschinen optimiert.</li>
-                <li>Web-basierte GUIs für <b> Embedded-Systeme </b> profitieren von der geringen Grundfläche eines C ++ Web Application Server.</li>
-                <li>Web-basierte GUIs, die Integration mit (bestehenden) C ++ Bibliotheken benötigen, beispielsweise für wissenschaftliche oder technische Anwendungen oder bestehende C ++ Desktop-Anwendungen.</li>
-            </ul>
-            <br />
-            <p>
-                Das heißt, ein CMS auf Basis von WT echtes Potenzial,
-                     noch an diesem Tag, niemand hat wirklich eine schriftliche,
-                     obwohl einige haben begonnen, andere darüber reden, und manche sagen, es nicht zu tun,
-                     so nahm ich es an mir selbst zu tun,
-                     aber als ich herausfand, ganz schnell,
-                     dies würde ein großes Unterfangen sein,
-                     nicht nur wusste ich nicht, die Bibliothek,
-                     sondern das gesamte Konzept für das Schreiben eines C ++ Programm zur Web-Anwendungen zu schreiben, ist mir neu, und neu in der ganzen Welt,
-                     Da die meisten Menschen verwenden Apache, PHP, Python, oder unzählige andere Sprachen, die meist Interpretations sind,
-                     was bedeutet, dass sie, um irgendein Programm zu verwenden, um den Code zu interpretieren und es zu tun seine Magie zu haben,
-                     weil die meisten Menschen ist es egal, wie etwas getan wird, solange es tut,
-                     und die meisten haben keine Ahnung von Computersprachen, um sie seine nur Magie,
-                     so dass sie überlassen es den Computer-Programmierer zu machen diese Magie geschehen,
-                     was bedeutet, muss der Programmierer ein Zauberer sein, um diese Magie geschehen,
-                     so meine erste Bann war zu schreiben, all die Dinge, ich will das CMS zu tun,
-                     und da sind ein Zauber Wizards Kunsthandwerk, und in einigen Sprachen Magier und Zauberer das gleiche bedeuten,
-                     so entschied ich mich, dieses CMS witzigen Assistenten aufrufen.
-            </p>
-            <br />
-            <p>
-                Witty-Assistent wird versuchen, die Best Practices verwenden, um dieses CMS zu verwirklichen,
-                     das heißt, es wird eine Menge von Computer-Programmierer, um über alle Zauber aus,
-                     und sicherzustellen, dass ich buchstabierte sie den richtigen Weg, und der effizienteste Weg,
-                     Also, wenn Sie ein C ++ Wt-Assistenten sind, Ihre Augen, die über alle Zauber,
-                     Verlassen und Kommentare zur Verbesserung der Performance, könnte helfen, dieses eine Best Practice-Code zu machen,
-                     oder Beste Zauber, weshalb ich es nennen Witty-Assistenten
-                     so werde ich es wie eine Witty Wizard würde zu lehren.
-            </p>
-            <br />
-            <p>
-            Das Grundkonzept ist die Verwendung Wt übrigens seine sollte verwendet werden,
-                     die ein Augenöffner war für mich,
-                     weil es nichts zu arbeiten, wie ich denke, es sollte in Zeiten,
-                     so habe ich herausfinden, was der WT Weg ist, die eine Menge von Fragen erfordert, um beantwortet werden kann,
-                     und das ist das Problem waren kam, der WT-Foren und Mailing-Liste,
-                     nicht nur einen guten Track Record bei Beantwortung von Fragen,
-                     Wenn Sie Bugs haben, sind sie alle über sie, aber allgemeine Fragen, wie es zu benutzen, gehen meist unbeantwortet,
-                     obwohl sie ihr Bestes tun, um sie zu beantworten, sind sie mehr auf die Bibliothek selbst,
-                     das ist, was sie sich konzentrieren sollten,
-                     und nicht, wie die Menschen können es verwenden, lassen Sie sie, dass bis zu Ihnen,
-                     was mich nur mit den Beispielen die ich finden konnte links,
-                     die nicht enthalten nicht die richtige Zauber mit einem CMS zu machen, wie ich wollte,
-                     die an dieser Stelle noch nicht definiert,
-                     denn mein Ziel war es Wt verwenden, wie es konzipiert wurde,
-                     aber immer noch hatte ich, um es zu tun, was ich wollte, das CMS zu tun,
-                     die an den Punkt noch nicht definiert ist, so dass seine Magie, und das ist, was Witty Wizard geht.
-            </p>
-            <br />
-            <p>
-            Aus der Sicht der ein Computer-Programmierer, die lernen Wt einige Killer-Web-Apps machen will,
-                     und vielleicht nicht sehr vertraut mit C oder C ++,
-                     die ist nicht mir, habe ich gelernt, es wieder in den frühen 70er Jahren,
-                     aber wie ich schon sagte, nicht zu tun Web Apps und nicht mit Wt,
-                     so ist dies eine Lernerfahrung für mich auch,
-                     aber wenn der Programmierer nicht wissen, C, dass alle gut, wenn überhaupt, und muss Wt oben auf, dass Lernen,
-                     dann könnten sie einfach aufgeben, das ist, wo die witzigen Assistenten kommt,
-                     und beantwortet die Frage: Wie lernt man die Sprache C ++ und WT-Bibliothek gut genug, um zu lernen, um diese Mörder Web Apps zu schreiben,
-                     Und die Antwort ist: Geistreich-Assistenten.
-            </p>
-            <br />
-            <p>
-            Der Witty-Assistenten, der eigentlich nur mir,
-                     die im Wizard Bedingungen nur kurz für Fleisch ist,
-                     so bedeutet Fleisch,
-                     und Fleisch hat viele Bedeutungen in vielen Sprachen,
-                     Also, welche Sprache sprechen wir?
-                     Ich weiß nur das gesprochene und geschriebene Sprache von Englisch,
-                     doch ich muss diese, so kann jeder die Witty Wizards CMS Erfahren Übersetzen,
-                     so seine Mehrsprachige, doch seine Sprache auf der Grundlage der genannten C,
-                     die alle in der Sprache Englisch geschrieben werden wird, unabhängig von der Sprache der Programmierer verwendet, um mit Kommunizieren,
-                     so ist klar, dass das, was man Wort bedeutet in einer Sprache, es hat viele verschiedene Bedeutungen in anderen Sprachen,
-                     Für die Sprache von C hat nur eine Bedeutung pro Wort haben andere Sprachen viele Bedeutungen,
-                     Zum Beispiel: mein Name ist Jeffrey Scott Flesher,
-                     meine Ur-Großeltern kamen aus Deutschland im Jahre 1752 an Bord eines Schiffes namens Phoenix,
-                     und unsere ursprüngliche Name war Fleischer, um es amerikanische sie die IC Dropped,
-                     die die meisten Menschen in Amerika nicht C I,
-                     die das Licht Seite von mir, die manchmal genannt ist eine Seele ist,
-                     Und ich so seine Me oder IAM ...
-                     Stattdessen haben sie nur C-Darkside,
-                     so Fleisch, das die gleiche Sache in Deutsch bedeutet, wie es auf Englisch tut:
-                     1. (Bräunung) eine Person oder Maschine, die Häute oder Felle konkretisiert
-                     2. Scot eine Person, die Fleisch verkauft; Metzger / Fleischer
-                     <br />
-                     und da mein zweiter Name ist Scott, und meine Ur-Großeltern waren Mütter aus Schottland,
-                     und nannte mich Jeffrey nach dem Gott Frey, so seine ausgeprägte Jef-Frey oder Jef-Free.
-                     Ich kann Ihnen sagen, wie meine Großeltern Definierte Flesh,
-                     was bedeutet, Fleisch, und mein Körper ist aus Fleisch,
-                     so dass ihr mich im Fleisch oder ein Fruchtfleisch.
-                     Jetzt, sagte, ist dies, wie ich wird dich lehren, C Zugleich ++ und WT,
-                     Durch die Definition von Konzepten in einer Weise, dass Sie sie verstehen,
-                     durch Beispiel und Erklärung, nicht nur in Aussagen wie sage Ihnen meinen Namen und lassen es an, dass,
-                     also gab ich Ihnen die Geschichte von, die IAM, sowie eine Definition und wie seine ausgesprochene sogar,
-                     so als Konzept würden Sie das Konzept der Me im Fleisch zu verstehen,
-                     und zu verstehen, dass mein Ur-Großeltern waren auch Freimaurer, so halten wir Secrets, nennen wir den Kodex,
-                     und sie waren aschkenasischen Juden, so dass sie denken, dass ein Geheimnis, aber mit hohem IQ,
-                     so dass Sie wissen, dass wir alle das Asperger-Syndrom, also sind wir Aspies,
-                     weil wir alle Wizards waren,
-                     Nachkommen eines Auftrags so alt wie die Erde selbst,
-                     und seine, wie wir lehren, ein Thema, das uns Wizards macht, wir tun es mit Stil eines Assistenten
-                     viel wie die meisten Zauberer wissen Sie über, wie der Assistent Merlin, mein Schritt Väter Name war Merlin,
-                     so Names nur verwirren die meisten Menschen zu beginnen,
-                     weshalb ich definieren Wörter und Bedeutungen in einer Weise, dass man sie zu verstehen,
-                     noch mit der Mystik eines Assistenten, der jedes Mal, wenn sie sterben, wiedergeboren wird,
-                     so können Sie mich zu töten, aber ich werde niemals sterben,
-                     aber du mein Programm zum Absturz bringen, und ich werde dich töten,
-                     so dass sie Dinge, die nur die Zeit lehren kann lernen,
-                     so seine Zeit, um Unterricht zu beginnen.
-            </p>
-            <br />
-            <p>
-            Das Geheimnis um das Schreiben eines guten Programms ist es, verschiedene Dinge auszuprobieren und zu sehen, was am besten funktioniert,
-                     so die CMS ich beginnen mit, wird wahrscheinlich nicht die, die ich am Ende mit zu sein,
-                     als solcher werde ich meine Code-Fragmente zu einer kleinen Größe zu halten, so sprechen wir nur über eine Sache,
-                     anstatt zu versuchen, Ihnen beizubringen, wie das ganze Programm funktioniert, werde ich nur versuchen, Sie Stücke, wie es funktionieren könnte zeigen,
-                     aber wird sich ändern, wenn ich einen besseren Weg, das zu tun, so dass diese CMS ist lebendig,
-                     seine wachsende, es reift, steigt sie in den Wahnsinn und Abstürze und Verbrennungen, nur um wieder in seiner eigenen Asche wiedergeboren werden,
-                     ähnlich wie die mystische Phoenix, die meine Ur-Großeltern in Rode auf,
-                     so jetzt, wenn ich sage, IC, wissen Sie, was IAM reden.
-            </p>
-            <br />
-            <p>
-            Als einen allgemeinen Überblick über das CMS, gibt es Dinge, die wir wollen,
-                     die erste ist die Fähigkeit, mehrere URLs laufen und haben sie nach oben ziehen, ihre eigenen Inhalte,
-                     in einer Organisation, die wir möchten, um Daten über die URL zu teilen, ohne dass der Inhalt vervielfältigen,
-                     doch sind wir Bindung von der Regel keine XSS (Cross-Site-Scripting),
-                     so werden wir unsere Anwendungen Basispfad auf dem Server läuft auf seine Aktien,
-                     dann teilen sich ein Haus Stammordner für jede URL, unter AppRoot und docroot / Ressourcen,
-                     die beide Witty Konzepte, die noch nicht definiert worden sind, so tiefer in Wt müssen wir gehen,
-                     die AppRoot ist, wo wir Dateien, die wir nicht wollen, dass die Öffentliche speichern, um Zugang, wie Anmeldeinformationen und Daten verwendet werden, um die Website, wie XML-Dateien für den Datenbankimport verwendet zu halten,
-                     und docroot ist, wo alle Ressourcen gehen, zusammen mit dem Ressourcen-Ordner, die ein anderer Wt Konzept für die Speicherung aller Ressourcen-Dateien ist.
-            </p>
-            <br />
-            <p>
-            Beim Umgang mit einem CMS, suchen die meisten Menschen auf dem Back-End, das Admin-Bereich,
-                     die gehen, um ein wichtiges Merkmal sein,
-                     aber muss nicht eine erforderliche Merkmal sein,
-                     und damit meine ich, dass es eine Alternative zur Verwendung der Back-End-sein,
-                     so durch Design, habe ich das erste Modul namens Video Mann, es ist ein Video-Manager,
-                     Es ermöglicht eine obere und untere HTML-Seite mit dem Video, das die Möglichkeit, ein You Tube Video iFrame verwenden hat zu gehen,
-                     oder Media-Player von Wt vorgesehen ist, oder Alternativen von Video Mann vorgesehen,
-                     und unterstützt auch andere Spieler auf dem Markt.
-                     Sein Hauptmerkmal ist, dass es eine XML-Datei, um die Daten zu importieren, es wird auch eine Back-End-, die Sie hinzufügen, bearbeiten und löschen können Videos,
-                     sondern arbeitet gleichermaßen gut ohne den Back-End,
-                     dies gibt der Betreuer mehr Möglichkeiten, um sichere Updates zu schieben,
-                     da ohne Back-End, zwingen Sie alle Aktualisierungen in einer sichereren Weise getan werden,
-                     Sie können sogar heruntergefahren FTP, SSH und verwenden Sie nur mit authentifizierten Anmeldeinformationen Zertifikate,
-                     , die kostenlos über die Kommandozeile und einem Bash-Skript in der Wizard Installations bereitgestellt erzeugt werden kann,
-                     sie erlaubt rsync-Updates sowie,
-                     die Datenbank XML-Dateien aus dem Back-End mit dem internen Pfad importieren: / Video / UpdateXML
-                     Ich sage Back-End, aber es ist wirklich nur das Modul,
-                     Aus Sicherheitsgründen müssen Sie authentifiziert, um diesen Befehl ausgeführt werden,
-                     oder Sie eine Befehlszeile ausführen könnte, um SQL-Backups zu importieren,
-                     nur die Tabelle zu löschen für diesen Domain-Namen (siehe domain.tdl ~ domain.xml für Datenbank-Benutzer-Anmeldeinformationen),
-                     und die Daten aus einer SQL-Abfrage einfügen, diese verschiedenen, je nach Datenbank-Backend: SQLite, MySQL, Firebird oder PostgreSQL empfohlen,
-                     Sie können dies von der Back-End-Pfad mit zu tun: /vide/updatesql.
-            </p>
-            <br />
-            <p>
-            Das Back-End werden verschiedene Abschnitte haben, erhalten Sie eine Back-End-Modul für jeden zu haben, als solche, Webmaster Zugriff auf diese Funktion zu haben,
-                     und es wird ein Admin-Abschnitt, um den Server zu erhalten selbst, dies wird dazu beitragen, Datenbanken, FTP, E-Mail und andere Dienste, denn es wirkt sich auf alle Seiten,
-                     Sie wollen Admin-Rechte geben an ausgewählte Personen, da dieses CMS wurde entwickelt, um in verschiedenen Szenarien eingesetzt werden,
-                     wie: Unternehmen, Regierungen und ISP gehostet CMS-Systeme, Administratoren übernehmen die Rolle der Beibehaltung aller URLs für den Server, als auch Betriebe,
-                     da dieses CMS wurde entwickelt, um in einer Serverfarm ausgeführt, so dass einige Einstellungen definiert werden, um auf mehreren Servern ausgeführt werden,
-                     und es gibt Funktionen, die Sie erlauben, Backup, Restore und synchronisieren Servern.
-            </p>
-            <br />
-            <p>
-                Das CMS wurde entwickelt, um zu verwenden <a href='http://mmonit.com/monit/' target='_blank'>monit</a>, Es ist ein Open-Source-Projekt, das die Anwendung zu gewährleisten wird zu allen Zeiten läuft,
-                Es überprüft die Verfahren in definierten Intervallen und wird die App neu starten, wenn es nicht läuft, wird es auch die App starten, wenn der Server neu zu starten.
-            </p>
-            <br />
-            <p>
-                Das CMS wurde entwickelt, um zu verwenden <a href='http://www.haproxy.org/' target='_blank'>haproxy</a>,
-                Es ist ein Open-Source-Projekt, das als Proxy für die Ports, die witzigen Assistenten wird sich von Lauf zu handeln wird,
-                         so dass, wenn seine Reihe auf Port 8080 laufen, haproxy wird, dass auf Port 80 zu übersetzen, so dass normale URLs werden, ohne dass die Port-Nummer an die URL anfügen arbeiten,
-                         seinen Willen tun auch Load-Balancing, wenn Sie eine Server-Farm-Setup,
-                         und wird auch die erforderliche Präfix Pfad zur URL, die WT-Konzept ist, die benötigt wird, um Hübsches URL, seine global definiert in main.cpp hinzufügen
-                         in einer Variablen namens rootPrefix standardmäßig ich es auf ww, für Witty Wizard, hat dieser Pfad nicht existiert als Ordner, sondern als einen virtuellen Pfad für Wt,
-                         es kann auch umleiten www zu einem nicht www URL oder umgekehrt.
-            </p>
-            <br />
-            <p>
-                Das CMS verwendet verschiedene andere Bibliotheken, die derzeit alle Open-Source-Projekte wie <a href='http://www.boost.org/' target='_blank'>Boost</a>,
-                <a href='http://rapidxml.sourceforge.net/' target='_blank'>Rapid XML</a>, <a href='http://asciidoc.org/' target='_blank'>AsciiDoc</a>, und viele mehr.
-            </p>
-            <br />
-            <p>
-                Das CMS wurde entwickelt, um unter wthttpd laufen, die eine eigenständige Web-Server, basierend auf <a href='http://think-async.com/Asio/' target='_blank'>Asio C++ Library </a>,
-                Es wird empfohlen, Apache, PHP und andere Web-Servern zu entfernen, wird diese Risiken aus Software-Exploits zu reduzieren, und eine sichere Umgebung.
-            </p>
-            <br />
-            <p>
-            Witty Wizard CMS wird sich entwickelt, um sehr sicher sein, so wird es viele Authentifizierungsprotokolle müssen die Back-End-Zugriff, und schließlich wird ein Einkaufswagen haben,
-                     die PCI-konform sein wird, wird es auch konfigurierbar, um bestimmte Arten von Authentifizierung, basierend auf den Websites Kriterien für Sicherheit zu ermöglichen,
-                     da muss sicher genug für Unternehmen und Behörden verwendet werden zu können, wird es mit dem neuesten und sichere Protokolle zur Verfügung.
-            </p>
-            <br />
-            <p>
-            Im Gegensatz zu herkömmlichen PHP-basierte CMS ist Witty Wizard von Grund auf neu entwickelt, um schnell zu sein, das ist, warum ich C ++, anstatt einige langsame interpretierte Sprache,
-                     Das ist basierend auf Apache oder einen anderen Web-Server, die Sicherheitsprobleme der eigenen hat, und nicht zu vergessen, dass mein Grund für die Verwendung C ++ ist die Geschwindigkeit,
-                     das Betriebssystem selbst ist in C oder C ++, aber einige werden die Geschwindigkeitsfaktor streiten, aber die Ergebnisse sprechen für sich.
-            </p>
-            <br />
-            <p>
-                Im Kern dieses CMS ist das Menü-System, wird es aus XML-Dateien mit Einträgen wie diese erstellt:<br />
-                &lt;menuman name='Menu_Name' path='internal_path' type='topsub,topend,subsub,subend,submenu' parent='path_to_parent' grandparent='path_to_grandparent' language='en,cn,ru...' content='Content' description='Meta Data' keywords='Meta Data' title='Tile' rating='general'>&lt;/menuman&gt;<br />
-                Wenn in useDb wahr, importiert sie diese in eine Datenbank, wenn falsche es Vorlagen verwendet.
-                Der Inhalt wird dann durch ein Programm, das Markup-Tags hat Filter, zum Beispiel, wenn ich wollte ein Video auf meinen Inhalt hinzufügen, ist alles, was ich zu tun haben, verwenden Sie ein Tag wie diesem:<br />
-                Dollar-Sign Right-Curly-Braket widget: audio id='widget_ID' align='center,left or right' class='wtaudio' type='Enchancments' width='580' height='33' src='/resources/source_path.mp3' altsrc='/resources/source.ogg' title='Title' Left-Curly-Bracket
-                Dies wird entweder zu erstellen und HTML5 Video Player, oder Flash-Fallback-Video-Player, unterstützt es auch You-Tube.
-                         Viele weitere Widgets zur Verfügung stehen in der WidgetFunction.
-            </p>
-            <br />
-            <p>
-            Zukünftige Features gehören mehrere Module, die ein Modul ist eine in sich geschlossene Widget und ein Widget ist eine Komponente, die Sie, um eine Aufgabe zu tun erlaubt,
-                     so ein Blog-Modul ist ein Widget, das Sie zum Blog ermöglicht, aber wenn ich eine Website, die nicht erforderlich ist ein Blog, weiß ich einfach nicht enthalten es,
-                     dies wird durch die Angabe, welche Module, die Sie für die Website, heißt diese Datei domain.xml getan, es gibt nur einen pro Server
-                     es jede URL, die den CMS verwenden können definiert, wäre ein typischer Eintrag in etwa so aussehen:<br />
-                     &lt;domain domainHost='domain.tdl' defaultLanguageIndex='0' useDb='1' dbName='DB_Name' dbUser='DB_User' dbPassword='DB_Password' dbPort='Port_Address' gaAccount='UA-xxxxxxxx-x' gasAccount='pub-xxxxxxxxxxxxxxxx' googlesiteverifi='Webmaster_Validation_Code' ykey='Webmaster_Validation_Code' msvalidate='Webmaster_Validation_Code' moduleIncludes='|VideoMan|HitCounterMan|' defaultTheme='red,white,blue,...'>&lt;/domain&gt;<br />
-                Es erlaubt mir, die Domain-Host, die domain.tdl ist zu definieren,
-                         die Datenbank-Anmeldeinformationen, Ihr Google-Konto-Informationen für Google Analytics und Google AdSense,
-                         und My Includes, die die Modulauswahl ist,
-                         und das Standard-Theme für die Seite zu verwenden.
-                         Die neuen Module sind unter anderem: Forum, Chat, Einkaufswagen, Kalender Events, Social Media Manager, Spiele und andere nützliche Funktionen.
-            </p>
-            <br />
-            <p>
-            Ein CMS meisten Funktions sein, der Benutzer-Schnittstelle meisten Fleisch die Bedürfnisse der vielen Benutzer, und nicht alle Nutzer gerne die Daten anschauen die gleiche Weise,
-                     so dass das System die meisten haben mehrere Ansichten für alle Benutzer Bedürfnisse anzupassen, ohne dass es zu komplex.
-            </p>
-            <br />
-            <p>
-            Witty Wizard CMS ist über die Reise nehme ich dieses CMS, es ist ein Lernerlebnis zu schaffen, so dass ich Videos machen zu lehren, was ich gelernt habe,
-                     aber das Ende Ziel ist es, eine voll funktionsfähige sichere CMS zu haben, so dass Sie nicht brauchen, um etwas über Wt oder sogar C ++ wissen, um die Videos zu verstehen,
-                     da sie sich um Konzepte ausgerichtet sind, welche Befehle oder Zauber haben Sie, um dies Arbeit geleistet zu verwenden, so werde ich dies in die Wege des Wizard lehren,
-                     Schritt für Schritt werden wir lernen, was es braucht, um ein CMS zu erstellen, und du könntest lernen, Wt und C auf dieser Reise ++ verwenden.
-            </p>
-            <br /><br />
-        </div>
+	<message id="home-template">
+	
+		<div style='text-align:left'>
+			<div>Content Management System AKA ''CMS''</div>
+			<br />
+			<p>
+				Ein Content Management System, CMS oder, ist ein Computerprogramm, dass ein Benutzer oder Organisation hilft Inhalte verwalten,
+					 so zum größten Teil, es ist ein Dokumentenmanagement-System oder DMS, so was jeden Sie es nennen wollen,
+					 Ich werde es nennen Witty Wizard oder WW für kurze,
+					 es ist ein System, das auf Content-oder Dokumenten verwalten,
+					 so dass jeder Aspekt der Ansicht der Benutzer mit, ist ein Dokumentansicht, die auch als Inhalt bekannt Präsentiert,
+					 so dass ihr alle eine Frage, wie zu organisieren und zu verwalten, diese Dokumente.
+				Content Management System
+			</p>
+			<br />
+			<p>
+				Wt (ausgesprochen wie Witty) ist ein C ++ Bibliothek für die Entwicklung Web-Anwendungen.
+			</p>
+			<br />
+			<p>
+				Die API ist Widget-centric und nutzt bewährte Muster der Desktop-GUI-Entwicklung auf die Bahn abgestimmt. In den Entwickler,
+					 es bietet Abstraktion der vielen Web-spezifische Implementierungsdetails, einschließlich Client-Server-Protokolle (HTTP, Ajax, WebSockets)
+					 und befreit den Entwickler von langwierigen Manipulationen JavaScript von HTML und im Umgang mit Cross-Browser-Probleme.
+					 Stattdessen mit wt, können Sie sich auf die eigentliche Funktionalität mit einem umfangreichen Satz von Feature-complete-Widgets zu konzentrieren.
+			</p>
+			<br />
+			<p>
+			Im Gegensatz zu der alten Schule-Seite basierten Frameworks oder Strom-Tage-Single-Seite JavaScript '' Rahmenbedingungen '',
+			Gew können Sie Stateful-Anwendungen, die gleichzeitig hoch-interaktive sind (unter Verwendung von WebSockets und Ajax für alles) zu erstellen
+			aber immer noch unterstützt einfachem HTML-Browser oder Web-Crawler mit Hilfe der automatischen Graceful Degradation oder Progressive Enhancement.
+			Dinge, die mit WT-natürlich und einfach sind, würden eine unpraktische Entwicklungsaufwand erfordern anders: Schalt Widgets mit Animationen, unter Beibehaltung saubere URLs und Browser-Navigationsfunktionen,
+			oder mit einer anhaltenden Chat-Widget in der gesamten Anwendung geöffnet ist, dass selbst arbeitet im Legacy-Browsern wie Microsoft Internet Explorer 6.
+			</p>
+			<br />
+			<p>
+				Die Bibliothek ist mit einem Anwendungsserver, der als Stand-alone-HTTP (S) / WebSocket-Server fungiert oder integriert über FastCGI mit anderen Web-Servern.
+			</p>
+			<br />
+			<p>
+				reich an Funktionen
+			</p>
+			<ul>
+				<li>Layout mit <a href='http://www.webtoolkit.eu/widgets/layout/html-templates' target='_blank'>HTML-Templates</a> oder intelligente <a href='http://www.webtoolkit.eu/widgets/layout/layout-managers' target='_blank'>Layout-Manager</a> und Themable aussehen und sich anfühlen, einschließlich der Unterstützung für <a href='http://getbootstrap.com' target='_blank'>Twitter Bootstrap</a> versions 2 or 3.</li>
+				<li>Erstellen und pflegen Komplexität durch die Verwendung und den Aufbau wiederverwendbar und Selbstversorger-Widgets.</li>
+				<li>Kommt mit einem großen Satz von Feature-reiche Widgets, gehören <a href='http://www.webtoolkit.eu/widgets/forms/' target='_blank'>form widgets</a>, <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-table-views' target='_blank'>table</a> and <a href='http://www.webtoolkit.eu/widgets/trees-tables/mvc-tree-views' target='_blank'>tree views</a>, <a href='http://www.webtoolkit.eu/widgets/layout/dialogs' target='_blank'>dialogs</a>, <a href='http://www.webtoolkit.eu/widgets/navigation/popup-menu' target='_blank'>popup menu's</a>, etc...</li>
+				<li>Unified <a href='http://www.webtoolkit.eu/widgets/graphics-charts' target='_blank'>graphics</a> APIs, 2D (SVG, HTML5 Canvas, VML, PNG, and PDF) and 3D (client side WebGL and server-side OpenGL).</li>
+				<li>reich an Funktionen <a href='http://www.webtoolkit.eu/widgets/media/pdf-output' target='_blank'>HTML to PDF renderer</a> for dynamic report generation.</li>
+				<li>Elegante Template-basierte C ++ Datenbank-Abstraktionsschicht (Wt::Dbo)</li>
+				<li>Integrierte Sicherheits gegen gemeinsame Schwachstellen wie <a href='http://en.wikipedia.org/wiki/Cross-site_scripting' target='_blank'>XSS(Cross-Site-Scripting)</a> or <a href='http://en.wikipedia.org/wiki/Cross-site_request_forgery' target='_blank'>CSRF (Cross-Site Request Forgery)</a></li>
+			</ul>
+			<br />
+			<p>
+				Typische Einsatzszenarien:
+			</p>
+			<ul>
+				<li><b>Hochleistungs-Komplex</b> Web-Anwendungen, die vollständig personalisiert werden (und somit nicht von Caching profitieren), voll Ajax aktiviert und gleichzeitig ganz zugänglich und Suchmaschinen optimiert.</li>
+				<li>Web-basierte GUIs für <b> Embedded-Systeme </b> profitieren von der geringen Grundfläche eines C ++ Web Application Server.</li>
+				<li>Web-basierte GUIs, die Integration mit (bestehenden) C ++ Bibliotheken benötigen, beispielsweise für wissenschaftliche oder technische Anwendungen oder bestehende C ++ Desktop-Anwendungen.</li>
+			</ul>
+			<br />
+			<p>
+				Das heißt, ein CMS auf Basis von WT echtes Potenzial,
+					 noch an diesem Tag, niemand hat wirklich eine schriftliche,
+					 obwohl einige haben begonnen, andere darüber reden, und manche sagen, es nicht zu tun,
+					 so nahm ich es an mir selbst zu tun,
+					 aber als ich herausfand, ganz schnell,
+					 dies würde ein großes Unterfangen sein,
+					 nicht nur wusste ich nicht, die Bibliothek,
+					 sondern das gesamte Konzept für das Schreiben eines C ++ Programm zur Web-Anwendungen zu schreiben, ist mir neu, und neu in der ganzen Welt,
+					 Da die meisten Menschen verwenden Apache, PHP, Python, oder unzählige andere Sprachen, die meist Interpretations sind,
+					 was bedeutet, dass sie, um irgendein Programm zu verwenden, um den Code zu interpretieren und es zu tun seine Magie zu haben,
+					 weil die meisten Menschen ist es egal, wie etwas getan wird, solange es tut,
+					 und die meisten haben keine Ahnung von Computersprachen, um sie seine nur Magie,
+					 so dass sie überlassen es den Computer-Programmierer zu machen diese Magie geschehen,
+					 was bedeutet, muss der Programmierer ein Zauberer sein, um diese Magie geschehen,
+					 so meine erste Bann war zu schreiben, all die Dinge, ich will das CMS zu tun,
+					 und da sind ein Zauber Wizards Kunsthandwerk, und in einigen Sprachen Magier und Zauberer das gleiche bedeuten,
+					 so entschied ich mich, dieses CMS witzigen Assistenten aufrufen.
+			</p>
+			<br />
+			<p>
+				Witty-Assistent wird versuchen, die Best Practices verwenden, um dieses CMS zu verwirklichen,
+					 das heißt, es wird eine Menge von Computer-Programmierer, um über alle Zauber aus,
+					 und sicherzustellen, dass ich buchstabierte sie den richtigen Weg, und der effizienteste Weg,
+					 Also, wenn Sie ein C ++ Wt-Assistenten sind, Ihre Augen, die über alle Zauber,
+					 Verlassen und Kommentare zur Verbesserung der Performance, könnte helfen, dieses eine Best Practice-Code zu machen,
+					 oder Beste Zauber, weshalb ich es nennen Witty-Assistenten
+					 so werde ich es wie eine Witty Wizard würde zu lehren.
+			</p>
+			<br />
+			<p>
+			Das Grundkonzept ist die Verwendung Wt übrigens seine sollte verwendet werden,
+					 die ein Augenöffner war für mich,
+					 weil es nichts zu arbeiten, wie ich denke, es sollte in Zeiten,
+					 so habe ich herausfinden, was der WT Weg ist, die eine Menge von Fragen erfordert, um beantwortet werden kann,
+					 und das ist das Problem waren kam, der WT-Foren und Mailing-Liste,
+					 nicht nur einen guten Track Record bei Beantwortung von Fragen,
+					 Wenn Sie Bugs haben, sind sie alle über sie, aber allgemeine Fragen, wie es zu benutzen, gehen meist unbeantwortet,
+					 obwohl sie ihr Bestes tun, um sie zu beantworten, sind sie mehr auf die Bibliothek selbst,
+					 das ist, was sie sich konzentrieren sollten,
+					 und nicht, wie die Menschen können es verwenden, lassen Sie sie, dass bis zu Ihnen,
+					 was mich nur mit den Beispielen die ich finden konnte links,
+					 die nicht enthalten nicht die richtige Zauber mit einem CMS zu machen, wie ich wollte,
+					 die an dieser Stelle noch nicht definiert,
+					 denn mein Ziel war es Wt verwenden, wie es konzipiert wurde,
+					 aber immer noch hatte ich, um es zu tun, was ich wollte, das CMS zu tun,
+					 die an den Punkt noch nicht definiert ist, so dass seine Magie, und das ist, was Witty Wizard geht.
+			</p>
+			<br />
+			<p>
+			Aus der Sicht der ein Computer-Programmierer, die lernen Wt einige Killer-Web-Apps machen will,
+					 und vielleicht nicht sehr vertraut mit C oder C ++,
+					 die ist nicht mir, habe ich gelernt, es wieder in den frühen 70er Jahren,
+					 aber wie ich schon sagte, nicht zu tun Web Apps und nicht mit Wt,
+					 so ist dies eine Lernerfahrung für mich auch,
+					 aber wenn der Programmierer nicht wissen, C, dass alle gut, wenn überhaupt, und muss Wt oben auf, dass Lernen,
+					 dann könnten sie einfach aufgeben, das ist, wo die witzigen Assistenten kommt,
+					 und beantwortet die Frage: Wie lernt man die Sprache C ++ und WT-Bibliothek gut genug, um zu lernen, um diese Mörder Web Apps zu schreiben,
+					 Und die Antwort ist: Geistreich-Assistenten.
+			</p>
+			<br />
+			<p>
+			Der Witty-Assistenten, der eigentlich nur mir,
+					 die im Wizard Bedingungen nur kurz für Fleisch ist,
+					 so bedeutet Fleisch,
+					 und Fleisch hat viele Bedeutungen in vielen Sprachen,
+					 Also, welche Sprache sprechen wir?
+					 Ich weiß nur das gesprochene und geschriebene Sprache von Englisch,
+					 doch ich muss diese, so kann jeder die Witty Wizards CMS Erfahren Übersetzen,
+					 so seine Mehrsprachige, doch seine Sprache auf der Grundlage der genannten C,
+					 die alle in der Sprache Englisch geschrieben werden wird, unabhängig von der Sprache der Programmierer verwendet, um mit Kommunizieren,
+					 so ist klar, dass das, was man Wort bedeutet in einer Sprache, es hat viele verschiedene Bedeutungen in anderen Sprachen,
+					 Für die Sprache von C hat nur eine Bedeutung pro Wort haben andere Sprachen viele Bedeutungen,
+					 Zum Beispiel: mein Name ist Jeffrey Scott Flesher,
+					 meine Ur-Großeltern kamen aus Deutschland im Jahre 1752 an Bord eines Schiffes namens Phoenix,
+					 und unsere ursprüngliche Name war Fleischer, um es amerikanische sie die IC Dropped,
+					 die die meisten Menschen in Amerika nicht C I,
+					 die das Licht Seite von mir, die manchmal genannt ist eine Seele ist,
+					 Und ich so seine Me oder IAM ...
+					 Stattdessen haben sie nur C-Darkside,
+					 so Fleisch, das die gleiche Sache in Deutsch bedeutet, wie es auf Englisch tut:
+					 1. (Bräunung) eine Person oder Maschine, die Häute oder Felle konkretisiert
+					 2. Scot eine Person, die Fleisch verkauft; Metzger / Fleischer
+					 <br />
+					 und da mein zweiter Name ist Scott, und meine Ur-Großeltern waren Mütter aus Schottland,
+					 und nannte mich Jeffrey nach dem Gott Frey, so seine ausgeprägte Jef-Frey oder Jef-Free.
+					 Ich kann Ihnen sagen, wie meine Großeltern Definierte Flesh,
+					 was bedeutet, Fleisch, und mein Körper ist aus Fleisch,
+					 so dass ihr mich im Fleisch oder ein Fruchtfleisch.
+					 Jetzt, sagte, ist dies, wie ich wird dich lehren, C Zugleich ++ und WT,
+					 Durch die Definition von Konzepten in einer Weise, dass Sie sie verstehen,
+					 durch Beispiel und Erklärung, nicht nur in Aussagen wie sage Ihnen meinen Namen und lassen es an, dass,
+					 also gab ich Ihnen die Geschichte von, die IAM, sowie eine Definition und wie seine ausgesprochene sogar,
+					 so als Konzept würden Sie das Konzept der Me im Fleisch zu verstehen,
+					 und zu verstehen, dass mein Ur-Großeltern waren auch Freimaurer, so halten wir Secrets, nennen wir den Kodex,
+					 und sie waren aschkenasischen Juden, so dass sie denken, dass ein Geheimnis, aber mit hohem IQ,
+					 so dass Sie wissen, dass wir alle das Asperger-Syndrom, also sind wir Aspies,
+					 weil wir alle Wizards waren,
+					 Nachkommen eines Auftrags so alt wie die Erde selbst,
+					 und seine, wie wir lehren, ein Thema, das uns Wizards macht, wir tun es mit Stil eines Assistenten
+					 viel wie die meisten Zauberer wissen Sie über, wie der Assistent Merlin, mein Schritt Väter Name war Merlin,
+					 so Names nur verwirren die meisten Menschen zu beginnen,
+					 weshalb ich definieren Wörter und Bedeutungen in einer Weise, dass man sie zu verstehen,
+					 noch mit der Mystik eines Assistenten, der jedes Mal, wenn sie sterben, wiedergeboren wird,
+					 so können Sie mich zu töten, aber ich werde niemals sterben,
+					 aber du mein Programm zum Absturz bringen, und ich werde dich töten,
+					 so dass sie Dinge, die nur die Zeit lehren kann lernen,
+					 so seine Zeit, um Unterricht zu beginnen.
+			</p>
+			<br />
+			<p>
+			Das Geheimnis um das Schreiben eines guten Programms ist es, verschiedene Dinge auszuprobieren und zu sehen, was am besten funktioniert,
+					 so die CMS ich beginnen mit, wird wahrscheinlich nicht die, die ich am Ende mit zu sein,
+					 als solcher werde ich meine Code-Fragmente zu einer kleinen Größe zu halten, so sprechen wir nur über eine Sache,
+					 anstatt zu versuchen, Ihnen beizubringen, wie das ganze Programm funktioniert, werde ich nur versuchen, Sie Stücke, wie es funktionieren könnte zeigen,
+					 aber wird sich ändern, wenn ich einen besseren Weg, das zu tun, so dass diese CMS ist lebendig,
+					 seine wachsende, es reift, steigt sie in den Wahnsinn und Abstürze und Verbrennungen, nur um wieder in seiner eigenen Asche wiedergeboren werden,
+					 ähnlich wie die mystische Phoenix, die meine Ur-Großeltern in Rode auf,
+					 so jetzt, wenn ich sage, IC, wissen Sie, was IAM reden.
+			</p>
+			<br />
+			<p>
+			Als einen allgemeinen Überblick über das CMS, gibt es Dinge, die wir wollen,
+					 die erste ist die Fähigkeit, mehrere URLs laufen und haben sie nach oben ziehen, ihre eigenen Inhalte,
+					 in einer Organisation, die wir möchten, um Daten über die URL zu teilen, ohne dass der Inhalt vervielfältigen,
+					 doch sind wir Bindung von der Regel keine XSS (Cross-Site-Scripting),
+					 so werden wir unsere Anwendungen Basispfad auf dem Server läuft auf seine Aktien,
+					 dann teilen sich ein Haus Stammordner für jede URL, unter AppRoot und docroot / Ressourcen,
+					 die beide Witty Konzepte, die noch nicht definiert worden sind, so tiefer in Wt müssen wir gehen,
+					 die AppRoot ist, wo wir Dateien, die wir nicht wollen, dass die Öffentliche speichern, um Zugang, wie Anmeldeinformationen und Daten verwendet werden, um die Website, wie XML-Dateien für den Datenbankimport verwendet zu halten,
+					 und docroot ist, wo alle Ressourcen gehen, zusammen mit dem Ressourcen-Ordner, die ein anderer Wt Konzept für die Speicherung aller Ressourcen-Dateien ist.
+			</p>
+			<br />
+			<p>
+			Beim Umgang mit einem CMS, suchen die meisten Menschen auf dem Back-End, das Admin-Bereich,
+					 die gehen, um ein wichtiges Merkmal sein,
+					 aber muss nicht eine erforderliche Merkmal sein,
+					 und damit meine ich, dass es eine Alternative zur Verwendung der Back-End-sein,
+					 so durch Design, habe ich das erste Modul namens Video Mann, es ist ein Video-Manager,
+					 Es ermöglicht eine obere und untere HTML-Seite mit dem Video, das die Möglichkeit, ein You Tube Video iFrame verwenden hat zu gehen,
+					 oder Media-Player von Wt vorgesehen ist, oder Alternativen von Video Mann vorgesehen,
+					 und unterstützt auch andere Spieler auf dem Markt.
+					 Sein Hauptmerkmal ist, dass es eine XML-Datei, um die Daten zu importieren, es wird auch eine Back-End-, die Sie hinzufügen, bearbeiten und löschen können Videos,
+					 sondern arbeitet gleichermaßen gut ohne den Back-End,
+					 dies gibt der Betreuer mehr Möglichkeiten, um sichere Updates zu schieben,
+					 da ohne Back-End, zwingen Sie alle Aktualisierungen in einer sichereren Weise getan werden,
+					 Sie können sogar heruntergefahren FTP, SSH und verwenden Sie nur mit authentifizierten Anmeldeinformationen Zertifikate,
+					 , die kostenlos über die Kommandozeile und einem Bash-Skript in der Wizard Installations bereitgestellt erzeugt werden kann,
+					 sie erlaubt rsync-Updates sowie,
+					 die Datenbank XML-Dateien aus dem Back-End mit dem internen Pfad importieren: / Video / UpdateXML
+					 Ich sage Back-End, aber es ist wirklich nur das Modul,
+					 Aus Sicherheitsgründen müssen Sie authentifiziert, um diesen Befehl ausgeführt werden,
+					 oder Sie eine Befehlszeile ausführen könnte, um SQL-Backups zu importieren,
+					 nur die Tabelle zu löschen für diesen Domain-Namen (siehe domain.tdl ~ domain.xml für Datenbank-Benutzer-Anmeldeinformationen),
+					 und die Daten aus einer SQL-Abfrage einfügen, diese verschiedenen, je nach Datenbank-Backend: SQLite, MySQL, Firebird oder PostgreSQL empfohlen,
+					 Sie können dies von der Back-End-Pfad mit zu tun: /vide/updatesql.
+			</p>
+			<br />
+			<p>
+			Das Back-End werden verschiedene Abschnitte haben, erhalten Sie eine Back-End-Modul für jeden zu haben, als solche, Webmaster Zugriff auf diese Funktion zu haben,
+					 und es wird ein Admin-Abschnitt, um den Server zu erhalten selbst, dies wird dazu beitragen, Datenbanken, FTP, E-Mail und andere Dienste, denn es wirkt sich auf alle Seiten,
+					 Sie wollen Admin-Rechte geben an ausgewählte Personen, da dieses CMS wurde entwickelt, um in verschiedenen Szenarien eingesetzt werden,
+					 wie: Unternehmen, Regierungen und ISP gehostet CMS-Systeme, Administratoren übernehmen die Rolle der Beibehaltung aller URLs für den Server, als auch Betriebe,
+					 da dieses CMS wurde entwickelt, um in einer Serverfarm ausgeführt, so dass einige Einstellungen definiert werden, um auf mehreren Servern ausgeführt werden,
+					 und es gibt Funktionen, die Sie erlauben, Backup, Restore und synchronisieren Servern.
+			</p>
+			<br />
+			<p>
+				Das CMS wurde entwickelt, um zu verwenden <a href='http://mmonit.com/monit/' target='_blank'>monit</a>, Es ist ein Open-Source-Projekt, das die Anwendung zu gewährleisten wird zu allen Zeiten läuft,
+				Es überprüft die Verfahren in definierten Intervallen und wird die App neu starten, wenn es nicht läuft, wird es auch die App starten, wenn der Server neu zu starten.
+			</p>
+			<br />
+			<p>
+				Das CMS wurde entwickelt, um zu verwenden <a href='http://www.haproxy.org/' target='_blank'>haproxy</a>,
+				Es ist ein Open-Source-Projekt, das als Proxy für die Ports, die witzigen Assistenten wird sich von Lauf zu handeln wird,
+						 so dass, wenn seine Reihe auf Port 8080 laufen, haproxy wird, dass auf Port 80 zu übersetzen, so dass normale URLs werden, ohne dass die Port-Nummer an die URL anfügen arbeiten,
+						 seinen Willen tun auch Load-Balancing, wenn Sie eine Server-Farm-Setup,
+						 und wird auch die erforderliche Präfix Pfad zur URL, die WT-Konzept ist, die benötigt wird, um Hübsches URL, seine global definiert in main.cpp hinzufügen
+						 in einer Variablen namens rootPrefix standardmäßig ich es auf ww, für Witty Wizard, hat dieser Pfad nicht existiert als Ordner, sondern als einen virtuellen Pfad für Wt,
+						 es kann auch umleiten www zu einem nicht www URL oder umgekehrt.
+			</p>
+			<br />
+			<p>
+				Das CMS verwendet verschiedene andere Bibliotheken, die derzeit alle Open-Source-Projekte wie <a href='http://www.boost.org/' target='_blank'>Boost</a>,
+				<a href='http://rapidxml.sourceforge.net/' target='_blank'>Rapid XML</a>, <a href='http://asciidoc.org/' target='_blank'>AsciiDoc</a>, und viele mehr.
+			</p>
+			<br />
+			<p>
+				Das CMS wurde entwickelt, um unter wthttpd laufen, die eine eigenständige Web-Server, basierend auf <a href='http://think-async.com/Asio/' target='_blank'>Asio C++ Library </a>,
+				Es wird empfohlen, Apache, PHP und andere Web-Servern zu entfernen, wird diese Risiken aus Software-Exploits zu reduzieren, und eine sichere Umgebung.
+			</p>
+			<br />
+			<p>
+			Witty Wizard CMS wird sich entwickelt, um sehr sicher sein, so wird es viele Authentifizierungsprotokolle müssen die Back-End-Zugriff, und schließlich wird ein Einkaufswagen haben,
+					 die PCI-konform sein wird, wird es auch konfigurierbar, um bestimmte Arten von Authentifizierung, basierend auf den Websites Kriterien für Sicherheit zu ermöglichen,
+					 da muss sicher genug für Unternehmen und Behörden verwendet werden zu können, wird es mit dem neuesten und sichere Protokolle zur Verfügung.
+			</p>
+			<br />
+			<p>
+			Im Gegensatz zu herkömmlichen PHP-basierte CMS ist Witty Wizard von Grund auf neu entwickelt, um schnell zu sein, das ist, warum ich C ++, anstatt einige langsame interpretierte Sprache,
+					 Das ist basierend auf Apache oder einen anderen Web-Server, die Sicherheitsprobleme der eigenen hat, und nicht zu vergessen, dass mein Grund für die Verwendung C ++ ist die Geschwindigkeit,
+					 das Betriebssystem selbst ist in C oder C ++, aber einige werden die Geschwindigkeitsfaktor streiten, aber die Ergebnisse sprechen für sich.
+			</p>
+			<br />
+			<p>
+				Im Kern dieses CMS ist das Menü-System, wird es aus XML-Dateien mit Einträgen wie diese erstellt:<br />
+				Less then bractet menuman name='Menu_Name' path='internal_path' type='topsub,topend,subsub,subend,submenu' parent='path_to_parent' grandparent='path_to_grandparent' language='en,cn,ru...' content='Content' description='Meta Data' keywords='Meta Data' title='Tile' rating='general'>Less then bractet /menuman&gt;<br />
+				Wenn in useDb wahr, importiert sie diese in eine Datenbank, wenn falsche es Vorlagen verwendet.
+				Der Inhalt wird dann durch ein Programm, das Markup-Tags hat Filter, zum Beispiel, wenn ich wollte ein Video auf meinen Inhalt hinzufügen, ist alles, was ich zu tun haben, verwenden Sie ein Tag wie diesem:<br />
+				Dollar-Sign Right-Curly-Braket widget: audio id='widget_ID' align='center,left or right' class='wtaudio' type='Enchancments' width='580' height='33' src='/resources/source_path.mp3' altsrc='/resources/source.ogg' title='Title' Left-Curly-Bracket
+				Dies wird entweder zu erstellen und HTML5 Video Player, oder Flash-Fallback-Video-Player, unterstützt es auch You-Tube.
+						 Viele weitere Widgets zur Verfügung stehen in der WidgetFunction.
+			</p>
+			<br />
+			<p>
+			Zukünftige Features gehören mehrere Module, die ein Modul ist eine in sich geschlossene Widget und ein Widget ist eine Komponente, die Sie, um eine Aufgabe zu tun erlaubt,
+					 so ein Blog-Modul ist ein Widget, das Sie zum Blog ermöglicht, aber wenn ich eine Website, die nicht erforderlich ist ein Blog, weiß ich einfach nicht enthalten es,
+					 dies wird durch die Angabe, welche Module, die Sie für die Website, heißt diese Datei domain.xml getan, es gibt nur einen pro Server
+					 es jede URL, die den CMS verwenden können definiert, wäre ein typischer Eintrag in etwa so aussehen:<br />
+					 Less then bractet domain domainHost='domain.tdl' defaultLanguageIndex='0' useDb='1' dbName='DB_Name' dbUser='DB_User' dbPassword='DB_Password' dbPort='Port_Address' gaAccount='UA-xxxxxxxx-x' gasAccount='pub-xxxxxxxxxxxxxxxx' googlesiteverifi='Webmaster_Validation_Code' ykey='Webmaster_Validation_Code' msvalidate='Webmaster_Validation_Code' moduleIncludes='|VideoMan|HitCounterMan|' defaultTheme='red,white,blue,...'>Less then bractet /domain&gt;<br />
+				Es erlaubt mir, die Domain-Host, die domain.tdl ist zu definieren,
+						 die Datenbank-Anmeldeinformationen, Ihr Google-Konto-Informationen für Google Analytics und Google AdSense,
+						 und My Includes, die die Modulauswahl ist,
+						 und das Standard-Theme für die Seite zu verwenden.
+						 Die neuen Module sind unter anderem: Forum, Chat, Einkaufswagen, Kalender Events, Social Media Manager, Spiele und andere nützliche Funktionen.
+			</p>
+			<br />
+			<p>
+			Ein CMS meisten Funktions sein, der Benutzer-Schnittstelle meisten Fleisch die Bedürfnisse der vielen Benutzer, und nicht alle Nutzer gerne die Daten anschauen die gleiche Weise,
+					 so dass das System die meisten haben mehrere Ansichten für alle Benutzer Bedürfnisse anzupassen, ohne dass es zu komplex.
+			</p>
+			<br />
+			<p>
+			Witty Wizard CMS ist über die Reise nehme ich dieses CMS, es ist ein Lernerlebnis zu schaffen, so dass ich Videos machen zu lehren, was ich gelernt habe,
+					 aber das Ende Ziel ist es, eine voll funktionsfähige sichere CMS zu haben, so dass Sie nicht brauchen, um etwas über Wt oder sogar C ++ wissen, um die Videos zu verstehen,
+					 da sie sich um Konzepte ausgerichtet sind, welche Befehle oder Zauber haben Sie, um dies Arbeit geleistet zu verwenden, so werde ich dies in die Wege des Wizard lehren,
+					 Schritt für Schritt werden wir lernen, was es braucht, um ein CMS zu erstellen, und du könntest lernen, Wt und C auf dieser Reise ++ verwenden.
+			</p>
+			<br /><br />
+		</div>
 
-    </message>
+	</message>
 </messages>

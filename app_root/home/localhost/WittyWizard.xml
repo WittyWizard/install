@@ -43,12 +43,12 @@
 
                     <div class="clearall"></div>
                 </div>
-            </div>  <!-- id="footer_wrapper" -->
-        </div> <!-- id="page" -->
+            </div>
+        </div>
         <div id="ga">
             ${ga}
         </div>
-    </message> <!-- id="ww-template" -->
+    </message>
 
     <message id="home">Home</message>
     <message id="contact">Contact</message>
@@ -69,14 +69,17 @@
     <message id="unique-hits">Unique Hits</message>
 
     <message id="banner-source"></message>
-    <message id="banner-alt">Witty Wizard CMS</message>
-    <message id="copyright">Witty Wizard Content Management System (CMS)</message>
+    <message id="banner-alt">The Witty Wizard Content Management System</message>
+    <message id="copyright">Witty Wizard</message>
 
-    <message id="rss-url">http://wittywizard.org/ww/en/blog</message>
+    <message id="rss-url">http://WittyWizard/ww/en/blue/blog</message>
     <message id="rss-title">Witty Wizard blog</message>
     <message id="rss-description">Witty Wizard blog</message>
 
-    <message id="VideoMan" description="VideoMan Module Menu Name">Video</message>
-    <message id="VideoManPath" description="VideoMan Module Menu Path">video</message>
+    <message id="previous">Previous</message>
+    <message id="next">Next</message>
+
+    <message id="page-not-found">Page Not Found</message>
+
 
 </messages>

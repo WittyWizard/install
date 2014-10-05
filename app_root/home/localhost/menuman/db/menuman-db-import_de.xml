@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menusman>
+    <menuman name="Zuhause"    path="/"                        type=""        parent=""               grandparent=""          language="de" description="Witty Wizard Content Management System (CMS)" keywords="Witzig, Zauberer, Inhalt, Management, System, CMS, C ++, Wt, witzigen Assistenten, Content Management System, Dokument, PDF, Video, Audio, Widget, Qt" title="Witty Wizard Menü-Manager" copyright="Witty Wizard" rating="general"></menuman>
+
+    <menuman name="Features"   path="/features"                type="topsub"  parent="/features"      grandparent=""          language="de" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Themes"     path="/features/theme"          type="submenu" parent="/features"      grandparent=""          language="de" description="Theme Manager" keywords="Witzig, Zauberer, Inhalt, Management, System, CMS, C ++, Wt, witzigen Assistenten, Content Management System, Dokument, PDF, Video, Audio, Widget, Qt,Menu,Manager" title="Witty Wizard Theme Manager" copyright="Witty Wizard" rating="general"></menuman>
+
+
+    <menuman name="Menü"       path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="de" description="" keywords="" title="" copyright="" rating="general"></menuman>
+
+    <menuman name="Sub Menu"   path="/features/menu"           type="subsub"  parent="/features/menu" grandparent="/features" language="de" description="" keywords="" title="" copyright="" rating="general"></menuman>
+    <menuman name="Sub Menu 1" path="/features/menu/sub-menu1" type="submenu" parent="/features/menu" grandparent="/features" language="de" description="Sub Menu 1" keywords="Witty,Wizard,Content,Management,System,CMS" title="Sub Menu 1" copyright="Light Wizzard" rating="general"></menuman>
+    <menuman name="Sub Menu"   path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="de" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="Menü"       path="/features/menu"           type="subend"  parent="/features/menu" grandparent="/features" language="de" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+
+    <menuman name="Features"   path="/features"                type="topend"  parent="/features"      grandparent=""          language="de" description="" keywords="" title="" copyright="" rating=""></menuman>
+
+    <menuman name="über"       path="/about"                   type=""        parent=""               grandparent=""          language="de" description="Witty Wizard Content Management System (CMS)" keywords="Witzig, Zauberer, Inhalt, Management, System, CMS, C ++, Wt, witzigen Assistenten, Content Management System, Dokument, PDF, Video, Audio, Widget, Qt" title="About Witty Wizard Content Management System (CMS)" copyright="Witty Wizard" rating="general"></menuman>
+</menusman>
