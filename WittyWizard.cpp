@@ -154,32 +154,21 @@ void WittyWizard::InternalPathChange(const std::string& thePath)
 {
     bool showDebug = false;
     if (isPathChanging)
-    {
-        if (showDebug) { Wt::log("restart") << " ~~~~ WittyWizard::InternalPathChange() returning nothing done ~~~~ "; }
-        return;
-    } // end if (isPathChanging)
+        { if (showDebug) { Wt::log("restart") << " ~~~~ WittyWizard::InternalPathChange() returning nothing done ~~~~ "; } return; } // end if (isPathChanging)
     //
     GetPath();
-    if (showDebug) { Wt::log("start") << " WittyWizard::InternalPathChange() myLanguage = " << myLanguage << " | myOldLanguageIndex = " << myOldLanguageIndex << " | new Language Index = " << myLanguageIndex; }
+    if (showDebug) { Wt::log("start") << " WittyWizard::InternalPathChange() myLanguage = " << myLanguage << " | Language Index = " << myLanguageIndex; }
     //
     isPathChanging = true;
     PluginHandlePathChange(myModuleName, myLanguageIndex);
-    if (myLanguageIndex != myOldLanguageIndex)
-    {
-        if (showDebug) { Wt::log("local") << " *** WittyWizard::InternalPathChange() language Code set to = " << myLanguage << " myLanguage = " << myLanguage << " | thePath = " << thePath << " | myFullPath = " << myFullPath << " *** "; }
-        // Set Local
-        setLocale(myLanguage);
-        //setLocale(theLanguage.code_);
-    }
+    if (showDebug) { Wt::log("local") << " *** WittyWizard::InternalPathChange() language Code set to = " << myLanguage << " myLanguage = " << myLanguage << " | thePath = " << thePath << " | myFullPath = " << myFullPath << " *** "; }
+    // Set Local
+    setLocale(myLanguage);
+    //setLocale(theLanguage.code_);
     //
     CallPluginSetLanguage(myModuleName, myLanguage, myLanguageIndex);
     //
-    if (myLanguageIndex != myOldLanguageIndex)
-    {
-        // FIXME: do I need to see if lanuage changed?
-        // Change Menu Base Path
-        //mainMenu_->setInternalBasePath(myLanguage);
-    } // end if (myLanguageIndex != oldLanguageIndex)
+    //mainMenu_->setInternalBasePath(myLanguage);
     // FIXME: do I need to test thePath == newPath
     // Change Path
     Wt::WApplication::instance()->setInternalPath(myFullPath, true);
@@ -737,7 +726,6 @@ std::string WittyWizard::GetTheme(std::string themePath)
  */
 void WittyWizard::SetDefaultLanguage()
 {
-    myOldLanguageIndex = myLanguageIndex;
     if (myLanguageIndex == -1)
     {
         myLanguageIndex = IsPathLanguage(internalPathNextPart("/"));
@@ -882,7 +870,6 @@ std::string WittyWizard::GetPath()
     }
     if (myPath.empty())
         { myPath = "/"; }
-    myOldLanguageIndex = myLanguageIndex;
     if (IsPathLanguage(myLanguage) == -1)
         { SetDefaultLanguage(); }
     if (IsPathTheme(myTheme) == -1)
