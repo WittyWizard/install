@@ -5,6 +5,7 @@
 #include <Wt/WEnvironment>
 #include <Wt/WLogger>
 //
+#include <locale>
 #include <iomanip>
 #include <locale>
 #include <sys/stat.h>
@@ -501,25 +502,58 @@ namespace CrystalBall
     #endif
     } // GetFilesInDirectory
     /* ****************************************************************************
+     * CheckErrorBits
+     */
+    bool CheckErrorBits(std::wifstream* f)
+    {
+        bool stop = false;
+        if (f->eof())
+        {
+            Wt::log("error") << "CrystalBall::CheckErrorBits stream eofbit. error state";
+            // EOF after std::getline() is not the criterion to stop processing
+            // data: In case there is data between the last delimiter and EOF,
+            // getline() extracts it and sets the eofbit.
+            stop = true;
+        }
+        if (f->fail())
+        {
+            Wt::log("error") << "CrystalBall::CheckErrorBits stream failbit (or badbit). error state";
+        }
+        if (f->bad())
+        {
+            Wt::log("error") << "CrystalBall::CheckErrorBits stream badbit. error state";
+        }
+        return stop;
+    } // end CheckErrorBits
+    /* ****************************************************************************
      * GetTemplate
      * id: this is the Message ID <message id="ww-template">
      * Returns the Contents
      */
-    Wt::WString GetTemplate(std::string id)
+    Wt::WString GetTemplate(std::string appPath, std::string thePath, std::string myLanguage)
     {
-        if (id.empty()) { Wt::log("error") << " *** MenuManSession::GetTemplate() empty content id"; return ""; }
-    #define STATIC_DATA
+        //if (id.empty()) { Wt::log("error") << " *** MenuManSession::GetTemplate() empty content id"; return ""; }
+    //#define STATIC_DATA
     #ifdef STATIC_DATA
         //return "<div><p>This is a Test</p><p>And Only a Test</p></div>";
         //return "test";
-        std::wstring line;
-        std::wifstream myfile (id);
+        std::locale::global(std::locale("")); // FIXME: this fixs issue with not reading in file chinese, but this makes an ugly page, had to start app over
+
+        std::wstring line;        
+        std::wifstream myfile (thePath);
         std::wstring myTemplate;
         int counter = 0;
+        //myfile.imbue(locale(myfile.getloc(), new std::codecvt<wchar_t, 0x10ffff, consume_header>()));
         if (myfile.is_open())
         {
-          while ( getline (myfile, line) )
+          while (1)
           {
+              getline (myfile, line);
+              if (CheckErrorBits(&myfile))
+              {
+                  Wt::log("error") << "CrystalBall::GetTemplate skip operation on data, break loop";
+                  break;
+              }
               if (counter++ < 3) { continue; }
               if (line.find(L"</message>") != std::string::npos)
               {
@@ -527,8 +561,8 @@ namespace CrystalBall
               }
               line.erase(std::remove(line.begin(), line.end(), '\t'), line.end());
               line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
-              WStringReplace(line, L"“", L"&quot;");
-              WStringReplace(line, L"”", L"&quot;");
+              WStringReplace(line, L"“", L"\"");
+              WStringReplace(line, L"”", L"\"");
               myTemplate.append(line);
           }
           myfile.close();
@@ -537,31 +571,42 @@ namespace CrystalBall
         {
             Wt::log("error") << " *** MenuManSession::GetTemplate() Can not Read File " << id;
         }
+        return myTemplate.c_str();
     #else
-        std::wstring myTemplate = L"<div><p>This is a Test</p><p>And Only a Test</p></div>";
+        std::string myPath = thePath;
+        if (myPath == "/")
+            { myPath = "/home"; } // FIXME: home is hard corded
+        std::string fileSufix = "";
+        if (myLanguage != "en") // FIXME: Is en the default language?
+            { fileSufix = "_" + myLanguage; }
+        if (IsFile(appPath + "xml" + myPath + fileSufix + ".xml"))
+        {
+            std::string templateName = myPath;
+            size_t found = templateName.find_last_of("/\\"); // /path/fileName
+            if (found != std::string::npos)
+                { templateName = templateName.substr(found + 1); }
+            Wt::WApplication::instance()->setLocale(myLanguage);
+            Wt::WApplication::instance()->messageResourceBundle().use(appPath + "xml" + myPath, false);
+
+            std::wstring myContent = Wt::WString::tr(templateName + "-template");
+
+            myContent.erase(std::remove(myContent.begin(), myContent.end(), '\t'), myContent.end());
+            myContent.erase(std::remove(myContent.begin(), myContent.end(), '\n'), myContent.end());
+
+            WStringReplace(myContent, L"“", L"\"");
+            WStringReplace(myContent, L"”", L"\"");
+
+            return myContent;
+        }
+        else
+        {
+            Wt::log("error") << " *** CrystalBall::GetTemplate() Could Not find xml file " << thePath;
+        }
+        //std::wstring myTemplate = L"<div><p>This is a Test</p><p>And Only a Test</p></div>";
     #endif
         //const std::string temp( myTemplate.begin(), myTemplate.end() );
         //Wt::log("notice") << " *** MenuManSession::GetTemplate() Read " << temp;
-        return myTemplate.c_str();
+        return "";
     } // end GetTemplate
-    /* ****************************************************************************
-     * Get Path
-     * remove language
-     * language: en, cn, ru, de...
-     * FIXME: make sure path is clean, no SQL Injections
-     */
-    std::string GetPath(std::string thePath, std::string language)
-    {
-        // /lang/path/sub
-        // /en/
-        std::string myPath = thePath;
-        if (!StringReplace(myPath, "/" + language + "/", ""))
-        {
-            myPath = thePath;
-            myPath = myPath.substr(myPath.find("/") + 1);
-        }
-        //Wt::log("notice") << " WittyWizard::GetPath() thePath = " << thePath;
-        return myPath;
-    } // end GetPath
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
