@@ -127,7 +127,6 @@ class WittyWizard : public Wt::WApplication
         Wt::WTemplate* homeTemplate = NULL;
         Wt::WContainerWidget* container = NULL;
         int myLanguageIndex = -1; // Language Index: -1 means uninitilized
-        int myOldLanguageIndex = -1; // Language Index: -1 means uninitilized
         // Language Vector Array
         std::vector<Lang> languages;
         // Add Language
