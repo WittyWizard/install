@@ -86,6 +86,13 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
             for (rapidxml::xml_node<> * domain_node = root_node->first_node("menuman"); domain_node; domain_node = domain_node->next_sibling("menuman"))
             {
                 Wt::log("progress") << "MenuManImpl::GetMenu: Start Loop = " << domain_node->name();
+                // language
+                nodeAttrib = domain_node->first_attribute("language");
+                if (!nodeAttrib)
+                {
+                    Wt::log("error") << "MenuManImpl::GetMenu: Missing XML Element: language = " << domain_node->name();
+                    return "";
+                }
                 std::string language = nodeAttrib->value();
                 Wt::log("progress") << "MenuManImpl::GetMenu: language = " << nodeAttrib->value();
                 //
@@ -100,7 +107,7 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
                     }
                     std::string type = nodeAttrib->value();
                     Wt::log("progress") << "MenuManImpl::GetMenu: type = " << nodeAttrib->value();
-                    if (type == "submenu")
+                    if (type == "" || type == "submenu")
                     {
                         // path of Menu Item that will be shown in address bar
                         nodeAttrib = domain_node->first_attribute("path");
@@ -112,22 +119,13 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
                         std::string path = nodeAttrib->value();
                         Wt::log("progress") << "MenuManImpl::GetMenu: path = " << nodeAttrib->value();
                         // Read from file
-                        if (path == "" || path == "submenu")
+                        if (path == menuPath)
                         {
-                            nodeAttrib = domain_node->first_attribute("content");
-                            if (!nodeAttrib)
-                            {
-                                Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: content = " << domain_node->name();
-                                return "";
-                            }
-                            std::string fileName = nodeAttrib->value();
-                            content = CrystalBall::GetTemplate(appPath_ + "xml/" + fileName + ".xml");
+                            content = CrystalBall::GetTemplate(appPath_, path, lang_);
                             Wt::log("progress") << "MenuManSession::ImportXML: content";
-                        } // end if (menuType == "" || menuType == "submenu")
-                        if (path == "")
-                        {
-                        }
-                    }
+                            break;
+                        } // end if (path == menuPath)
+                    } // end if (type == "" || type == "submenu")
                 } // end if (lang_ == language)
             } // end for
         }
