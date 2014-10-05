@@ -168,13 +168,14 @@ namespace CrystalBall
      * id: this is the Message ID <message id="ww-template">
      * Returns the Contents
      */
-    extern Wt::WString GetTemplate(std::string id);
+    extern Wt::WString GetTemplate(std::string appPath, std::string thePath, std::string myLanguage);
     /* ****************************************************************************
      * Get Path
-     * remove language
-     * language: en, cn, ru, de...
+     * remove language and theme
+     * myLanguages: en, cn, ru, de...
+     * myThemes: red,white,blue...
      */
-    extern std::string GetPath(std::string thePath, std::string language);
+    //extern std::string GetPath(std::string thePath, std::vector<Lang> myLanguages, std::vector<Theme> myThemes, std::string language, std::string theme);
 
 } // end namespace CrystalBall
 // --- End Of File ------------------------------------------------------------
