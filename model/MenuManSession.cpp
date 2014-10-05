@@ -33,7 +33,6 @@ MenuManSession::MenuManSession(const std::string& appPath, const std::string& us
                 {
                     Wt::log("warning") << "MenuManSession::MenuManSession() SQL Drop Table menuman";
                     dropTables();
-                    Wt::WApplication::instance()->setInternalPath("/", true);
                 }
                 createTables();
                 Wt::log("warning") << "Created database: menuman ";
@@ -121,6 +120,7 @@ bool MenuManSession::ImportXML()
                    return false;
                }
                menuDb->path = nodeAttrib->value();
+               std::string myPath = nodeAttrib->value();
                Wt::log("progress") << "MenuManSession::ImportXML: path = " << nodeAttrib->value();
                // type
                nodeAttrib = domain_node->first_attribute("type");
@@ -158,20 +158,35 @@ bool MenuManSession::ImportXML()
                    return false;
                }
                menuDb->language = nodeAttrib->value();
+               std::string myLanguage = nodeAttrib->value();
                Wt::log("progress") << "MenuManSession::ImportXML: language = " << nodeAttrib->value();
                // content of page for menu item, XHTML for WidgetFunction
-
                // Read from file
                if (menuType == "" || menuType == "submenu")
                {
-                   nodeAttrib = domain_node->first_attribute("content");
-                   if (!nodeAttrib)
+                   /*
+                   if (myPath == "/")
+                       { myPath = "/home"; } // FIXME: home is hard corded
+                   std::string fileSufix = "";
+                   if (myLanguage != "en") // FIXME: Is en the default language?
+                       { fileSufix = "_" + myLanguage; }
+
+
+                   if (CrystalBall::IsFile(appPath_ + "xml" + myPath + fileSufix + ".xml"))
                    {
-                       Wt::log("error") << "MenuManSession::ImportXML: Missing XML Element: content = " << domain_node->name();
-                       return false;
+                       Wt::log("info") << "MenuManSession::ImportXML: " << fullFilePath;
+                       std::string templateName = myPath;
+                       size_t found = templateName.find_last_of("/\\");
+                       if (found != std::string::npos)
+                           { templateName = templateName.substr(found + 1); }
+                       Wt::WApplication::instance()->setLocale(myLanguage);
+
+                       Wt::WApplication::instance()->messageResourceBundle().use(appPath_ + "xml" + myPath, false);
+                       Wt::WString myContent = Wt::WString::tr(templateName + "-template");
+                       menuDb->content = Wt::WString::fromUTF8(myContent.toUTF8());
                    }
-                   std::string fileName = nodeAttrib->value();
-                   menuDb->content = CrystalBall::GetTemplate(appPath_ + "xml/" + fileName + ".xml");
+                    */
+                   menuDb->content = CrystalBall::GetTemplate(appPath_, myPath, myLanguage); //
                    Wt::log("progress") << "MenuManSession::ImportXML: content";
                } // end if (menuType == "" || menuType == "submenu")
                // description
@@ -231,7 +246,7 @@ bool MenuManSession::ImportXML()
            return false;
        }
     }
-
+    Wt::WApplication::instance()->setLocale(lang_);
     Wt::log("end") << "MenuManSession::ImportXML()";
     return true;
 } // end void MenuManSession::MenuManSession::ImportXML
