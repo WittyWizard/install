@@ -106,13 +106,18 @@ class WittyWizard : public Wt::WApplication
         const Lang& GetLanguage(int index);
         int GetLanguageIndex(std::string languageName);
         std::string GetLanguageName();
+        void SetDefaultLanguage();
         int IsPathLanguage(std::string langPath);
+        int IsPathTheme(std::string themePath);
+        std::string GetTheme(std::string themePath);
         void SetBaseURL();
         void CallPluginSetLanguage(std::string moduleName, std::string languageName, int newLanguage);
+        bool PluginAdmin(std::string moduleName, std::string thePath);
         bool PluginHandlePathChange(std::string moduleName, int newLanguage);
         void CallPlugin();
         void CallMenuPlugin();
         std::string GetPath();
+        bool IsEmpty(std::string test);
         Wt::WWidget* GetTemplate(std::string thePath);
         // FIXME Plugin System - how do I fix this?
         #ifdef HITCOUNTERMAN
@@ -122,6 +127,7 @@ class WittyWizard : public Wt::WApplication
         Wt::WTemplate* homeTemplate = NULL;
         Wt::WContainerWidget* container = NULL;
         int myLanguageIndex = -1; // Language Index: -1 means uninitilized
+        int myOldLanguageIndex = -1; // Language Index: -1 means uninitilized
         // Language Vector Array
         std::vector<Lang> languages;
         // Add Language
@@ -135,6 +141,7 @@ class WittyWizard : public Wt::WApplication
         std::string myUrlScheme;
         std::string myBaseUrl;
         std::string myLanguage = "";
+        std::string myLanguageCode = "";
         std::string domainName = "";       
         Wt::Dbo::SqlConnectionPool* dbConnection;
         std::string theIncludes = "";
@@ -145,6 +152,9 @@ class WittyWizard : public Wt::WApplication
         void SetMyLocale();
         std::string myLocale = "";
         std::string myPath = "";
+        std::string myFullPath = "";
+        std::string myTheme = "";
+        std::string myModuleName = "";
 };
 //Wt::WApplication* CreateApp(const Wt::WEnvironment& env);
 
