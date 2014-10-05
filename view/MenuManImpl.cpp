@@ -2,7 +2,7 @@
  * Menu Manager Implementation
  * Witty Wizard
  * Version: 1.0.0
- * Last Date Modified: 23 Sep 2014
+ * Last Date Modified: 5 Oct 2014
  *
  */
 #include "MenuManImpl.h"
@@ -15,6 +15,7 @@
  * lang: Name: en, cn, ru ...
  * useDb: 0 = false (use XML), 1 = true (use Db)
  * domainName: domain.tdl
+ * menuOrientation: FIXME: Implement this
  */
 MenuManImpl::MenuManImpl(const std::string& appPath, Wt::Dbo::SqlConnectionPool& connectionPool, const std::string& lang, const std::string& useDb, const std::string& domainName, Wt::Orientation& menuOrientation) : appPath_(appPath), session_(appPath, useDb, lang, connectionPool), lang_(lang), useDb_(useDb), domainName_(domainName), menuOrientation_(menuOrientation)
 {
@@ -26,6 +27,144 @@ MenuManImpl::~MenuManImpl()
 {
     clear();
 } // end ~MenuManImpl
+/* ****************************************************************************
+ * Get Menus
+ */
+bool MenuManImpl::GetMenus()
+{
+    if (useDb_ == "1")
+    {
+        try
+        {
+            // Start a Transaction
+            Wt::Dbo::Transaction t(session_);
+            typedef Wt::Dbo::collection< Wt::Dbo::ptr<MenuMan> > MenuMans;
+            // Get database list of all Videos
+            MenuMans menus = session_.find<MenuMan>();
+            for (MenuMans::const_iterator i = menus.begin(); i != menus.end(); ++i)
+            {
+                std::string language    = (*i)->language;
+                if (lang_ == language)
+                {
+                    Wt::WString name        = (*i)->name;
+                    std::string path        = (*i)->path;
+                    std::string type        = (*i)->type;
+                    std::string parent      = (*i)->parent;
+                    std::string grandparent = (*i)->grandparent;
+                    AddMenu(MasterMenu(Wt::WString::fromUTF8(name.toUTF8()), path.c_str(), type.c_str(), parent.c_str(), grandparent.c_str(), false));
+                } // end if (lang_ == language)
+            } // end for
+            // Commit Transaction
+            t.commit();
+        }
+        catch (std::exception& e)
+        {
+            std::cerr << e.what() << std::endl;
+            std::cerr << "MenuManImpl::GetMenu: Failed reading from menuman database";
+            Wt::log("error") << "MenuManImpl::GetMenu()  Failed reading from menuman database";
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        std::string myLang = lang_;
+        if (myLang == "en")
+            { myLang = ""; }
+        else
+            { myLang = "_" + lang_; }
+        std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
+        if (CrystalBall::IsFile(fullFilePath))
+            { Wt::log("info") << "MenuManImpl::GetMenus: " << fullFilePath; }
+        else
+            { Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMenus: " << fullFilePath; return false; }
+        try
+        {
+            // Open XML File
+            const char *filePath = fullFilePath.c_str();
+            rapidxml::file<> xmlFile(filePath);
+            rapidxml::xml_document<> xmlDoc;
+            xmlDoc.parse<0>(xmlFile.data());
+            // Find our root node
+            /*
+             *
+                <?xml version="1.0" encoding="UTF-8" ?>
+                <menuman name="Test" path="test" content="This is a test"></menuman>
+            */
+            rapidxml::xml_node<> * root_node = xmlDoc.first_node("menusman");
+            rapidxml::xml_attribute<> *nodeAttrib;
+            for (rapidxml::xml_node<> * domain_node = root_node->first_node("menuman"); domain_node; domain_node = domain_node->next_sibling("menuman"))
+            {
+                Wt::log("progress") << "MenuManImpl::GetMenus: Start Loop = " << domain_node->name();
+                // language of Menu Item that will be shown in address bar: en, cn, ru...
+                nodeAttrib = domain_node->first_attribute("language");
+                if (!nodeAttrib)
+                {
+                    Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: language = " << domain_node->name();
+                    return false;
+                }
+                std::string language = nodeAttrib->value();
+                Wt::log("progress") << "MenuManImpl::GetMenus: language = " << nodeAttrib->value();
+                //
+                if (lang_ == language)
+                {
+                    // name of Menu Item that will be shown in Menu
+                    nodeAttrib = domain_node->first_attribute("name");
+                    if (!nodeAttrib)
+                    {
+                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: name = " << domain_node->name();
+                        return false;
+                    }
+                    Wt::WString name = Wt::WString::fromUTF8(nodeAttrib->value());
+                    Wt::log("progress") << "MenuManImpl::GetMenus: name = " << nodeAttrib->value();
+                    // path of Menu Item that will be shown in address bar
+                    nodeAttrib = domain_node->first_attribute("path");
+                    if (!nodeAttrib)
+                    {
+                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: path = " << domain_node->name();
+                        return false;
+                    }
+                    std::string path = nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMenus: path = " << nodeAttrib->value();
+                    // type
+                    nodeAttrib = domain_node->first_attribute("type");
+                    if (!nodeAttrib)
+                    {
+                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: type = " << domain_node->name();
+                        return false;
+                    }
+                    std::string type = nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMenus: type = " << nodeAttrib->value();
+                    // parent
+                    nodeAttrib = domain_node->first_attribute("parent");
+                    if (!nodeAttrib)
+                    {
+                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: parent = " << domain_node->name();
+                        return false;
+                    }
+                    std::string parent = nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMenus: parent = " << nodeAttrib->value();
+                    // grandparent
+                    nodeAttrib = domain_node->first_attribute("grandparent");
+                    if (!nodeAttrib)
+                    {
+                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: grandparent = " << domain_node->name();
+                        return false;
+                    }
+                    std::string grandparent = nodeAttrib->value();
+                    Wt::log("progress") << "MenuManImpl::GetMenus: grandparent = " << nodeAttrib->value();
+                    AddMenu(MasterMenu(Wt::WString::fromUTF8(name.toUTF8()), path.c_str(), type.c_str(), parent.c_str(), grandparent.c_str(), false));
+                } // end if (lang_ == language)
+            } // end for
+        }
+        catch (std::exception& e)
+        {
+            Wt::log("error") << "-> MenuManImpl::GetMenus()  Failed writting to menuman database: " << e.what();
+            return false;
+        }
+        return true;
+    } // end if (useDb != "1")
+} // end void GetMenus
 /* ****************************************************************************
  * Get Menu
  */
@@ -58,6 +197,8 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
         std::string myLang = lang_;
         if (myLang == "en")
             { myLang = ""; }
+        else
+            { myLang = "_" + lang_; }
         std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
         if (CrystalBall::IsFile(fullFilePath))
         {
@@ -138,147 +279,6 @@ Wt::WString MenuManImpl::GetMenu(const std::string& menuPath)
     }
 } // end void GetMenu
 /* ****************************************************************************
- * Get Menus
- */
-bool MenuManImpl::GetMenus()
-{
-    if (useDb_ == "1")
-    {
-        try
-        {
-            // Start a Transaction
-            Wt::Dbo::Transaction t(session_);
-            typedef Wt::Dbo::collection< Wt::Dbo::ptr<MenuMan> > MenuMans;
-            // Get database list of all Videos
-            MenuMans menus = session_.find<MenuMan>();
-            for (MenuMans::const_iterator i = menus.begin(); i != menus.end(); ++i)
-            {
-                std::string language    = (*i)->language;
-                if (lang_ == language)
-                {
-                    Wt::WString name        = (*i)->name;
-                    std::string path        = (*i)->path;
-                    std::string type        = (*i)->type;
-                    std::string parent      = (*i)->parent;
-                    std::string grandparent = (*i)->grandparent;
-                    AddMenu(MasterMenu(Wt::WString::fromUTF8(name.toUTF8()), path.c_str(), type.c_str(), parent.c_str(), grandparent.c_str(), false));
-                }
-            }
-            // Commit Transaction
-            t.commit();
-        }
-        catch (std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-            std::cerr << "MenuManImpl::GetMenu: Failed reading from menuman database";
-            Wt::log("error") << "MenuManImpl::GetMenu()  Failed reading from menuman database";
-            return false;
-        }
-        return true;
-    }
-    else
-    {
-        std::string myLang = lang_;
-        if (myLang == "en")
-            { myLang = ""; }
-        std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
-        if (CrystalBall::IsFile(fullFilePath))
-        {
-            Wt::log("info") << "MenuManImpl::GetMenus: " << fullFilePath;
-        }
-        else
-        {
-            Wt::log("error") << "-> Missing XML Configuration File MenuManImpl::GetMenus: " << fullFilePath;
-            return false;
-        }
-        try
-        {
-            // Open XML File
-            const char *filePath = fullFilePath.c_str();
-            rapidxml::file<> xmlFile(filePath);
-            rapidxml::xml_document<> xmlDoc;
-            xmlDoc.parse<0>(xmlFile.data());
-            // Find our root node
-            /*
-             *
-                <?xml version="1.0" encoding="UTF-8" ?>
-                <menuman name="Test" path="test" content="This is a test"></menuman>
-            */
-            rapidxml::xml_node<> * root_node = xmlDoc.first_node("menusman");
-            rapidxml::xml_attribute<> *nodeAttrib;
-            for (rapidxml::xml_node<> * domain_node = root_node->first_node("menuman"); domain_node; domain_node = domain_node->next_sibling("menuman"))
-            {
-                Wt::log("progress") << "MenuManImpl::GetMenus: Start Loop = " << domain_node->name();
-                // language of Menu Item that will be shown in address bar: en, cn, ru...
-                nodeAttrib = domain_node->first_attribute("language");
-                if (!nodeAttrib)
-                {
-                    Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: language = " << domain_node->name();
-                    return false;
-                }
-                std::string language = nodeAttrib->value();
-                Wt::log("progress") << "MenuManImpl::GetMenus: language = " << nodeAttrib->value();
-                //
-                if (lang_ == language)
-                {
-                    // name of Menu Item that will be shown in Menu
-                    nodeAttrib = domain_node->first_attribute("name");
-                    if (!nodeAttrib)
-                    {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: name = " << domain_node->name();
-                        return false;
-                    }
-                    Wt::WString name = Wt::WString::fromUTF8(nodeAttrib->value());
-                    Wt::log("progress") << "MenuManImpl::GetMenus: name = " << nodeAttrib->value();
-                    // path of Menu Item that will be shown in address bar
-                    nodeAttrib = domain_node->first_attribute("path");
-                    if (!nodeAttrib)
-                    {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: path = " << domain_node->name();
-                        return false;
-                    }
-                    std::string path = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: path = " << nodeAttrib->value();
-                    // type
-                    nodeAttrib = domain_node->first_attribute("type");
-                    if (!nodeAttrib)
-                    {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: type = " << domain_node->name();
-                        return false;
-                    }
-                    std::string type = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: type = " << nodeAttrib->value();
-                    // parent
-                    nodeAttrib = domain_node->first_attribute("parent");
-                    if (!nodeAttrib)
-                    {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: parent = " << domain_node->name();
-                        return false;
-                    }
-                    std::string parent = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: parent = " << nodeAttrib->value();
-                    // grandparent
-                    nodeAttrib = domain_node->first_attribute("grandparent");
-                    if (!nodeAttrib)
-                    {
-                        Wt::log("error") << "MenuManImpl::GetMenus: Missing XML Element: grandparent = " << domain_node->name();
-                        return false;
-                    }
-                    std::string grandparent = nodeAttrib->value();
-                    Wt::log("progress") << "MenuManImpl::GetMenus: grandparent = " << nodeAttrib->value();
-                    AddMenu(MasterMenu(Wt::WString::fromUTF8(name.toUTF8()), path.c_str(), type.c_str(), parent.c_str(), grandparent.c_str(), false));
-                }
-            } // end for
-        }
-        catch (std::exception& e)
-        {
-            Wt::log("error") << "-> MenuManImpl::GetMenus()  Failed writting to menuman database: " << e.what();
-            return false;
-        }
-        return true;
-    } // end if (useDb != "1")
-} // end void GetMenus
-/* ****************************************************************************
  * Get Meta Data
  */
 MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
@@ -313,6 +313,8 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
         std::string myLang = lang_;
         if (myLang == "en")
             { myLang = ""; }
+        else
+            { myLang = "_" + lang_; }
         std::string fullFilePath = appPath_ + "db/menuman-db-import" + myLang + ".xml";
         if (CrystalBall::IsFile(fullFilePath))
         {
@@ -422,7 +424,7 @@ MetaData* MenuManImpl::GetMetaData(const std::string& menuPath)
                             metaData.rating = nodeAttrib->value();
                             Wt::log("progress") << "MenuManSession::ImportXML: rating = " << nodeAttrib->value();
                             return &metaData;
-                        }
+                        } // end if (path == lookupPath)
                     } // end if (type == "submenu")
                 } // end if (lang_ == language)
             } // end for
