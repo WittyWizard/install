@@ -21,7 +21,7 @@ void WittyWizard::CallPlugin()
             homeTemplate->bindWidget("hitcounterman", HitCounterMan());
         }
     #else
-        homeTemplate_->bindWidget("hitcounterman", new Wt::WText(""));
+        homeTemplate->bindWidget("hitcounterman", new Wt::WText(""));
     #endif // HITCOUNTERMAN
 }
 /* ****************************************************************************
@@ -34,6 +34,18 @@ bool WittyWizard::PluginHandlePathChange(std::string moduleName, int newLanguage
     (void)newLanguage;
     return true;
 } // end PluginHandlePathChange
+/* ****************************************************************************
+ * Plugin Admin
+ */
+bool WittyWizard::PluginAdmin(std::string moduleName, std::string thePath)
+{
+    if (moduleName == "menuman")
+    {
+        new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, thePath);
+        setLocale(myLanguage);
+    }
+    return true;
+} // end PluginAdmin
 /* ****************************************************************************
  * Call Plugin Set Language
  */
@@ -63,7 +75,7 @@ void WittyWizard::CallPluginSetLanguage(std::string moduleName, std::string lang
  */
 Wt::WWidget* WittyWizard::HitCounterMan()
 {
-    HitCounterManView* hitCounterMan = new HitCounterManView(*dbConnection, languages[GetDefaultLanguage()].code_);
+    HitCounterManView* hitCounterMan = new HitCounterManView(*dbConnection, myLanguageCode);
     hitCounterMan->setObjectName("hitcounterman");
     //
     return hitCounterMan->Update();
