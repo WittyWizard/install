@@ -124,6 +124,7 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
     // After you add all your Languages, Set Locale
     myLocale = env.locale().name().c_str();
     SetMyLocale();
+
     // Add Theme
     std::string myThemes = CrystalBall::Themes[domainName];
     if (myThemes.find("|red|") != std::string::npos)
@@ -138,10 +139,12 @@ WittyWizard::WittyWizard(const Wt::WEnvironment& env) : Wt::WApplication(env)
         { AddTheme(Theme(Wt::WString::tr("tan")   , "tan")); }
     if (myThemes.find("|default|") != std::string::npos)
         { AddTheme(Theme(Wt::WString::tr("default"), "default")); }
-    // Listen for path change
-    internalPathChanged().connect(this, &WittyWizard::InternalPathChange);
     // Make Path change manually to call ReInit
     InternalPathChange(internalPath());
+    // Listen for path change
+    isPathChanging = true;
+    internalPathChanged().connect(this, &WittyWizard::InternalPathChange);
+    isPathChanging = false;
     if (showDebug) { Wt::log("end") << "WittyWizard::WittyWizard()"; }
 } // WittyWizard
 /* ****************************************************************************
@@ -156,40 +159,22 @@ void WittyWizard::InternalPathChange(const std::string& thePath)
         return;
     } // end if (isPathChanging)
     //
-    int oldLanguageIndex = myLanguageIndex;
-    std::string moduleName = "";
-    myLanguage = internalPathNextPart("/"); // Checks First Argument
-    if (IsPathLanguage(myLanguage) == -1)
-    {
-        myLanguageIndex = GetDefaultLanguage();
-    }
-    else // if (IsPathLanguage(myLanguage) != -1)
-    {
-        if (!myLanguage.empty())
-            { moduleName = internalPathNextPart(myLanguage + "/"); }  // Checks Second Argument
-    } // if (IsPathLanguage(myLanguage) == -1)
-    myLanguage = GetLanguageName(); // en, cn, ru...
-    //
-    myPath = CrystalBall::GetPath(internalPath(), GetLanguageName());
-    // Get a Valid Language, returns default if not found
-    std::string newPath = "/" + myLanguage + "/" + myPath;
-
-    if (showDebug) { Wt::log("start") << " WittyWizard::InternalPathChange() myLanguage = " << myLanguage << " | myLanguageIndex = " << oldLanguageIndex << " | new Language Index = " << myLanguageIndex; }
-
+    GetPath();
+    if (showDebug) { Wt::log("start") << " WittyWizard::InternalPathChange() myLanguage = " << myLanguage << " | myOldLanguageIndex = " << myOldLanguageIndex << " | new Language Index = " << myLanguageIndex; }
     //
     isPathChanging = true;
-    PluginHandlePathChange(moduleName, myLanguageIndex);
-    if (myLanguageIndex != oldLanguageIndex)
+    PluginHandlePathChange(myModuleName, myLanguageIndex);
+    if (myLanguageIndex != myOldLanguageIndex)
     {
-        if (showDebug) { Wt::log("local") << " *** WittyWizard::InternalPathChange() language Code set to = " << myLanguage << " myLanguage = " << myLanguage << " | thePath = " << thePath << " | newPath = " << newPath << " *** "; }
+        if (showDebug) { Wt::log("local") << " *** WittyWizard::InternalPathChange() language Code set to = " << myLanguage << " myLanguage = " << myLanguage << " | thePath = " << thePath << " | myFullPath = " << myFullPath << " *** "; }
         // Set Local
         setLocale(myLanguage);
         //setLocale(theLanguage.code_);
     }
     //
-    CallPluginSetLanguage(moduleName, myLanguage, myLanguageIndex);
+    CallPluginSetLanguage(myModuleName, myLanguage, myLanguageIndex);
     //
-    if (myLanguageIndex != oldLanguageIndex)
+    if (myLanguageIndex != myOldLanguageIndex)
     {
         // FIXME: do I need to see if lanuage changed?
         // Change Menu Base Path
@@ -197,7 +182,7 @@ void WittyWizard::InternalPathChange(const std::string& thePath)
     } // end if (myLanguageIndex != oldLanguageIndex)
     // FIXME: do I need to test thePath == newPath
     // Change Path
-    Wt::WApplication::instance()->setInternalPath(newPath, true);
+    Wt::WApplication::instance()->setInternalPath(myFullPath, true);
     // Set Theme
     SetWizardTheme(true, 0);
     //
@@ -231,7 +216,7 @@ void WittyWizard::ReInit()
     if (!myMetaData.empty())
         { addMetaHeader(Wt::MetaName, "msvalidate.01", myMetaData, myLanguage); }
     MenuManView* thisMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, internalPath());
-    MetaData* metaData = thisMenu->GetMetaData(CrystalBall::GetPath(internalPath(), GetLanguageName()));
+    MetaData* metaData = thisMenu->GetMetaData(myPath);
     if (metaData == NULL)
     {
         if (showDebug) { Wt::log("notice") << " <<<<<<<<<<<<<<< WittyWizard::ReInit() internalPath = " << internalPath() << " path = " << path  << " | metaData == NULL >>>>>>>>>>>>>>>>>>>>> "; }
@@ -283,7 +268,7 @@ void WittyWizard::CreateMenu()
     // query menu: lang,
     // FIXME: I do not like hard coding directories
     // FIXME: how do I know domainName is Clean
-    MenuManView* thisMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, internalPath());
+    MenuManView* thisMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, myPath);
     // FIXME: The Menu Session Crash was not from GetMenus using db or xml
 #define DO_MENU_MAN
 #ifdef DO_MENU_MAN
@@ -405,7 +390,7 @@ void WittyWizard::CreateMenu()
         {
             // Add to Main Menu
             // Note: I could not move this section into MenuManView due to boost bind done here
-            mainMenu_->addItem(menu.name_, deferCreate(boost::bind(&WittyWizard::MenuMan, this)))->setLink(Wt::WLink(Wt::WLink::InternalPath, "/" + GetLanguageName() + menu.path_));
+            mainMenu_->addItem(menu.name_, deferCreate(boost::bind(&WittyWizard::MenuMan, this)))->setLink(Wt::WLink(Wt::WLink::InternalPath, "/" + myLanguage + "/" + myTheme + menu.path_));
             if (menu.isSelected_)
             {
                 if (showDebug) { Wt::log("notice") << "WittyWizard::CreateHome: isSelected_ myMainMenu->addItem(" << menu.name_; }
@@ -469,7 +454,7 @@ void WittyWizard::CreateMenu()
             } // end if (l.type_ == "subsub")
             if (menu.type_ == "submenu")
             {
-                myMenuItem[menu.parent_]->addItem(menu.name_, deferCreate(boost::bind(&WittyWizard::MenuMan, this)))->setLink(Wt::WLink(Wt::WLink::InternalPath, "/" + GetLanguageName() + menu.path_));
+                myMenuItem[menu.parent_]->addItem(menu.name_, deferCreate(boost::bind(&WittyWizard::MenuMan, this)))->setLink(Wt::WLink(Wt::WLink::InternalPath, "/" + myLanguage + "/" + myTheme + menu.path_));
                 if (menu.isSelected_)
                 {
                     if (showDebug) { Wt::log("notice") << "WittyWizard::CreateHome: isSelected_ submenu myMenuItem[" << menu.parent_ << "]->addItem(" << menu.name_; }
@@ -577,7 +562,7 @@ void WittyWizard::CreateMenu()
     // Bind to Template
     homeTemplate->bindWidget("menu", mainMenu_);
     homeTemplate->bindWidget("contents", container);
-    // Banner
+    // Banner FIXME: what is the best way to do this?
     std::string myBannerSource = Wt::WString::tr("banner-source").toUTF8();
     std::string myBannerAlt = Wt::WString::tr("banner-alt").toUTF8();
     Wt::WText* banner;
@@ -595,7 +580,15 @@ void WittyWizard::CreateMenu()
         { menuExtras = "| <a href='" + myBaseUrl + "contact'>" + Wt::WString::tr("contact").toUTF8() + "</a>"; }
     Wt::WText* footermenu = new Wt::WText("<a href='" + myBaseUrl + "'>" + Wt::WString::tr("home") + "</a> " + menuExtras, Wt::XHTMLUnsafeText);
     // Google Analytics
-    Wt::WText* ga = new Wt::WText("<script>/*<![CDATA[*/(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', '" + CrystalBall::GaAccount[domainName] + "', '" + myHost + "');ga('send', 'pageview');/* ]]> */</script>", Wt::XHTMLUnsafeText);
+    Wt::WText* ga;
+    if (IsEmpty(CrystalBall::GaAccount[domainName]))
+    {
+        ga = new Wt::WText("");
+    }
+    else
+    {
+        ga = new Wt::WText("<script>/*<![CDATA[*/(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', '" + CrystalBall::GaAccount[domainName] + "', '" + myHost + "');ga('send', 'pageview');/* ]]> */</script>", Wt::XHTMLUnsafeText);
+    }
     //
     homeTemplate->bindWidget("banner", banner);
     homeTemplate->bindWidget("copyright", copyright);
@@ -613,56 +606,32 @@ void WittyWizard::CreateMenu()
  */
 void WittyWizard::SetBaseURL()
 {
-    myBaseUrl = myUrlScheme + "://" + myHost + "/" + CrystalBall::RootPathPrefix + "/" + GetLanguageName() + "/";
+    myBaseUrl = myUrlScheme + "://" + myHost + "/" + CrystalBall::RootPathPrefix + "/" + myLanguage + "/" + myTheme + "/";
 } // end SetBaseURL
 /* ****************************************************************************
+ * IsEmpty
+ */
+bool WittyWizard::IsEmpty(std::string test)
+{
+    return test.empty();
+} // end IsEmpty
+/* ****************************************************************************
  * Menu Man
+ * Called on Demand when Menu Item is Clicked
+ * thePath: /, /path, /path/path
  */
 Wt::WWidget* WittyWizard::MenuMan()
 {
-    std::string thePath = CrystalBall::GetPath(internalPath(), GetLanguageName()); // FIXME: make sure this is clean
+    //bool showDebug = true;
+    std::string thePath = GetPath(); // FIXME: make sure this is clean
     //if (showDebug) { Wt::log("start") << " WittyWizard::MenuMan() thePath = " << thePath; }
-    if (thePath.empty()) { thePath = "home"; } // FIXME: home is not hard coded
-    //if (showDebug) { Wt::log("start") << " WittyWizard::MenuMan() moduleName = " << thePath; }
-    return GetTemplate(thePath);
-    //return new Wt::WText("<h1>Test</h1>", Wt::XHTMLUnsafeText);
-} // end MenuMan
-/* ****************************************************************************
- * Get Template
- */
-Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
-{
-    bool showDebug = true;
+    if (thePath.empty()) { thePath = "/"; } // FIXME: home is not hard coded
     Wt::WString content;
     //
-    if (CrystalBall::UseDb[domainName] == "1")
-    {
-        MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, internalPath());
-        content = myMenu->GetMenu("/" + thePath);
-        if (content.empty())
-            { return new Wt::WText("Page Not Found"); }
-    }
-    else
-    {
-        if (!CrystalBall::IsFile(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"))
-            { if (showDebug) { Wt::log("notice") << " WittyWizard::GetTemplate() Template not found " << appRoot() + "home/" + domainName + "/menuman/xml/" + thePath + ".xml"; } }
-        messageResourceBundle().use(appRoot() + "home/" + domainName + "/menuman/xml/" + thePath, false);
-        size_t found = thePath.find_last_of("/\\");
-        if (found != std::string::npos)
-            { thePath = thePath.substr(found + 1); }
-        content = Wt::WString::tr(thePath + "-template");
-    } // end if (CrystalBall::UseDb[domainName] == "0")
-    /*
-    Wt::log("notice") << " WittyWizard::GetTemplate() found audio tag: useWidgetFun > 1";
-    //
-    Wt::WContainerWidget* result = new Wt::WContainerWidget();
-    if (!content.empty())
-    {
-        Wt::WText *w = new Wt::WText(content, Wt::XHTMLUnsafeText, result);
-        w->setInternalPathEncoding(true);
-    }
-    return result;
-    */
+    MenuManView* myMenu = new MenuManView(appRoot() + "home/" + domainName + "/menuman/", *dbConnection, myLanguage, CrystalBall::UseDb[domainName], domainName, Wt::Horizontal, myPath);
+    content = myMenu->GetMenu(thePath);
+    if (content.empty())
+        { return new Wt::WText(Wt::WString::tr("page-not-found")); }
 
 #define FUNCT1x
 #ifdef FUNCT1
@@ -705,7 +674,7 @@ Wt::WWidget* WittyWizard::GetTemplate(std::string thePath)
     if (widgetFunction.doAddFunction()) { widgetFunction.getTemplate()->addFunction("widget", widgetFunction); }
     return widgetFunction.getTemplate();
 #endif
-} // end GetTemplate
+} // end MenuMan
 /* ****************************************************************************
  * Is Path Language
  * langPath: pass in first path string
@@ -727,64 +696,62 @@ int WittyWizard::IsPathLanguage(std::string langPath)
     return foundLanguageIndex;
 } // end IsPathLanguage
 /* ****************************************************************************
- * Get Default Language
- * returns the language index based on the current int language_ index -1 means uninitilized
+ * Is Path Theme
+ * langPath: pass in first path string
+ * return -1 if not found, else return index of Language
  */
-int WittyWizard::GetDefaultLanguage()
+int WittyWizard::IsPathTheme(std::string themePath)
 {
-    int newLanguageIndex = myLanguageIndex;
-    if (newLanguageIndex == -1)
+    if (themePath.empty()) { return -1; }
+    int foundThemeIndex = -1;
+    for (unsigned i = 0; i < themes.size(); ++i)
     {
-        std::string languageName = internalPathNextPart("/"); // Checks First Argument
-        newLanguageIndex = IsPathLanguage(languageName);
-        if (newLanguageIndex == -1)
+        if (themes[i].path_ == themePath)
         {
-            // FIXME: Option to use Users Default Language, how do you get the default users language?
-            newLanguageIndex = IsPathLanguage(myLocale);
-            if (newLanguageIndex == -1)
-                { newLanguageIndex = CrystalBall::DefaultLanguageIndex[domainName]; }
+            foundThemeIndex = i;
+            //Wt::log("notice") << " *** WittyWizard::IsPathTheme() themePath = " << themePath << " found at " << i << " ***"; // red, white, blue ...
+            break;
         }
     }
-    return newLanguageIndex;
-} // end WittyWizard::GetDefaultLanguage
+    return foundThemeIndex;
+} // end IsPathTheme
 /* ****************************************************************************
- * Get Language Index
- * languageName: name in struct Lang
+ * Get Theme
+ * themePath:
  */
-int WittyWizard::GetLanguageIndex(std::string languageName)
+std::string WittyWizard::GetTheme(std::string themePath)
 {
-    int newLanguageIndex = IsPathLanguage(languageName);
+    int newLanguageIndex = IsPathTheme(themePath);
+    std::string newTheme = themePath;
     if (newLanguageIndex == -1)
-        { newLanguageIndex = GetDefaultLanguage(); }
-    return newLanguageIndex;
-} // end GetLanguageIndex
+    {
+        newTheme = CrystalBall::GetCookie("wwtheme"); // FIXME: Potental Cookie Bug
+        if (newTheme.empty())
+            { newTheme = CrystalBall::DefaultTheme[domainName]; }
+    }
+    return newTheme;
+} // end GetTheme
 /* ****************************************************************************
- * Get Language
- * string languageName
+ * Set Default Language
+ * returns the language index based on the current int language_ index -1 means uninitilized
  */
-const Lang& WittyWizard::GetLanguage(std::string languageName)
+void WittyWizard::SetDefaultLanguage()
 {
-    return languages[GetLanguageIndex(languageName)];
-} // end GetLanguage
-/* ****************************************************************************
- * Get Language
- * int index
- * FIXME: Get Browsers Default Language and convert it to name, i.e. en_US = en, then find index
- */
-const Lang& WittyWizard::GetLanguage(int index)
-{
+    myOldLanguageIndex = myLanguageIndex;
     if (myLanguageIndex == -1)
-        { return languages[GetDefaultLanguage()]; }
-    else
-        { return languages[index]; }
-} // end GetLanguage
-/* ****************************************************************************
- * Get Language Name
- */
-std::string WittyWizard::GetLanguageName()
-{
-    return languages[GetDefaultLanguage()].name_;
-} // end GetLanguageName
+    {
+        myLanguageIndex = IsPathLanguage(internalPathNextPart("/"));
+        if (myLanguageIndex == -1)
+        {
+            // FIXME: Option to use Users Default Language, how do you get the default users language?
+            myLanguageIndex = IsPathLanguage(myLocale);
+            if (myLanguageIndex == -1)
+                { myLanguageIndex = CrystalBall::DefaultLanguageIndex[domainName]; }
+        }
+    }
+    myLanguage = languages[myLanguageIndex].name_;
+    myLanguageCode = languages[myLanguageIndex].code_;
+} // end SetDefaultLanguage
 /* ****************************************************************************
  * Get Locale
  */
@@ -793,7 +760,7 @@ void WittyWizard::SetMyLocale()
     //Wt::log("info") << "-> WittyWizard::LookInCyrstalball(): defaultLanguageIndex = " << CrystalBall::DefaultLanguageIndex[domainName];
     std::string thisLocale = myLocale.substr(0, myLocale.find("-"));
     if (IsPathLanguage(thisLocale) == -1)
-        { thisLocale = GetLanguageName(); }
+        { SetDefaultLanguage(); thisLocale = myLanguage; }
     myLocale = thisLocale;
 } // end GetLocale
 /* ****************************************************************************
@@ -831,15 +798,26 @@ void WittyWizard::HandleThemePopup(int data)
 void WittyWizard::SetWizardTheme(bool fromCookie, int index)
 {
     Wt::log("start") << " *** WittyWizard::SetWizardTheme(FromCookie: " << "data: " << index << ") *** ";
-    std::string myTheme;
     if (fromCookie)
     {
+        /*
+         *  Bug in app causes this to revert
         myTheme = CrystalBall::GetCookie("wwtheme");
         if (myTheme.empty())
             { myTheme = CrystalBall::DefaultTheme[domainName]; }
+        */
     }
     else
-        { myTheme = themes[index].path_; }
+    {
+        // This is called on Demand from a Menu Item in Optoins
+        myPath = GetPath();
+        myTheme = themes[index].path_;
+        // Get a Valid Language, returns default if not found
+        myFullPath = "/" + myLanguage + "/" + myTheme + myPath;
+        isPathChanging = true;
+        Wt::WApplication::instance()->setInternalPath(myFullPath, true);
+        isPathChanging = false;
+    }
     if (!myTheme.empty())
     {
         // FIXME check for legal path - Note: even if they change the cookie, its still only going to change the file name, worse case it does not work
@@ -849,9 +827,70 @@ void WittyWizard::SetWizardTheme(bool fromCookie, int index)
         this->doJavaScript(jsCss);
         //useStyleSheet(Wt::WApplication::resourcesUrl() + "themes/wittywizard/" + myTheme + "/ww-" + myTheme + ".css");
         //useStyleSheet(Wt::WApplication::resourcesUrl() + "themes/wittywizard/" + myTheme + "/SfMenuHoriz.css");
-        CrystalBall::SetCookie("wwtheme", myTheme);
+        CrystalBall::SetCookie("wwtheme", myTheme); // FIXME: Cookie Bug
     } // end if (!myTheme.empty())
 } // end SetWizardTheme
+/* ****************************************************************************
+ * Get Path
+ * remove language and theme
+ * myLanguages: en, cn, ru, de...
+ * myThemes:
+ * FIXME: make sure path is clean, no SQL Injections
+ * myFullPath: /language/theme/
+ * myPath: /, /path/path
+ */
+std::string WittyWizard::GetPath()
+{
+    // /lang/path/sub
+    // /en/blue/
+    // /en/blue/admin/menuman/updatexml
+    myFullPath = internalPath();
+    myPath = "";
+    myModuleName = "";
+    myLanguage = "";
+    myTheme = "";
+    std::vector<std::string> parts;
+    boost::split(parts, myFullPath, boost::is_any_of("/"));
+    for (unsigned i = 1; i < parts.size(); i++)
+    {
+        if (i == 1)
+        {
+            myLanguage = parts[1];
+        }
+        if (i == 2)
+            { myTheme = parts[2]; }
+        if (i == 3)
+        {
+            if (!IsEmpty(parts[3]))
+            {
+                myModuleName = parts[3];
+                myPath = "/" + myModuleName;
+            }
+        }
+        if ( i > 3)
+        {
+            if (!IsEmpty(parts[i]))
+                { myPath = myPath + "/" + parts[i]; }
+        }
+    } // end for (unsigned i = 1; i < parts.size(); i++)
+    if (myModuleName == "admin")
+    {
+        myModuleName = parts[4];
+        if (!myModuleName.empty())
+            { PluginAdmin(myModuleName, myPath); }
+        myPath = "/";
+    }
+    if (myPath.empty())
+        { myPath = "/"; }
+    myOldLanguageIndex = myLanguageIndex;
+    if (IsPathLanguage(myLanguage) == -1)
+        { SetDefaultLanguage(); }
+    if (IsPathTheme(myTheme) == -1)
+        { myTheme = GetTheme(myTheme); }
+    //Wt::log("notice") << " WittyWizard::GetPath() thePath = " << thePath;
+    myFullPath = "/" + myLanguage + "/" + myTheme + myPath;
+    return myPath;
+} // end GetPath
 /* ****************************************************************************
  * Google Analytics Logger
  */
